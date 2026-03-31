@@ -504,27 +504,43 @@ export default function Home() {
             </div>
 
             {showAddPanel && selectedCouncil.id !== "custom" && (() => {
-              // Build one unified pool: council specialists + all other councils + universal, deduplicated
-              const seen = new Set(activeMembers.map((m) => m.id));
+              const activeIds = new Set(activeMembers.map((m) => m.id));
+              const matchSearch = (m: CouncilMember) => !memberSearch || m.name.toLowerCase().includes(memberSearch.toLowerCase()) || m.role.toLowerCase().includes(memberSearch.toLowerCase()) || m.description.toLowerCase().includes(memberSearch.toLowerCase());
+
+              // Suggested: council specialists not yet added
+              const suggested = selectedCouncil.members
+                .filter((m) => !activeIds.has(m.id))
+                .filter(matchSearch);
+
+              // All: every member across all councils + universal, deduplicated, excluding active + suggested
+              const seenAll = new Set([...activeIds, ...selectedCouncil.members.map((m) => m.id)]);
               const allPool: CouncilMember[] = [];
-              // Council specialists first
-              for (const m of selectedCouncil.members) {
-                if (!seen.has(m.id)) { allPool.push(m); seen.add(m.id); }
-              }
-              // All other council members
               for (const c of councils) {
-                if (c.id === selectedCouncil.id || c.id === "custom") continue;
+                if (c.id === "custom") continue;
                 for (const m of c.members) {
-                  if (!seen.has(m.id)) { allPool.push(m); seen.add(m.id); }
+                  if (!seenAll.has(m.id)) { allPool.push(m); seenAll.add(m.id); }
                 }
               }
-              // Universal members
               for (const m of universalMembers) {
-                if (!seen.has(m.id)) { allPool.push(m); seen.add(m.id); }
+                if (!seenAll.has(m.id)) { allPool.push(m); seenAll.add(m.id); }
               }
-              const filtered = memberSearch
-                ? allPool.filter((m) => m.name.toLowerCase().includes(memberSearch.toLowerCase()) || m.role.toLowerCase().includes(memberSearch.toLowerCase()) || m.description.toLowerCase().includes(memberSearch.toLowerCase()))
-                : allPool;
+              const allFiltered = allPool.filter(matchSearch);
+
+              const memberBtn = (member: CouncilMember) => (
+                <button
+                  key={member.id}
+                  onClick={() => addMember(member)}
+                  disabled={activeMembers.length >= MAX_MEMBERS}
+                  className="flex items-center gap-3 rounded-md border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 p-3 text-left hover:border-zinc-400 dark:hover:border-zinc-600 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  <span className="text-lg">{member.emoji}</span>
+                  <div>
+                    <p className="text-sm font-medium text-zinc-900 dark:text-zinc-100">{member.name}</p>
+                    <p className="text-xs text-zinc-500">{member.description}</p>
+                  </div>
+                </button>
+              );
+
               return (
               <div className="mb-8 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 p-4">
                 <div className="mb-4">
@@ -537,23 +553,20 @@ export default function Home() {
                     autoFocus
                   />
                 </div>
-                <p className="mb-3 text-xs text-zinc-400">{filtered.length} members available{activeMembers.length >= MAX_MEMBERS ? " · Council full" : ""}</p>
+
+                {suggested.length > 0 && (
+                  <>
+                    <h4 className="mb-3 text-sm font-medium text-zinc-600 dark:text-zinc-400">Suggested</h4>
+                    <div className="grid gap-2 sm:grid-cols-2 mb-5">
+                      {suggested.map(memberBtn)}
+                    </div>
+                  </>
+                )}
+
+                <h4 className="mb-3 text-sm font-medium text-zinc-600 dark:text-zinc-400">All <span className="text-xs text-zinc-400 dark:text-zinc-600">— {allFiltered.length + suggested.length} available</span></h4>
                 <div className="grid gap-2 sm:grid-cols-2 max-h-80 overflow-y-auto">
-                  {filtered.map((member) => (
-                    <button
-                      key={member.id}
-                      onClick={() => addMember(member)}
-                      disabled={activeMembers.length >= MAX_MEMBERS}
-                      className="flex items-center gap-3 rounded-md border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 p-3 text-left hover:border-zinc-400 dark:hover:border-zinc-600 disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                      <span className="text-lg">{member.emoji}</span>
-                      <div>
-                        <p className="text-sm font-medium text-zinc-900 dark:text-zinc-100">{member.name}</p>
-                        <p className="text-xs text-zinc-500">{member.description}</p>
-                      </div>
-                    </button>
-                  ))}
-                  {filtered.length === 0 && (
+                  {allFiltered.map(memberBtn)}
+                  {allFiltered.length === 0 && suggested.length === 0 && (
                     <p className="text-sm text-zinc-400 dark:text-zinc-600 col-span-2">No members match &ldquo;{memberSearch}&rdquo;</p>
                   )}
                 </div>
