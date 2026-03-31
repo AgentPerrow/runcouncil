@@ -280,10 +280,13 @@ export default function Home() {
           <div>
             <div className="mb-5 sm:mb-8 text-center">
               <h1 className="mb-1.5 text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 sm:text-4xl">
-                Build your council
+                One AI answer is guessing.<br className="hidden sm:block" /> Five perspectives is thinking.
               </h1>
               <p className="mx-auto max-w-xl text-sm sm:text-base text-zinc-600 dark:text-zinc-400">
                 Pick your advisors. Ask the hard question. Let them argue.
+              </p>
+              <p className="mt-2 text-xs text-zinc-400 dark:text-zinc-600">
+                Works with <span className="font-medium text-zinc-500">ChatGPT</span>, <span className="font-medium text-zinc-500">Claude</span>, <span className="font-medium text-zinc-500">Gemini</span> · 130+ advisors · No signup
               </p>
             </div>
 
@@ -312,7 +315,7 @@ export default function Home() {
               <div className="mt-8 text-center">
                 <button
                   onClick={() => setShowAllCouncils(true)}
-                  className="rounded-lg border border-zinc-200 dark:border-zinc-800 px-4 py-2 text-sm font-medium text-zinc-500 hover:text-zinc-900 hover:border-zinc-400 dark:hover:text-zinc-100 dark:hover:border-zinc-600"
+                  className="rounded-lg border border-amber-300 dark:border-amber-700 px-4 py-2 text-sm font-medium text-amber-600 hover:bg-amber-50 hover:border-amber-400 dark:text-amber-400 dark:hover:bg-amber-950/20 dark:hover:border-amber-600"
                 >
                   See all {councils.length} councils →
                 </button>
@@ -351,7 +354,7 @@ export default function Home() {
             )}
 
             {/* Featured Templates */}
-            <div className="mt-16 mb-12">
+            <div className="mt-10 mb-8">
               <div className="mb-6 flex items-center justify-between">
                 <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
                   Ready-made councils
@@ -388,23 +391,23 @@ export default function Home() {
             </div>
 
             {/* How it works */}
-            <div className="mt-16 mb-12">
+            <div className="mt-10 mb-8">
               <h2 className="mb-8 text-center text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
                 How it works
               </h2>
               <div className="grid gap-8 sm:grid-cols-3">
                 <div className="text-center">
-                  <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-zinc-900 text-sm font-bold text-white dark:bg-white dark:text-zinc-900">1</div>
+                  <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-amber-500 text-sm font-bold text-white">1</div>
                   <h3 className="mb-1 font-semibold text-zinc-900 dark:text-zinc-100">Pick a council</h3>
                   <p className="text-sm text-zinc-500">Startup, health, career, investing — or build your own from scratch.</p>
                 </div>
                 <div className="text-center">
-                  <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-zinc-900 text-sm font-bold text-white dark:bg-white dark:text-zinc-900">2</div>
+                  <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-amber-500 text-sm font-bold text-white">2</div>
                   <h3 className="mb-1 font-semibold text-zinc-900 dark:text-zinc-100">Customize your advisors</h3>
                   <p className="text-sm text-zinc-500">Add, remove, or create members. Tune how aggressive or conservative they think.</p>
                 </div>
                 <div className="text-center">
-                  <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-zinc-900 text-sm font-bold text-white dark:bg-white dark:text-zinc-900">3</div>
+                  <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-amber-500 text-sm font-bold text-white">3</div>
                   <h3 className="mb-1 font-semibold text-zinc-900 dark:text-zinc-100">Copy → Paste → Done</h3>
                   <p className="text-sm text-zinc-500">Grab the prompt and drop it into ChatGPT, Claude, or Gemini. Your council is ready.</p>
                 </div>
@@ -417,14 +420,12 @@ export default function Home() {
                 <h3 className="font-semibold text-zinc-900 dark:text-zinc-100">See what a council actually looks like</h3>
                 <p className="text-sm text-zinc-500">Real examples, best practices, and the mistakes that make councils useless.</p>
               </div>
-              <a href="/guide" className="shrink-0 rounded-lg bg-zinc-900 px-5 py-2.5 text-sm font-semibold text-white hover:bg-zinc-800 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-200">
+              <a href="/guide" className="shrink-0 rounded-lg bg-amber-500 px-5 py-2.5 text-sm font-semibold text-white hover:bg-amber-400">
                 Read the Guide →
               </a>
             </div>
 
-            <div className="mt-10 text-center text-sm text-zinc-400 dark:text-zinc-600">
-              <p>Works with <span className="font-medium">ChatGPT</span>, <span className="font-medium">Claude</span>, <span className="font-medium">Gemini</span> — bring your own model.</p>
-            </div>
+
           </div>
         )}
 
