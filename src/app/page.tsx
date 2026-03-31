@@ -240,7 +240,7 @@ export default function Home() {
           <div>
             <div className="mb-5 sm:mb-8 text-center">
               <h1 className="mb-1.5 text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 sm:text-4xl">
-                Build your boardroom
+                Build your council
               </h1>
               <p className="mx-auto max-w-xl text-sm sm:text-base text-zinc-600 dark:text-zinc-400">
                 Pick your advisors. Ask the hard question. Let them argue.
@@ -258,7 +258,7 @@ export default function Home() {
                   <h3 className="text-sm sm:text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">
                     {council.name}
                   </h3>
-                  <p className="hidden sm:block text-sm italic text-zinc-500">&ldquo;{council.description}&rdquo;</p>
+                  <p className="mt-1 text-xs sm:text-sm italic text-zinc-400 sm:text-zinc-500 line-clamp-1 sm:line-clamp-none">&ldquo;{council.description}&rdquo;</p>
                   <p className="hidden sm:block mt-2 text-xs text-zinc-500 dark:text-zinc-400">
                     {council.tagline}
                   </p>
@@ -289,7 +289,7 @@ export default function Home() {
                       <h3 className="text-sm sm:text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">
                         {council.name}
                       </h3>
-                      <p className="hidden sm:block text-sm italic text-zinc-500">&ldquo;{council.description}&rdquo;</p>
+                      <p className="mt-1 text-xs sm:text-sm italic text-zinc-400 sm:text-zinc-500 line-clamp-1 sm:line-clamp-none">&ldquo;{council.description}&rdquo;</p>
                       <p className="hidden sm:block mt-2 text-xs text-zinc-500 dark:text-zinc-400">
                         {council.tagline}
                       </p>
