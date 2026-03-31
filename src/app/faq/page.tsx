@@ -98,6 +98,12 @@ export default function FAQPage() {
             >
               Guide
             </Link>
+            <Link
+              href="/faq"
+              className="text-sm font-medium text-zinc-900 dark:text-zinc-100"
+            >
+              FAQ
+            </Link>
           </div>
         </div>
       </header>

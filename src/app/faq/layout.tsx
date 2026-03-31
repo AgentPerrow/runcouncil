@@ -4,6 +4,9 @@ export const metadata: Metadata = {
   title: "FAQ — RunCouncil",
   description:
     "Frequently asked questions about RunCouncil. Learn how to build an AI advisory council, which AI tools it works with, and how to get the best results.",
+  alternates: {
+    canonical: "https://runcouncil.com/faq",
+  },
   openGraph: {
     title: "FAQ — RunCouncil",
     description:

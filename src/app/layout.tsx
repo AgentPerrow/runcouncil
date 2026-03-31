@@ -25,6 +25,9 @@ export const metadata: Metadata = {
       },
     ],
   },
+  alternates: {
+    canonical: "https://runcouncil.com",
+  },
   twitter: {
     card: "summary_large_image",
     title: "RunCouncil — Build Your AI Advisory Board in 60 Seconds",

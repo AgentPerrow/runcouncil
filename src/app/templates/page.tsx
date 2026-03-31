@@ -31,6 +31,9 @@ export default function TemplatesPage() {
             <Link href="/guide" className="text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100">
               Guide
             </Link>
+            <Link href="/faq" className="text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100">
+              FAQ
+            </Link>
           </div>
         </div>
       </header>

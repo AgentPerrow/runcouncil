@@ -37,10 +37,14 @@ export async function generateMetadata({
   const template = templates.find((t) => t.id === slug);
   if (!template) return { title: "Template Not Found" };
   const title = template.seoTitle || `${template.emoji} ${template.title} — RunCouncil`;
-  const description = template.seoDescription || template.description;
+  const members = getTemplateMembers(template);
+  const description = template.seoDescription || `${template.title} — ${template.description} Build your AI advisory council with ${members.length} specialized advisors. No signup required.`;
   return {
     title,
     description,
+    alternates: {
+      canonical: `https://runcouncil.com/templates/${template.id}`,
+    },
     openGraph: {
       title,
       description,
@@ -90,6 +94,12 @@ export default async function TemplatePage({
               className="text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100"
             >
               Guide
+            </Link>
+            <Link
+              href="/faq"
+              className="text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100"
+            >
+              FAQ
             </Link>
           </div>
         </div>
@@ -198,6 +208,39 @@ export default async function TemplatePage({
                     </Link>
                   ) : null
                 )}
+              </div>
+            </div>
+          ) : null;
+        })()}
+        {/* More from same category */}
+        {(() => {
+          const excludeIds = new Set([template.id, ...(template.relatedIds || [])]);
+          const sameCat = templates
+            .filter((t) => t.category === template.category && !excludeIds.has(t.id))
+            .slice(0, 3);
+          return sameCat.length > 0 ? (
+            <div className="mt-16 border-t border-zinc-200 dark:border-zinc-800 pt-10">
+              <h2 className="mb-4 text-lg font-semibold text-zinc-900 dark:text-zinc-100">
+                More {template.category} Templates
+              </h2>
+              <div className="grid gap-3 sm:grid-cols-3">
+                {sameCat.map((r) => (
+                  <Link
+                    key={r.id}
+                    href={`/templates/${r.id}`}
+                    className="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 p-4 hover:border-amber-300 dark:hover:border-amber-700 transition-colors"
+                  >
+                    <div className="flex items-center gap-2">
+                      <span className="text-lg">{r.emoji}</span>
+                      <span className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
+                        {r.title}
+                      </span>
+                    </div>
+                    <p className="mt-1.5 text-xs text-zinc-500 line-clamp-2">
+                      {r.description}
+                    </p>
+                  </Link>
+                ))}
               </div>
             </div>
           ) : null;
