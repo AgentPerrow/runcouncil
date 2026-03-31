@@ -9,6 +9,7 @@ import CouncilConfigurator, { COUNCIL_CONFIGS } from "@/components/CouncilConfig
 import { applyPromptModifiers, getRecommendedMembers } from "@/data/prompt-modifiers";
 import { templates } from "@/data/templates";
 import { PrismLogoFull } from "@/components/PrismLogo";
+import HeroPrism from "@/components/HeroPrism";
 
 type Step = "select" | "context" | "members" | "output";
 
@@ -286,88 +287,93 @@ export default function Home() {
         {/* Step 1: Select */}
         {step === "select" && (
           <>
-          {/* Hero */}
-          <div className="mx-auto max-w-5xl px-4 sm:px-6">
-            <div className="py-16 sm:py-24 flex flex-col items-center text-center">
-              {/* Eyebrow */}
-              <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-[var(--rc-text-muted)]">
-                AI council for better decisions
-              </p>
-
-              {/* Headline */}
-              <h1 className="mb-5 max-w-2xl text-3xl font-bold tracking-tight text-[var(--rc-text-primary)] sm:text-5xl sm:leading-[1.1]">
-                Pressure-test big decisions before you make them
-              </h1>
-
-              {/* Subheadline */}
-              <p className="mb-10 max-w-xl text-base leading-relaxed text-[var(--rc-text-secondary)] sm:text-lg">
-                Bring your question. Build a council of AI experts. Get a clear, actionable answer with tradeoffs, risks, and your next move.
-              </p>
-
-              {/* Final Recommendation Card */}
-              <div className="mb-10 w-full max-w-sm rounded-xl border border-[var(--rc-border)] bg-[var(--rc-card)] p-5 shadow-[0_4px_24px_rgba(0,0,0,0.06)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.3)] text-left">
-                <div className="mb-3 flex items-center gap-2">
-                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" className="text-amber-500"><path d="M8 0l2.35 5.15L16 6l-4 3.9.95 5.6L8 12.85 3.05 15.5 4 9.9 0 6l5.65-.85L8 0z" fill="currentColor"/></svg>
-                  <span className="text-[11px] font-semibold uppercase tracking-wider text-[var(--rc-text-secondary)]">Final Recommendation</span>
-                </div>
-                <p className="mb-4 text-[15px] font-semibold leading-snug text-[var(--rc-text-primary)]">
-                  Raise a $3–5M round now, but reduce burn by 20% first.
+          {/* Hero — Split layout: text left, prism + card right */}
+          <div className="mx-auto max-w-6xl px-4 sm:px-6">
+            <div className="py-12 sm:py-20 grid sm:grid-cols-2 gap-8 sm:gap-16 items-center">
+              {/* Left: Text */}
+              <div>
+                <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-[var(--rc-text-muted)]">
+                  AI council for better decisions
                 </p>
+                <h1 className="mb-5 text-3xl font-bold tracking-tight text-[var(--rc-text-primary)] sm:text-[44px] sm:leading-[1.1]">
+                  Pressure-test big decisions before you make them
+                </h1>
+                <p className="mb-8 max-w-md text-base leading-relaxed text-[var(--rc-text-secondary)] sm:text-[17px]">
+                  Bring your question. Build a council of AI experts. Get a clear, actionable answer with tradeoffs, risks, and your next move.
+                </p>
+                <div className="flex flex-wrap items-center gap-3 mb-6">
+                  <button
+                    onClick={() => { setShowAllCouncils(false); document.getElementById("councils")?.scrollIntoView({ behavior: "smooth" }); }}
+                    className="rounded-full bg-[#111111] dark:bg-white px-7 py-3 text-sm font-medium text-white dark:text-[#111111] hover:opacity-90"
+                  >
+                    Build my council →
+                  </button>
+                  <a
+                    href="/guide"
+                    className="flex items-center gap-2 rounded-full border border-[var(--rc-border)] px-7 py-3 text-sm font-medium text-[var(--rc-text-primary)] hover:border-[var(--rc-text-muted)]"
+                  >
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><polygon points="2,0 12,6 2,12" /></svg>
+                    See it in action
+                  </a>
+                </div>
+              </div>
 
-                <p className="mb-2 text-[11px] font-medium uppercase tracking-wider text-[var(--rc-text-muted)]">Key Tradeoffs</p>
-                <div className="space-y-1.5 mb-4">
-                  <div className="flex items-start gap-2.5 rounded-lg bg-[var(--rc-surface)] px-3 py-2">
-                    <span className="mt-0.5 h-2 w-2 shrink-0 rounded-full bg-red-500" />
-                    <div><span className="text-xs font-semibold text-[var(--rc-text-primary)]">Speed vs Dilution</span> <span className="text-xs text-[var(--rc-text-secondary)]">Move fast, give up 8–12%</span></div>
-                  </div>
-                  <div className="flex items-start gap-2.5 rounded-lg bg-[var(--rc-surface)] px-3 py-2">
-                    <span className="mt-0.5 h-2 w-2 shrink-0 rounded-full bg-amber-400" />
-                    <div><span className="text-xs font-semibold text-[var(--rc-text-primary)]">Market Timing</span> <span className="text-xs text-[var(--rc-text-secondary)]">Window open 6–9 months</span></div>
-                  </div>
-                  <div className="flex items-start gap-2.5 rounded-lg bg-[var(--rc-surface)] px-3 py-2">
-                    <span className="mt-0.5 h-2 w-2 shrink-0 rounded-full bg-blue-500" />
-                    <div><span className="text-xs font-semibold text-[var(--rc-text-primary)]">Runway</span> <span className="text-xs text-[var(--rc-text-secondary)]">Extend to 18–24 months</span></div>
-                  </div>
+              {/* Right: Prism illustration + floating card */}
+              <div className="relative">
+                {/* Prism */}
+                <div className="hidden sm:block absolute -left-8 top-1/2 -translate-y-1/2 w-48 z-0 opacity-90">
+                  <HeroPrism />
                 </div>
 
-                <p className="mb-2 text-[11px] font-medium uppercase tracking-wider text-[var(--rc-text-muted)]">Next Move</p>
-                <div className="flex items-center gap-2.5 rounded-lg bg-[var(--rc-surface)] px-3 py-2">
-                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" className="shrink-0 text-emerald-500"><circle cx="8" cy="8" r="8" fill="currentColor"/><path d="M5 8l2 2 4-4" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                  <span className="text-xs font-medium text-[var(--rc-text-primary)]">Start investor conversations within 2 weeks</span>
+                {/* Final Recommendation Card — floating */}
+                <div className="relative z-10 sm:ml-24 w-full max-w-sm rounded-2xl border border-[var(--rc-border)] bg-[var(--rc-card)] p-6 shadow-[0_8px_40px_rgba(0,0,0,0.08)] dark:shadow-[0_8px_40px_rgba(0,0,0,0.4)]">
+                  <div className="mb-3 flex items-center gap-2">
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" className="text-amber-500"><path d="M8 0l2.35 5.15L16 6l-4 3.9.95 5.6L8 12.85 3.05 15.5 4 9.9 0 6l5.65-.85L8 0z" fill="currentColor"/></svg>
+                    <span className="text-[11px] font-semibold uppercase tracking-wider text-[var(--rc-text-secondary)]">Final Recommendation</span>
+                  </div>
+                  <p className="mb-5 text-[15px] font-semibold leading-snug text-[var(--rc-text-primary)]">
+                    Raise a $3–5M round now, but reduce burn by 20% first.
+                  </p>
+
+                  <p className="mb-2 text-[11px] font-medium uppercase tracking-wider text-[var(--rc-text-muted)]">Key Tradeoffs</p>
+                  <div className="space-y-1.5 mb-5">
+                    <div className="flex items-start gap-2.5 rounded-lg bg-[var(--rc-surface)] px-3 py-2">
+                      <span className="mt-0.5 h-2 w-2 shrink-0 rounded-full bg-red-500" />
+                      <div><span className="text-xs font-semibold text-[var(--rc-text-primary)]">Speed vs Dilution</span> <span className="text-xs text-[var(--rc-text-secondary)]">Move fast, give up 8–12%</span></div>
+                    </div>
+                    <div className="flex items-start gap-2.5 rounded-lg bg-[var(--rc-surface)] px-3 py-2">
+                      <span className="mt-0.5 h-2 w-2 shrink-0 rounded-full bg-amber-400" />
+                      <div><span className="text-xs font-semibold text-[var(--rc-text-primary)]">Market Timing</span> <span className="text-xs text-[var(--rc-text-secondary)]">Window open 6–9 months</span></div>
+                    </div>
+                    <div className="flex items-start gap-2.5 rounded-lg bg-[var(--rc-surface)] px-3 py-2">
+                      <span className="mt-0.5 h-2 w-2 shrink-0 rounded-full bg-blue-500" />
+                      <div><span className="text-xs font-semibold text-[var(--rc-text-primary)]">Runway</span> <span className="text-xs text-[var(--rc-text-secondary)]">Extend to 18–24 months</span></div>
+                    </div>
+                  </div>
+
+                  <p className="mb-2 text-[11px] font-medium uppercase tracking-wider text-[var(--rc-text-muted)]">Next Move</p>
+                  <div className="flex items-center gap-2.5 rounded-lg bg-[var(--rc-surface)] px-3 py-2">
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" className="shrink-0 text-emerald-500"><circle cx="8" cy="8" r="8" fill="currentColor"/><path d="M5 8l2 2 4-4" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                    <span className="text-xs font-medium text-[var(--rc-text-primary)]">Start investor conversations within 2 weeks</span>
+                  </div>
                 </div>
               </div>
+            </div>
 
-              {/* CTAs */}
-              <div className="flex flex-wrap items-center justify-center gap-3 mb-10">
-                <button
-                  onClick={() => { setShowAllCouncils(false); document.getElementById("councils")?.scrollIntoView({ behavior: "smooth" }); }}
-                  className="rounded-full bg-[#111111] dark:bg-white px-7 py-3 text-sm font-medium text-white dark:text-[#111111] hover:opacity-90"
-                >
-                  Build my council →
-                </button>
-                <a
-                  href="/guide"
-                  className="rounded-full border border-[var(--rc-border)] px-7 py-3 text-sm font-medium text-[var(--rc-text-primary)] hover:border-[var(--rc-text-muted)]"
-                >
-                  ▷ See it in action
-                </a>
-              </div>
-
-              {/* Value Props Bar */}
-              <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-[13px] text-[var(--rc-text-muted)]">
-                <span className="flex items-center gap-2">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-60"><circle cx="8" cy="8" r="6"/><circle cx="8" cy="8" r="2.5"/></svg>
-                  Multi-perspective analysis
-                </span>
-                <span className="flex items-center gap-2">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-60"><path d="M8 2v12M4 6l4-4 4 4"/></svg>
-                  Conflicting views surfaced
-                </span>
-                <span className="flex items-center gap-2">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-60"><path d="M3 8.5l3 3 7-7"/></svg>
-                  Clear, actionable output
-                </span>
-              </div>
+            {/* Value Props Bar */}
+            <div className="border-t border-[var(--rc-border)] py-6 flex flex-wrap items-center justify-center gap-6 sm:gap-12 text-[13px] text-[var(--rc-text-muted)]">
+              <span className="flex items-center gap-2">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-50"><circle cx="8" cy="8" r="6"/><circle cx="8" cy="8" r="2.5"/></svg>
+                Multi-perspective analysis
+              </span>
+              <span className="flex items-center gap-2">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-50"><path d="M4 12l4-8 4 8M5.5 9h5"/></svg>
+                Conflicting views surfaced
+              </span>
+              <span className="flex items-center gap-2">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-50"><path d="M3 8.5l3 3 7-7"/></svg>
+                Clear, actionable output
+              </span>
             </div>
           </div>
 
