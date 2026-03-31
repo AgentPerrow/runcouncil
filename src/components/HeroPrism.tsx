@@ -1,123 +1,140 @@
-// HeroPrism — Large decorative prism illustration for the hero section
-// Photorealistic-style dark glass prism with rainbow light refraction
+// HeroPrism — High-quality 3D-style prism with rainbow refraction
+// CSS gradient approach with SVG for the beams
 
 export default function HeroPrism({ className = "" }: { className?: string }) {
   return (
-    <div className={`relative ${className}`}>
-      <svg
-        viewBox="0 0 400 360"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className="w-full h-auto"
-      >
-        <defs>
-          {/* Prism face gradients */}
-          <linearGradient id="hero-face-left" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="#1c1c3a" />
-            <stop offset="50%" stopColor="#0e0e24" />
-            <stop offset="100%" stopColor="#18182f" />
-          </linearGradient>
-          <linearGradient id="hero-face-right" x1="0" y1="0" x2="1" y2="0.8">
-            <stop offset="0%" stopColor="#1a1a35" />
-            <stop offset="100%" stopColor="#0d0d20" />
-          </linearGradient>
-          <linearGradient id="hero-face-front" x1="0.5" y1="0" x2="0.5" y2="1">
-            <stop offset="0%" stopColor="#252550" />
-            <stop offset="100%" stopColor="#0f0f25" />
-          </linearGradient>
+    <div className={`relative select-none ${className}`}>
+      <div className="relative w-full max-w-[560px] mx-auto" style={{ aspectRatio: "16/11" }}>
+        <svg
+          viewBox="0 0 560 385"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-full h-full"
+        >
+          <defs>
+            {/* Prism face gradients - dark glass look */}
+            <linearGradient id="hp-left" x1="0.3" y1="0" x2="0.8" y2="1">
+              <stop offset="0%" stopColor="#1e1e3f" />
+              <stop offset="40%" stopColor="#12122a" />
+              <stop offset="100%" stopColor="#1a1a38" />
+            </linearGradient>
+            <linearGradient id="hp-right" x1="0.5" y1="0" x2="1" y2="1">
+              <stop offset="0%" stopColor="#252548" />
+              <stop offset="50%" stopColor="#1a1a35" />
+              <stop offset="100%" stopColor="#141430" />
+            </linearGradient>
+            <linearGradient id="hp-bottom" x1="0.5" y1="0" x2="0.5" y2="1">
+              <stop offset="0%" stopColor="#1a1a38" />
+              <stop offset="100%" stopColor="#0e0e22" />
+            </linearGradient>
+            
+            {/* White input beam gradient */}
+            <linearGradient id="hp-beam-in" x1="0" y1="0.5" x2="1" y2="0.5">
+              <stop offset="0%" stopColor="white" stopOpacity="0" />
+              <stop offset="30%" stopColor="white" stopOpacity="0.15" />
+              <stop offset="100%" stopColor="white" stopOpacity="0.5" />
+            </linearGradient>
+
+            {/* Glow filters */}
+            <filter id="hp-glow-sm">
+              <feGaussianBlur stdDeviation="3" />
+            </filter>
+            <filter id="hp-glow-md">
+              <feGaussianBlur stdDeviation="6" />
+            </filter>
+            <filter id="hp-glow-lg">
+              <feGaussianBlur stdDeviation="10" />
+            </filter>
+
+            {/* Beam glow colors */}
+            <linearGradient id="hp-beam-rainbow" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#ef4444" />
+              <stop offset="20%" stopColor="#f97316" />
+              <stop offset="40%" stopColor="#eab308" />
+              <stop offset="60%" stopColor="#22c55e" />
+              <stop offset="80%" stopColor="#3b82f6" />
+              <stop offset="100%" stopColor="#8b5cf6" />
+            </linearGradient>
+
+            {/* Surface reflection */}
+            <radialGradient id="hp-shadow" cx="0.45" cy="0.5" r="0.5">
+              <stop offset="0%" stopColor="#111128" stopOpacity="0.25" />
+              <stop offset="100%" stopColor="#111128" stopOpacity="0" />
+            </radialGradient>
+          </defs>
+
+          {/* Ground shadow / reflection */}
+          <ellipse cx="260" cy="325" rx="180" ry="28" fill="url(#hp-shadow)" />
+
+          {/* === INCOMING WHITE BEAM === */}
+          <polygon 
+            points="0,175 0,195 195,195 195,185" 
+            fill="url(#hp-beam-in)" 
+          />
+          {/* Beam glow */}
+          <line x1="0" y1="190" x2="195" y2="190" stroke="white" strokeWidth="8" opacity="0.06" filter="url(#hp-glow-lg)" />
+
+          {/* Incoming rainbow hint - subtle color separation near prism */}
+          <line x1="120" y1="182" x2="195" y2="178" stroke="#ef4444" strokeWidth="1.5" opacity="0.4" />
+          <line x1="120" y1="185" x2="195" y2="183" stroke="#f97316" strokeWidth="1.5" opacity="0.4" />
+          <line x1="120" y1="188" x2="195" y2="188" stroke="#eab308" strokeWidth="1.5" opacity="0.4" />
+          <line x1="120" y1="191" x2="195" y2="193" stroke="#22c55e" strokeWidth="1.5" opacity="0.4" />
+          <line x1="120" y1="194" x2="195" y2="198" stroke="#3b82f6" strokeWidth="1.5" opacity="0.4" />
+          <line x1="120" y1="197" x2="195" y2="203" stroke="#8b5cf6" strokeWidth="1.5" opacity="0.3" />
+
+          {/* === PRISM — 3D triangular === */}
+          {/* Left face (darker) */}
+          <polygon points="260,55 180,310 260,320" fill="url(#hp-left)" />
+          {/* Right face (slightly lighter) */}
+          <polygon points="260,55 340,310 260,320" fill="url(#hp-right)" />
+          {/* Bottom face (depth) */}
+          <polygon points="180,310 340,310 260,320" fill="url(#hp-bottom)" />
           
-          {/* Incoming light beam */}
-          <linearGradient id="hero-beam-in" x1="0" y1="0.3" x2="1" y2="0.5">
-            <stop offset="0%" stopColor="white" stopOpacity="0.9" />
-            <stop offset="100%" stopColor="white" stopOpacity="0.3" />
-          </linearGradient>
+          {/* Edge highlights */}
+          <line x1="260" y1="55" x2="180" y2="310" stroke="rgba(255,255,255,0.07)" strokeWidth="1" />
+          <line x1="260" y1="55" x2="340" y2="310" stroke="rgba(255,255,255,0.12)" strokeWidth="1" />
+          <line x1="180" y1="310" x2="340" y2="310" stroke="rgba(255,255,255,0.04)" strokeWidth="1" />
+          <line x1="180" y1="310" x2="260" y2="320" stroke="rgba(255,255,255,0.03)" strokeWidth="1" />
+          <line x1="340" y1="310" x2="260" y2="320" stroke="rgba(255,255,255,0.05)" strokeWidth="1" />
 
-          {/* Rainbow spectrum for output beams */}
-          <linearGradient id="hero-spectrum" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#ff3333" />
-            <stop offset="16%" stopColor="#ff8800" />
-            <stop offset="33%" stopColor="#ffcc00" />
-            <stop offset="50%" stopColor="#33cc33" />
-            <stop offset="66%" stopColor="#3399ff" />
-            <stop offset="83%" stopColor="#6633ff" />
-            <stop offset="100%" stopColor="#9933ff" />
-          </linearGradient>
+          {/* Internal reflections */}
+          <polygon points="260,68 198,275 260,280" fill="rgba(255,255,255,0.025)" />
+          <polygon points="260,90 215,240 255,245" fill="rgba(255,255,255,0.015)" />
 
-          {/* Glow filter */}
-          <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="8" result="blur" />
-            <feComposite in="SourceGraphic" in2="blur" operator="over" />
-          </filter>
-          <filter id="soft-glow" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="4" result="blur" />
-            <feComposite in="SourceGraphic" in2="blur" operator="over" />
-          </filter>
+          {/* Glow at entry point */}
+          <circle cx="195" cy="190" r="15" fill="white" opacity="0.08" filter="url(#hp-glow-md)" />
 
-          {/* Surface reflection gradient */}
-          <linearGradient id="surface-fade" x1="0.5" y1="0" x2="0.5" y2="1">
-            <stop offset="0%" stopColor="#111122" stopOpacity="0.3" />
-            <stop offset="100%" stopColor="#111122" stopOpacity="0" />
-          </linearGradient>
-        </defs>
+          {/* === REFRACTED BEAMS EXITING RIGHT === */}
+          {/* Each beam: glow layer + sharp line */}
+          
+          {/* Red */}
+          <line x1="330" y1="155" x2="540" y2="80" stroke="#ef4444" strokeWidth="6" opacity="0.15" filter="url(#hp-glow-md)" />
+          <line x1="330" y1="155" x2="540" y2="80" stroke="#ef4444" strokeWidth="2.5" opacity="0.7" strokeLinecap="round" />
+          
+          {/* Orange */}
+          <line x1="333" y1="170" x2="548" y2="115" stroke="#f97316" strokeWidth="6" opacity="0.15" filter="url(#hp-glow-md)" />
+          <line x1="333" y1="170" x2="548" y2="115" stroke="#f97316" strokeWidth="2.5" opacity="0.7" strokeLinecap="round" />
+          
+          {/* Yellow */}
+          <line x1="335" y1="185" x2="555" y2="155" stroke="#eab308" strokeWidth="6" opacity="0.15" filter="url(#hp-glow-md)" />
+          <line x1="335" y1="185" x2="555" y2="155" stroke="#eab308" strokeWidth="2.5" opacity="0.75" strokeLinecap="round" />
+          
+          {/* Green */}
+          <line x1="336" y1="200" x2="555" y2="197" stroke="#22c55e" strokeWidth="6" opacity="0.15" filter="url(#hp-glow-md)" />
+          <line x1="336" y1="200" x2="555" y2="197" stroke="#22c55e" strokeWidth="2.5" opacity="0.65" strokeLinecap="round" />
+          
+          {/* Blue */}
+          <line x1="335" y1="215" x2="550" y2="240" stroke="#3b82f6" strokeWidth="6" opacity="0.15" filter="url(#hp-glow-md)" />
+          <line x1="335" y1="215" x2="550" y2="240" stroke="#3b82f6" strokeWidth="2.5" opacity="0.65" strokeLinecap="round" />
+          
+          {/* Violet */}
+          <line x1="332" y1="228" x2="540" y2="278" stroke="#8b5cf6" strokeWidth="6" opacity="0.12" filter="url(#hp-glow-md)" />
+          <line x1="332" y1="228" x2="540" y2="278" stroke="#8b5cf6" strokeWidth="2.5" opacity="0.55" strokeLinecap="round" />
 
-        {/* Subtle surface/ground plane */}
-        <ellipse cx="200" cy="290" rx="160" ry="20" fill="url(#surface-fade)" />
-
-        {/* Incoming white light beam */}
-        <polygon 
-          points="0,140 0,160 145,175 145,165" 
-          fill="url(#hero-beam-in)" 
-          opacity="0.6"
-        />
-        
-        {/* Glow where beam hits prism */}
-        <circle cx="148" cy="170" r="12" fill="white" opacity="0.15" filter="url(#glow)" />
-
-        {/* PRISM — 3D triangular prism */}
-        {/* Left face */}
-        <polygon points="200,60 130,270 200,280" fill="url(#hero-face-left)" />
-        {/* Right face */}
-        <polygon points="200,60 270,270 200,280" fill="url(#hero-face-right)" />
-        {/* Front/bottom connecting face */}
-        <polygon points="130,270 270,270 200,280" fill="url(#hero-face-front)" />
-        
-        {/* Edge highlights */}
-        <line x1="200" y1="60" x2="130" y2="270" stroke="rgba(255,255,255,0.08)" strokeWidth="1" />
-        <line x1="200" y1="60" x2="270" y2="270" stroke="rgba(255,255,255,0.12)" strokeWidth="1" />
-        <line x1="130" y1="270" x2="270" y2="270" stroke="rgba(255,255,255,0.05)" strokeWidth="1" />
-        
-        {/* Internal reflection / highlight */}
-        <polygon points="200,70 155,240 200,245" fill="rgba(255,255,255,0.03)" />
-        <polygon points="200,80 175,200 200,205" fill="rgba(255,255,255,0.02)" />
-
-        {/* Refracted rainbow beams exiting right side */}
-        {/* Red */}
-        <line x1="255" y1="140" x2="380" y2="80" stroke="#ff3333" strokeWidth="3" strokeLinecap="round" opacity="0.7" filter="url(#soft-glow)" />
-        <line x1="255" y1="140" x2="380" y2="80" stroke="#ff3333" strokeWidth="1.5" strokeLinecap="round" opacity="0.9" />
-        
-        {/* Orange */}
-        <line x1="258" y1="155" x2="390" y2="110" stroke="#ff8800" strokeWidth="3" strokeLinecap="round" opacity="0.7" filter="url(#soft-glow)" />
-        <line x1="258" y1="155" x2="390" y2="110" stroke="#ff8800" strokeWidth="1.5" strokeLinecap="round" opacity="0.9" />
-        
-        {/* Yellow */}
-        <line x1="260" y1="170" x2="400" y2="145" stroke="#ffcc00" strokeWidth="3" strokeLinecap="round" opacity="0.7" filter="url(#soft-glow)" />
-        <line x1="260" y1="170" x2="400" y2="145" stroke="#ffcc00" strokeWidth="1.5" strokeLinecap="round" opacity="0.9" />
-        
-        {/* Green */}
-        <line x1="262" y1="185" x2="400" y2="180" stroke="#33cc33" strokeWidth="3" strokeLinecap="round" opacity="0.7" filter="url(#soft-glow)" />
-        <line x1="262" y1="185" x2="400" y2="180" stroke="#33cc33" strokeWidth="1.5" strokeLinecap="round" opacity="0.9" />
-        
-        {/* Blue */}
-        <line x1="260" y1="200" x2="395" y2="215" stroke="#3399ff" strokeWidth="3" strokeLinecap="round" opacity="0.7" filter="url(#soft-glow)" />
-        <line x1="260" y1="200" x2="395" y2="215" stroke="#3399ff" strokeWidth="1.5" strokeLinecap="round" opacity="0.9" />
-        
-        {/* Violet */}
-        <line x1="257" y1="215" x2="385" y2="250" stroke="#7733ff" strokeWidth="3" strokeLinecap="round" opacity="0.6" filter="url(#soft-glow)" />
-        <line x1="257" y1="215" x2="385" y2="250" stroke="#7733ff" strokeWidth="1.5" strokeLinecap="round" opacity="0.8" />
-
-        {/* Subtle prism glow on right side */}
-        <circle cx="270" cy="180" r="30" fill="white" opacity="0.04" filter="url(#glow)" />
-      </svg>
+          {/* Exit glow */}
+          <circle cx="340" cy="190" r="25" fill="white" opacity="0.04" filter="url(#hp-glow-lg)" />
+        </svg>
+      </div>
     </div>
   );
 }
