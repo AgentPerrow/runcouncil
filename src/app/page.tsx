@@ -234,25 +234,25 @@ export default function Home() {
         </div>
       )}
 
-      <div className="mx-auto max-w-5xl px-6 py-8">
+      <div className="mx-auto max-w-5xl px-4 sm:px-6 py-5 sm:py-8">
         {/* Step 1: Select */}
         {step === "select" && (
           <div>
-            <div className="mb-8 text-center">
-              <h1 className="mb-2 text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 sm:text-4xl">
+            <div className="mb-5 sm:mb-8 text-center">
+              <h1 className="mb-1.5 text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 sm:text-4xl">
                 Build your boardroom
               </h1>
-              <p className="mx-auto max-w-xl text-base text-zinc-600 dark:text-zinc-400">
+              <p className="mx-auto max-w-xl text-sm sm:text-base text-zinc-600 dark:text-zinc-400">
                 Pick your advisors. Ask the hard question. Let them argue.
               </p>
             </div>
 
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="grid gap-3 sm:gap-4 grid-cols-2 lg:grid-cols-4">
               {featuredCouncils.map((council) => (
                 <button
                   key={council.id}
                   onClick={() => selectCouncil(council)}
-                  className="group rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 p-4 text-left hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-zinc-50 dark:hover:bg-zinc-900"
+                  className="group rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 p-3 sm:p-4 text-left hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-zinc-50 dark:hover:bg-zinc-900"
                 >
                   <div className="mb-2 text-3xl">{council.emoji}</div>
                   <h3 className="mb-1 text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">
@@ -283,7 +283,7 @@ export default function Home() {
                     <button
                       key={council.id}
                       onClick={() => selectCouncil(council)}
-                      className="group rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 p-4 text-left hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-zinc-50 dark:hover:bg-zinc-900"
+                      className="group rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 p-3 sm:p-4 text-left hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-zinc-50 dark:hover:bg-zinc-900"
                     >
                       <div className="mb-2 text-3xl">{council.emoji}</div>
                       <h3 className="mb-1 text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">
