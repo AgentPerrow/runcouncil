@@ -45,7 +45,7 @@ export default function TemplatesPage() {
             Templates
           </h1>
           <p className="text-sm sm:text-base text-zinc-500">
-            Pre-built councils for common decisions. Pick one, customize, go.
+            Ready-made councils for the things you keep thinking about. Pick one, make it yours.
           </p>
         </div>
 
@@ -94,7 +94,7 @@ export default function TemplatesPage() {
                 {template.title}
               </h3>
               <p className="mt-1 text-sm text-zinc-500 line-clamp-2">
-                {template.question}
+                {template.description}
               </p>
               <div className="mt-3 flex items-center justify-between">
                 <span className="text-xs text-zinc-400">{template.memberIds.length} advisors</span>
