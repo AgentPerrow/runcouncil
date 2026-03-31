@@ -1,12 +1,13 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { mergedCouncils as councils, customCouncil, universalMembers, CouncilType, CouncilMember, generateCouncilOutput } from "@/data/merged-councils";
 import CustomMemberCreator from "@/components/CustomMemberCreator";
 import EmailCapture from "@/components/EmailCapture";
 import { buildShareUrl } from "@/lib/share";
 import CouncilConfigurator, { COUNCIL_CONFIGS } from "@/components/CouncilConfigurator";
 import { applyPromptModifiers, getRecommendedMembers } from "@/data/prompt-modifiers";
+import { templates } from "@/data/templates";
 
 type Step = "select" | "context" | "members" | "output";
 
@@ -27,6 +28,36 @@ export default function Home() {
   const [configAnswers, setConfigAnswers] = useState<Record<string, string>>({});
   const [configScales, setConfigScales] = useState<Record<string, number>>({});
   const [isDark, setIsDark] = useState(false);
+
+  // Load template from URL params
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const templateId = params.get("template");
+    if (templateId) {
+      const template = templates.find((t) => t.id === templateId);
+      if (template) {
+        // Find the council category
+        const categoryMap: Record<string, string> = {
+          Startup: "startup", Health: "health", Career: "career",
+          Investment: "investment", Creative: "creative", Parenting: "parenting", Life: "life",
+        };
+        const councilId = categoryMap[template.category];
+        const council = councils.find((c) => c.id === councilId);
+        if (council) {
+          setSelectedCouncil(council);
+          // Find matching members by ID
+          const allMembers = [...council.members, ...universalMembers];
+          const selected = template.memberIds
+            .map((id) => allMembers.find((m) => m.id === id))
+            .filter(Boolean) as CouncilMember[];
+          if (selected.length > 0) setActiveMembers(selected);
+          setStep("members");
+          // Clean URL
+          window.history.replaceState({}, "", "/");
+        }
+      }
+    }
+  }, []);
 
   const toggleTheme = useCallback(() => {
     setIsDark((prev) => {
@@ -61,9 +92,11 @@ export default function Home() {
     });
   }, []);
 
+  const MAX_MEMBERS = 12;
   const addMember = useCallback((member: CouncilMember) => {
     setActiveMembers((prev) => {
       if (prev.find((m) => m.id === member.id)) return prev;
+      if (prev.length >= MAX_MEMBERS) return prev;
       return [...prev, member];
     });
     setShowAddPanel(false);
@@ -189,6 +222,9 @@ export default function Home() {
             >
               {isDark ? "☀️" : "🌙"}
             </button>
+            <a href="/templates" className="text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100">
+              Templates
+            </a>
             <a href="/guide" className="text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100">
               Guide
             </a>
@@ -406,8 +442,9 @@ export default function Home() {
                 {selectedCouncil.emoji} Meet your council
               </h2>
               <p className="text-sm text-zinc-500">
-                {activeMembers.length} member{activeMembers.length !== 1 ? "s" : ""} selected
+                {activeMembers.length}/{MAX_MEMBERS} members
                 {hasDA && <span className="text-zinc-400 dark:text-zinc-600"> · Devil&apos;s Advocate included ✓</span>}
+                {activeMembers.length >= MAX_MEMBERS && <span className="text-amber-500"> · Council full</span>}
               </p>
             </div>
 
@@ -688,8 +725,9 @@ export default function Home() {
         <div className="fixed bottom-0 left-0 right-0 border-t border-zinc-200 dark:border-zinc-800 bg-white/95 dark:bg-zinc-950/95 backdrop-blur-sm px-6 py-4 shadow-[0_-4px_12px_rgba(0,0,0,0.06)] dark:shadow-[0_-4px_12px_rgba(0,0,0,0.3)]">
           <div className="mx-auto flex max-w-5xl items-center justify-between">
             <p className="text-sm text-zinc-600 dark:text-zinc-400">
-              {activeMembers.length} member{activeMembers.length !== 1 ? "s" : ""} selected
-              {activeMembers.length < 2 && <span className="text-zinc-400 dark:text-zinc-600"> · Add at least 2 to generate</span>}
+              {activeMembers.length}/{MAX_MEMBERS} members
+              {activeMembers.length < 2 && <span className="text-zinc-400 dark:text-zinc-600"> · Add at least 2</span>}
+              {activeMembers.length >= MAX_MEMBERS && <span className="text-amber-500"> · Council full</span>}
             </p>
             <button
               onClick={generate}
