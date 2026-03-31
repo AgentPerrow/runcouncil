@@ -7,8 +7,8 @@ export default function HeroPrism({ className = "" }: { className?: string }) {
       <Image
         src="/hero-prism.png"
         alt="Light refracting through a prism — multiple perspectives, one clear answer"
-        width={435}
-        height={288}
+        width={515}
+        height={278}
         className="w-full h-auto"
         priority
       />
