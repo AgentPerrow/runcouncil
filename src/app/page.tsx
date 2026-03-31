@@ -29,6 +29,13 @@ export default function Home() {
   const [configScales, setConfigScales] = useState<Record<string, number>>({});
   const [isDark, setIsDark] = useState(false);
 
+  // Prevent scroll restoration issues on mobile
+  useEffect(() => {
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+  }, []);
+
   // Load template from URL params
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -384,7 +391,7 @@ export default function Home() {
 
         {/* Step 2: About You — #10: consistent spacing */}
         {step === "context" && selectedCouncil && (
-          <div>
+          <div key={`context-${selectedCouncil.id}`}>
             <div className="mb-8">
               <h2 className="mb-1 text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
                 {selectedCouncil.emoji} What&apos;s the decision?
