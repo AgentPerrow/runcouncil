@@ -417,7 +417,7 @@ export default function Home() {
                   {!member.isRequired && (
                     <button
                       onClick={() => removeMember(member.id)}
-                      className="absolute right-3 top-3 rounded-md p-1.5 text-zinc-400 dark:text-zinc-600 sm:opacity-0 sm:group-hover:opacity-100 hover:bg-zinc-200 dark:hover:bg-zinc-800 hover:text-zinc-700 dark:hover:text-zinc-300"
+                      className="absolute right-2 top-2 rounded-full bg-zinc-100 dark:bg-zinc-800 p-1.5 text-zinc-500 dark:text-zinc-400 sm:opacity-0 sm:group-hover:opacity-100 hover:bg-zinc-200 dark:hover:bg-zinc-700 hover:text-zinc-700 dark:hover:text-zinc-200"
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M18 6 6 18" /><path d="m6 6 12 12" />
