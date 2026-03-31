@@ -215,13 +215,13 @@ export default function Home() {
   return (
     <main className="min-h-screen pb-24 bg-[var(--background)]">
       {/* Header */}
-      <header className="px-6 py-5">
-        <div className="mx-auto flex max-w-6xl items-center justify-between">
+      <header className="px-6 sm:px-12 py-5">
+        <div className="mx-auto flex max-w-7xl items-center justify-between">
           {/* Logo */}
           <button
             onClick={() => { setStep("select"); setSelectedCouncil(null); setActiveMembers([]); }}
           >
-            <PrismLogoFull height={30} />
+            <PrismLogoFull height={36} />
           </button>
 
           {/* Center nav links */}
@@ -239,12 +239,12 @@ export default function Home() {
           <div className="flex items-center gap-3">
             {step === "select" && (
               <>
-                <a href="/guide" className="hidden sm:block rounded-full border border-[#D1D5DB] px-4 py-2 text-[15px] font-medium text-[#1A1A2E] hover:border-[#9CA3AF]">
+                <a href="/guide" className="hidden sm:block text-[15px] font-medium text-[#4A4A5A] hover:text-[#111]">
                   Log in
                 </a>
                 <button
                   onClick={() => document.getElementById("councils")?.scrollIntoView({ behavior: "smooth" })}
-                  className="rounded-full bg-[#1A1A2E] px-5 py-2 text-[15px] font-medium text-white hover:opacity-90"
+                  className="rounded-full bg-[#111111] px-6 py-2.5 text-[15px] font-medium text-white hover:bg-[#222]"
                 >
                   Build My Council
                 </button>
@@ -298,72 +298,72 @@ export default function Home() {
         {step === "select" && (
           <>
           {/* Hero */}
-          <div className="mx-auto max-w-6xl px-6 sm:px-10">
+          <div className="mx-auto max-w-7xl px-6 sm:px-12">
             {/* Centered text */}
-            <div className="pt-16 sm:pt-24 pb-8 sm:pb-12 text-center">
-              <p className="mb-5 text-[12px] font-semibold uppercase tracking-[0.25em] text-[#9CA3AF]">
+            <div className="pt-20 sm:pt-28 pb-10 sm:pb-14 text-center">
+              <p className="mb-6 text-[13px] font-semibold uppercase tracking-[0.3em] text-[#9CA3AF]">
                 AI council for better decisions
               </p>
-              <h1 className="mb-6 mx-auto max-w-4xl text-4xl font-bold tracking-tight text-[#111827] sm:text-[64px] sm:leading-[1.08]" style={{ fontFamily: "var(--font-playfair), serif" }}>
+              <h1 className="mb-7 mx-auto max-w-4xl text-4xl font-bold tracking-tight text-[#111827] sm:text-[68px] sm:leading-[1.06]" style={{ fontFamily: "var(--font-playfair), serif" }}>
                 Pressure-test big decisions before you make them
               </h1>
-              <p className="mx-auto max-w-xl text-[17px] leading-relaxed text-[#6B7280]">
+              <p className="mx-auto max-w-2xl text-[18px] leading-[1.7] text-[#6B7280]">
                 Bring your question. Build a council of AI experts. Get a clear, actionable answer with tradeoffs, risks, and your next move.
               </p>
             </div>
 
-            {/* Prism + Card — side by side with overlap */}
-            <div className="relative mx-auto max-w-4xl mb-10 sm:mb-14" style={{ minHeight: "400px" }}>
-              {/* Prism illustration — large, left-center */}
-              <div className="hidden sm:block absolute left-[5%] top-1/2 -translate-y-1/2 w-[55%] z-0">
+            {/* Prism + Card — cinematic layout */}
+            <div className="relative mx-auto max-w-5xl mb-14 sm:mb-20" style={{ minHeight: "440px" }}>
+              {/* Prism illustration — large, left side */}
+              <div className="hidden sm:block absolute -left-[5%] top-1/2 -translate-y-[45%] w-[60%] z-0">
                 <HeroPrism />
               </div>
 
-              {/* Final Recommendation Card — right side, overlapping prism */}
-              <div className="relative sm:absolute sm:right-0 sm:top-1/2 sm:-translate-y-1/2 z-10 w-full max-w-[380px] mx-auto sm:mx-0 rounded-2xl bg-white p-7 shadow-[0_8px_40px_rgba(0,0,0,0.08)]">
-                <div className="mb-3 flex items-center gap-2">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="text-amber-500"><path d="M8 0l2.35 5.15L16 6l-4 3.9.95 5.6L8 12.85 3.05 15.5 4 9.9 0 6l5.65-.85L8 0z" fill="currentColor"/></svg>
-                  <span className="text-[11px] font-semibold uppercase tracking-[0.15em] text-[#6B7280]">Final Recommendation</span>
+              {/* Final Recommendation Card — floating right */}
+              <div className="relative sm:absolute sm:right-[2%] sm:top-1/2 sm:-translate-y-1/2 z-10 w-full max-w-[400px] mx-auto sm:mx-0 rounded-2xl bg-white p-8 shadow-[0_12px_48px_rgba(0,0,0,0.1)]">
+                <div className="mb-4 flex items-center gap-2.5">
+                  <svg width="18" height="18" viewBox="0 0 16 16" fill="none" className="text-amber-500"><path d="M8 0l2.35 5.15L16 6l-4 3.9.95 5.6L8 12.85 3.05 15.5 4 9.9 0 6l5.65-.85L8 0z" fill="currentColor"/></svg>
+                  <span className="text-[12px] font-semibold uppercase tracking-[0.15em] text-[#6B7280]">Final Recommendation</span>
                 </div>
-                <p className="mb-6 text-[22px] font-bold leading-[1.3] text-[#111827]">
+                <p className="mb-7 text-[24px] font-bold leading-[1.25] text-[#111827]">
                   Raise a $3–5M round now, but reduce burn by 20% first.
                 </p>
 
-                <p className="mb-3 text-[13px] font-medium text-[#6B7280]">Key Tradeoffs</p>
-                <div className="space-y-2 mb-6">
-                  <div className="flex items-start gap-3 rounded-xl bg-[#F9FAFB] px-4 py-3">
-                    <span className="mt-1 h-2.5 w-2.5 shrink-0 rounded-full bg-[#EF4444]" />
-                    <div><span className="text-[13px] font-semibold text-[#111827]">Speed vs Dilution</span> <span className="text-[13px] text-[#6B7280]">Move fast, give up 8–12%</span></div>
+                <p className="mb-3 text-[13px] font-semibold text-[#6B7280]">Key Tradeoffs</p>
+                <div className="space-y-2.5 mb-7">
+                  <div className="flex items-start gap-3.5 rounded-xl bg-[#F9FAFB] px-4 py-3.5">
+                    <span className="mt-1 h-3 w-3 shrink-0 rounded-full bg-[#EF4444]" />
+                    <div><span className="text-[14px] font-semibold text-[#111827]">Speed vs Dilution</span> <span className="text-[14px] text-[#6B7280]">Move fast, give up 8–12%</span></div>
                   </div>
-                  <div className="flex items-start gap-3 rounded-xl bg-[#F9FAFB] px-4 py-3">
-                    <span className="mt-1 h-2.5 w-2.5 shrink-0 rounded-full bg-[#F59E0B]" />
-                    <div><span className="text-[13px] font-semibold text-[#111827]">Market Timing</span> <span className="text-[13px] text-[#6B7280]">Window open 6–9 months</span></div>
+                  <div className="flex items-start gap-3.5 rounded-xl bg-[#F9FAFB] px-4 py-3.5">
+                    <span className="mt-1 h-3 w-3 shrink-0 rounded-full bg-[#F59E0B]" />
+                    <div><span className="text-[14px] font-semibold text-[#111827]">Market Timing</span> <span className="text-[14px] text-[#6B7280]">Window open 6–9 months</span></div>
                   </div>
-                  <div className="flex items-start gap-3 rounded-xl bg-[#F9FAFB] px-4 py-3">
-                    <span className="mt-1 h-2.5 w-2.5 shrink-0 rounded-full bg-[#3B82F6]" />
-                    <div><span className="text-[13px] font-semibold text-[#111827]">Runway</span> <span className="text-[13px] text-[#6B7280]">Extend to 18–24 months</span></div>
+                  <div className="flex items-start gap-3.5 rounded-xl bg-[#F9FAFB] px-4 py-3.5">
+                    <span className="mt-1 h-3 w-3 shrink-0 rounded-full bg-[#3B82F6]" />
+                    <div><span className="text-[14px] font-semibold text-[#111827]">Runway</span> <span className="text-[14px] text-[#6B7280]">Extend to 18–24 months</span></div>
                   </div>
                 </div>
 
-                <p className="mb-3 text-[13px] font-medium text-[#6B7280]">Next Move</p>
-                <div className="flex items-center gap-3 rounded-xl bg-[#F9FAFB] px-4 py-3">
-                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" className="shrink-0"><circle cx="9" cy="9" r="9" fill="#22C55E"/><path d="M5.5 9l2.5 2.5 4.5-4.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                  <span className="text-[13px] font-medium text-[#374151]">Start investor conversations within 2 weeks</span>
+                <p className="mb-3 text-[13px] font-semibold text-[#6B7280]">Next Move</p>
+                <div className="flex items-center gap-3.5 rounded-xl bg-[#F9FAFB] px-4 py-3.5">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="shrink-0"><circle cx="10" cy="10" r="10" fill="#22C55E"/><path d="M6 10l3 3 5-5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                  <span className="text-[14px] font-medium text-[#374151]">Start investor conversations within 2 weeks</span>
                 </div>
               </div>
             </div>
 
-            {/* CTAs — centered with breathing room */}
-            <div className="flex flex-wrap items-center justify-center gap-4 mb-12">
+            {/* CTAs — centered, big */}
+            <div className="flex flex-wrap items-center justify-center gap-5 mb-14">
               <button
                 onClick={() => { setShowAllCouncils(false); document.getElementById("councils")?.scrollIntoView({ behavior: "smooth" }); }}
-                className="rounded-full bg-[#1A1A2E] px-8 py-4 text-[16px] font-medium text-white hover:opacity-90"
+                className="rounded-full bg-[#111111] px-10 py-4.5 text-[17px] font-medium text-white hover:bg-[#222] transition-colors"
               >
                 Build my council →
               </button>
               <a
                 href="/guide"
-                className="flex items-center gap-2.5 rounded-full border border-[#D1D5DB] bg-white px-8 py-4 text-[16px] font-medium text-[#374151] hover:border-[#9CA3AF]"
+                className="flex items-center gap-2.5 rounded-full border border-[#D1D5DB] bg-white px-10 py-4.5 text-[17px] font-medium text-[#374151] hover:border-[#9CA3AF] transition-colors"
               >
                 <svg width="12" height="14" viewBox="0 0 12 14" fill="#374151" opacity="0.6"><polygon points="1,0 12,7 1,14" /></svg>
                 See it in action
@@ -371,17 +371,17 @@ export default function Home() {
             </div>
 
             {/* Value Props Bar */}
-            <div className="pb-10 flex flex-wrap items-center justify-center gap-10 sm:gap-14 text-[14px] text-[#9CA3AF]">
-              <span className="flex items-center gap-2.5">
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-50"><circle cx="9" cy="9" r="7"/><circle cx="9" cy="9" r="3"/></svg>
+            <div className="pb-12 flex flex-wrap items-center justify-center gap-12 sm:gap-16 text-[15px] text-[#9CA3AF]">
+              <span className="flex items-center gap-3">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-50"><circle cx="10" cy="10" r="8"/><circle cx="10" cy="10" r="3.5"/></svg>
                 Multi-perspective analysis
               </span>
-              <span className="flex items-center gap-2.5">
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-50"><path d="M5 13l4-8 4 8M6.5 10h5"/></svg>
+              <span className="flex items-center gap-3">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-50"><path d="M5.5 15l4.5-10 4.5 10M7 12h6"/></svg>
                 Conflicting views surfaced
               </span>
-              <span className="flex items-center gap-2.5">
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-50"><path d="M4 9.5l3.5 3.5 7-7"/></svg>
+              <span className="flex items-center gap-3">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-50"><path d="M4 10.5l4 4 8-8"/></svg>
                 Clear, actionable output
               </span>
             </div>
