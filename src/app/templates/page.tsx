@@ -25,13 +25,9 @@ export default function TemplatesPage() {
             RunCouncil
           </Link>
           <div className="flex items-center gap-4">
-            <button
-              onClick={toggleDark}
-              className="rounded-md p-1.5 text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100"
-              title={isDark ? "Switch to light mode" : "Switch to dark mode"}
-            >
-              {isDark ? "☀️" : "🌙"}
-            </button>
+            <Link href="/templates" className="text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100">
+              Templates
+            </Link>
             <Link href="/guide" className="text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100">
               Guide
             </Link>

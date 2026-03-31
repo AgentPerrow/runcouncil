@@ -215,13 +215,6 @@ export default function Home() {
             RunCouncil
           </button>
           <div className="flex items-center gap-4">
-            <button
-              onClick={toggleTheme}
-              className="rounded-md p-1.5 text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100"
-              title={isDark ? "Switch to light mode" : "Switch to dark mode"}
-            >
-              {isDark ? "☀️" : "🌙"}
-            </button>
             <a href="/templates" className="text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100">
               Templates
             </a>
