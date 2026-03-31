@@ -221,7 +221,7 @@ export default function Home() {
           <button
             onClick={() => { setStep("select"); setSelectedCouncil(null); setActiveMembers([]); }}
           >
-            <PrismLogoFull size={28} />
+            <PrismLogoFull height={30} />
           </button>
 
           {/* Center nav links */}
