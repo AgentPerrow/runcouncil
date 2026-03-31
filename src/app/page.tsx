@@ -213,19 +213,20 @@ export default function Home() {
       {/* Progress indicator — #8: wider connectors, #9: always show labels */}
       {step !== "select" && (
         <div className="mx-auto max-w-5xl px-6 pt-6">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1 sm:gap-2">
             {stepLabels.map((label, i) => (
-              <div key={label} className="flex items-center gap-2">
-                <div className={`flex items-center gap-1.5 rounded-full px-3 py-1 text-[11px] font-medium ${
+              <div key={label} className="flex items-center gap-1 sm:gap-2">
+                <div className={`flex items-center gap-1 sm:gap-1.5 rounded-full px-2 sm:px-3 py-1 text-[10px] sm:text-[11px] font-medium whitespace-nowrap ${
                   i <= adjustedIndex
                     ? "bg-zinc-900 text-white dark:bg-white dark:text-zinc-900"
                     : "bg-zinc-200 text-zinc-500 dark:bg-zinc-800 dark:text-zinc-500"
                 }`}>
                   <span>{i + 1}</span>
-                  <span>{label}</span>
+                  <span className="hidden sm:inline">{label}</span>
+                  <span className="sm:hidden">{label === "About You" ? "You" : label}</span>
                 </div>
                 {i < stepLabels.length - 1 && (
-                  <div className={`h-px w-10 ${i < adjustedIndex ? "bg-zinc-400 dark:bg-zinc-500" : "bg-zinc-200 dark:bg-zinc-800"}`} />
+                  <div className={`h-px w-4 sm:w-10 ${i < adjustedIndex ? "bg-zinc-400 dark:bg-zinc-500" : "bg-zinc-200 dark:bg-zinc-800"}`} />
                 )}
               </div>
             ))}
@@ -233,29 +234,27 @@ export default function Home() {
         </div>
       )}
 
-      <div className="mx-auto max-w-5xl px-6 py-12">
+      <div className="mx-auto max-w-5xl px-6 py-8">
         {/* Step 1: Select */}
         {step === "select" && (
           <div>
-            <div className="mb-12 text-center">
-              {/* #1: no br, no period */}
-              <h1 className="mb-3 text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 sm:text-5xl">
-                Stop asking one AI. Build a council.
+            <div className="mb-8 text-center">
+              <h1 className="mb-2 text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 sm:text-4xl">
+                Build your boardroom
               </h1>
-              <p className="mx-auto max-w-xl text-lg text-zinc-600 dark:text-zinc-400">
-                Pick your advisors. Tune how they think. Paste into any model.
+              <p className="mx-auto max-w-xl text-base text-zinc-600 dark:text-zinc-400">
+                Pick your advisors. Ask the hard question. Let them argue.
               </p>
             </div>
 
-            {/* #3: gap-5, #4: text-4xl emoji, #5: metadata visibility */}
-            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {featuredCouncils.map((council) => (
                 <button
                   key={council.id}
                   onClick={() => selectCouncil(council)}
-                  className="group rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 p-5 text-left hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-zinc-50 dark:hover:bg-zinc-900"
+                  className="group rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 p-4 text-left hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-zinc-50 dark:hover:bg-zinc-900"
                 >
-                  <div className="mb-3 text-4xl">{council.emoji}</div>
+                  <div className="mb-2 text-3xl">{council.emoji}</div>
                   <h3 className="mb-1 text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">
                     {council.name}
                   </h3>
@@ -284,9 +283,9 @@ export default function Home() {
                     <button
                       key={council.id}
                       onClick={() => selectCouncil(council)}
-                      className="group rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 p-5 text-left hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-zinc-50 dark:hover:bg-zinc-900"
+                      className="group rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 p-4 text-left hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-zinc-50 dark:hover:bg-zinc-900"
                     >
-                      <div className="mb-3 text-4xl">{council.emoji}</div>
+                      <div className="mb-2 text-3xl">{council.emoji}</div>
                       <h3 className="mb-1 text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">
                         {council.name}
                       </h3>
@@ -300,7 +299,7 @@ export default function Home() {
                     onClick={() => selectCouncil(customCouncil)}
                     className="group rounded-xl border border-dashed border-zinc-200 dark:border-zinc-800 bg-transparent p-5 text-left hover:border-zinc-400 dark:hover:border-zinc-600"
                   >
-                    <div className="mb-3 text-4xl">{customCouncil.emoji}</div>
+                    <div className="mb-2 text-3xl">{customCouncil.emoji}</div>
                     <h3 className="mb-1 text-lg font-semibold tracking-tight text-zinc-500">{customCouncil.name}</h3>
                     <p className="text-sm text-zinc-400 dark:text-zinc-600">{customCouncil.description}</p>
                     <p className="mt-2 text-xs text-zinc-400 dark:text-zinc-600">{customCouncil.tagline}</p>
@@ -418,7 +417,7 @@ export default function Home() {
                   {!member.isRequired && (
                     <button
                       onClick={() => removeMember(member.id)}
-                      className="absolute right-3 top-3 rounded-md p-1 text-zinc-400 dark:text-zinc-600 opacity-0 hover:bg-zinc-200 dark:hover:bg-zinc-800 hover:text-zinc-700 dark:hover:text-zinc-300 group-hover:opacity-100"
+                      className="absolute right-3 top-3 rounded-md p-1.5 text-zinc-400 dark:text-zinc-600 sm:opacity-0 sm:group-hover:opacity-100 hover:bg-zinc-200 dark:hover:bg-zinc-800 hover:text-zinc-700 dark:hover:text-zinc-300"
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M18 6 6 18" /><path d="m6 6 12 12" />
