@@ -287,7 +287,7 @@ export default function Home() {
         {step === "select" && (
           <div>
             {/* Hero — split layout */}
-            <div className="mb-8 sm:mb-10 grid sm:grid-cols-2 gap-8 sm:gap-12 items-center">
+            <div className="mb-12 sm:mb-16 grid sm:grid-cols-2 gap-8 sm:gap-12 items-center">
               <div>
                 <h1 className="mb-3 text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 sm:text-4xl leading-tight">
                   Pressure-test big decisions before you make them
@@ -385,7 +385,7 @@ export default function Home() {
               </div>
 
               {!showAllCouncils ? (
-                <div className="mt-6 text-center">
+                <div className="mt-8 text-center">
                   <button
                     onClick={() => setShowAllCouncils(true)}
                     className="rounded-lg border border-amber-300 dark:border-amber-700 px-4 py-2 text-sm font-medium text-amber-600 hover:bg-amber-50 hover:border-amber-400 dark:text-amber-400 dark:hover:bg-amber-950/20 dark:hover:border-amber-600"
@@ -428,7 +428,7 @@ export default function Home() {
             </div>
 
             {/* Ready-made councils */}
-            <div className="mt-10 mb-8">
+            <div className="mt-14 mb-10">
               <div className="mb-2">
                 <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
                   Start with a proven council
@@ -502,7 +502,7 @@ export default function Home() {
             </div>
 
             {/* How it works */}
-            <div className="mt-10 mb-8">
+            <div className="mt-14 mb-10">
               <h2 className="mb-8 text-center text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
                 How it works
               </h2>
@@ -526,7 +526,7 @@ export default function Home() {
             </div>
 
             {/* Why councils work */}
-            <div className="mt-10 mb-8">
+            <div className="mt-14 mb-10">
               <h2 className="mb-6 text-center text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
                 Why councils work better than a single answer
               </h2>
@@ -550,7 +550,7 @@ export default function Home() {
             </div>
 
             {/* Guide CTA */}
-            <div className="mb-8 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div className="mb-10 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <div>
                 <h3 className="font-semibold text-zinc-900 dark:text-zinc-100">See what a council actually looks like</h3>
                 <p className="text-sm text-zinc-500">Real examples, best practices, and the mistakes that make councils useless.</p>
@@ -561,7 +561,7 @@ export default function Home() {
             </div>
 
             {/* Final CTA */}
-            <div className="mt-8 mb-4 text-center">
+            <div className="mt-14 mb-6 text-center">
               <h2 className="mb-3 text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
                 Ready to think better?
               </h2>
