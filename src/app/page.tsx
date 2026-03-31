@@ -394,7 +394,7 @@ export default function Home() {
           <div key={`context-${selectedCouncil.id}`}>
             <div className="mb-8">
               <h2 className="mb-1 text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
-                {selectedCouncil.emoji} What&apos;s the decision?
+                {selectedCouncil.emoji} About you
               </h2>
               <p className="text-sm text-zinc-500">
                 Give your {selectedCouncil.name.toLowerCase()} council the context it needs to be useful.
