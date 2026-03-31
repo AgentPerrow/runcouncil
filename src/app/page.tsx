@@ -628,10 +628,10 @@ export default function Home() {
             </div>
 
             {/* Actions — #13: Copy All is hero, #14: New Council is quiet */}
-            <div className="flex flex-wrap items-center gap-3">
+            <div className="grid grid-cols-2 sm:flex sm:flex-wrap sm:items-center gap-2 sm:gap-3">
               <button
                 onClick={copyOutput}
-                className={`rounded-lg px-8 py-3 text-sm font-semibold ${
+                className={`col-span-2 rounded-lg px-8 py-3 text-sm font-semibold ${
                   copied
                     ? "bg-green-600 text-white"
                     : "bg-zinc-900 text-white hover:bg-zinc-800 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-200"
@@ -641,13 +641,13 @@ export default function Home() {
               </button>
               <button
                 onClick={downloadOutput}
-                className="rounded-lg border border-zinc-200 dark:border-zinc-800 px-6 py-2.5 text-sm text-zinc-600 dark:text-zinc-400 hover:border-zinc-400 dark:hover:border-zinc-600 hover:text-zinc-900 dark:hover:text-zinc-100"
+                className="rounded-lg border border-zinc-200 dark:border-zinc-800 px-4 sm:px-6 py-2.5 text-sm text-zinc-600 dark:text-zinc-400 hover:border-zinc-400 dark:hover:border-zinc-600 hover:text-zinc-900 dark:hover:text-zinc-100"
               >
                 ↓ Download .md
               </button>
               <button
                 onClick={copyShareLink}
-                className={`rounded-lg border px-6 py-2.5 text-sm ${
+                className={`rounded-lg border px-4 sm:px-6 py-2.5 text-sm ${
                   shareCopied
                     ? "border-green-600 text-green-600 dark:text-green-400"
                     : "border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:border-zinc-400 dark:hover:border-zinc-600 hover:text-zinc-900 dark:hover:text-zinc-100"
@@ -657,7 +657,7 @@ export default function Home() {
               </button>
               <button
                 onClick={() => setStep("members")}
-                className="rounded-lg border border-zinc-200 dark:border-zinc-800 px-6 py-2.5 text-sm text-zinc-600 dark:text-zinc-400 hover:border-zinc-400 dark:hover:border-zinc-600 hover:text-zinc-900 dark:hover:text-zinc-100"
+                className="rounded-lg border border-zinc-200 dark:border-zinc-800 px-4 sm:px-6 py-2.5 text-sm text-zinc-600 dark:text-zinc-400 hover:border-zinc-400 dark:hover:border-zinc-600 hover:text-zinc-900 dark:hover:text-zinc-100"
               >
                 Edit Members
               </button>
