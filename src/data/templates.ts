@@ -43,7 +43,15 @@ export const templates: CouncilTemplate[] = [
     memberIds: ["startup-ai-strategist", "startup-cto", "startup-ceo", "startup-data", "startup-da"],
   },
 
-  // Career
+  // Career — Featured
+  {
+    id: "severance-negotiation",
+    title: "Severance Negotiation Council",
+    description: "Five specialists who review your severance package, find leverage, and help you walk away with what you deserve.",
+    emoji: "⚖️",
+    category: "Career",
+    memberIds: ["career-employment-lawyer", "career-negotiation-strategist", "career-financial-advisor", "career-transition-coach", "career-da"],
+  },
   {
     id: "career-growth",
     title: "Career Acceleration",
@@ -151,6 +159,26 @@ export const templates: CouncilTemplate[] = [
     emoji: "📜",
     category: "Investment",
     memberIds: ["invest-estate-planner", "invest-tax", "invest-angel", "invest-da"],
+  },
+
+  // Startup — Featured
+  {
+    id: "fundraising-war-room",
+    title: "Startup Fundraising War Room",
+    description: "Your fundraising brain trust — from pitch polish to cap table modeling to knowing what VCs actually think when they say 'interesting.'",
+    emoji: "🎯",
+    category: "Startup",
+    memberIds: ["startup-ceo", "startup-vc", "startup-financial-modeler", "startup-pitch-coach", "startup-da"],
+  },
+
+  // Life — Featured
+  {
+    id: "first-time-homebuyer",
+    title: "First-Time Homebuyer Advisory Board",
+    description: "A lawyer, a mortgage advisor, an inspector, and a financial planner walk through your first home purchase — so you don't get wrecked.",
+    emoji: "🏡",
+    category: "Life",
+    memberIds: ["life-real-estate-lawyer", "life-mortgage-advisor", "life-home-inspector", "life-financial-planner", "life-da"],
   },
 
   // Life

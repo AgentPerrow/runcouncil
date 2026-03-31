@@ -255,7 +255,7 @@ export default function Home() {
               <div key={label} className="flex items-center gap-1 sm:gap-2">
                 <div className={`flex items-center gap-1 sm:gap-1.5 rounded-full px-2 sm:px-3 py-1 text-[10px] sm:text-[11px] font-medium whitespace-nowrap ${
                   i <= adjustedIndex
-                    ? "bg-zinc-900 text-white dark:bg-white dark:text-zinc-900"
+                    ? "bg-amber-500 text-white"
                     : "bg-zinc-200 text-zinc-500 dark:bg-zinc-800 dark:text-zinc-500"
                 }`}>
                   <span>{i + 1}</span>
@@ -263,7 +263,7 @@ export default function Home() {
                   <span className="sm:hidden">{label === "About You" ? "You" : label}</span>
                 </div>
                 {i < stepLabels.length - 1 && (
-                  <div className={`h-px w-4 sm:w-10 ${i < adjustedIndex ? "bg-zinc-400 dark:bg-zinc-500" : "bg-zinc-200 dark:bg-zinc-800"}`} />
+                  <div className={`h-px w-4 sm:w-10 ${i < adjustedIndex ? "bg-amber-400" : "bg-zinc-200 dark:bg-zinc-800"}`} />
                 )}
               </div>
             ))}
@@ -289,7 +289,7 @@ export default function Home() {
                 <button
                   key={council.id}
                   onClick={() => selectCouncil(council)}
-                  className="group rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 p-3 sm:p-4 text-left hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-zinc-50 dark:hover:bg-zinc-900"
+                  className="group rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 p-3 sm:p-4 text-left hover:border-amber-400 dark:hover:border-amber-500 hover:bg-zinc-50 dark:hover:bg-zinc-900"
                 >
                   <div className="mb-1.5 sm:mb-2 text-2xl sm:text-3xl">{council.emoji}</div>
                   <h3 className="text-sm sm:text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">
@@ -299,7 +299,7 @@ export default function Home() {
                   <p className="hidden sm:block mt-2 text-xs text-zinc-500 dark:text-zinc-400">
                     {council.tagline}
                   </p>
-                  <div className="mt-2 text-xs text-zinc-300 dark:text-zinc-700 text-right">→</div>
+                  <div className="mt-2 text-xs text-zinc-300 dark:text-zinc-700 group-hover:text-amber-500 text-right">→</div>
                 </button>
               ))}
             </div>
@@ -321,7 +321,7 @@ export default function Home() {
                     <button
                       key={council.id}
                       onClick={() => selectCouncil(council)}
-                      className="group rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 p-3 sm:p-4 text-left hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-zinc-50 dark:hover:bg-zinc-900"
+                      className="group rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 p-3 sm:p-4 text-left hover:border-amber-400 dark:hover:border-amber-500 hover:bg-zinc-50 dark:hover:bg-zinc-900"
                     >
                       <div className="mb-1 sm:mb-2 text-2xl sm:text-3xl">{council.emoji}</div>
                       <h3 className="text-sm sm:text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">
@@ -331,7 +331,7 @@ export default function Home() {
                       <p className="hidden sm:block mt-2 text-xs text-zinc-500 dark:text-zinc-400">
                         {council.tagline}
                       </p>
-                      <div className="mt-2 text-xs text-zinc-300 dark:text-zinc-700 text-right">→</div>
+                      <div className="mt-2 text-xs text-zinc-300 dark:text-zinc-700 group-hover:text-amber-500 text-right">→</div>
                     </button>
                   ))}
                   <button
@@ -426,7 +426,7 @@ export default function Home() {
                   }
                   setStep("members");
                 }}
-                className="rounded-lg bg-zinc-900 px-8 py-2.5 text-sm font-semibold text-white hover:bg-zinc-800 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-200"
+                className="rounded-lg bg-amber-500 px-8 py-2.5 text-sm font-semibold text-white hover:bg-amber-400"
               >
                 Next: Choose Members →
               </button>
@@ -542,7 +542,49 @@ export default function Home() {
               );
 
               return (
-              <div className="mb-8 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 p-4">
+              <>
+              {/* Mobile: full-screen overlay */}
+              <div className="fixed inset-0 z-50 flex flex-col bg-zinc-50 dark:bg-zinc-950 sm:hidden">
+                <div className="flex items-center justify-between border-b border-zinc-200 dark:border-zinc-800 px-4 py-3">
+                  <h3 className="font-semibold text-zinc-900 dark:text-zinc-100">Add Member</h3>
+                  <button
+                    onClick={() => { setShowAddPanel(false); setMemberSearch(""); }}
+                    className="rounded-full bg-zinc-100 dark:bg-zinc-800 p-2 text-zinc-500"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                  </button>
+                </div>
+                <div className="p-4">
+                  <input
+                    type="text"
+                    placeholder="Search all members..."
+                    value={memberSearch}
+                    onChange={(e) => setMemberSearch(e.target.value)}
+                    className="w-full rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-3 py-2 text-sm text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-amber-400"
+                    autoFocus
+                  />
+                </div>
+                <div className="flex-1 overflow-y-auto px-4 pb-4">
+                  {suggested.length > 0 && (
+                    <>
+                      <h4 className="mb-3 text-sm font-medium text-zinc-600 dark:text-zinc-400">Suggested</h4>
+                      <div className="grid gap-2 mb-5">
+                        {suggested.map(memberBtn)}
+                      </div>
+                    </>
+                  )}
+                  <h4 className="mb-3 text-sm font-medium text-zinc-600 dark:text-zinc-400">All</h4>
+                  <div className="grid gap-2">
+                    {allFiltered.map(memberBtn)}
+                    {allFiltered.length === 0 && suggested.length === 0 && (
+                      <p className="text-sm text-zinc-400 dark:text-zinc-600">No members match &ldquo;{memberSearch}&rdquo;</p>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Desktop: inline panel */}
+              <div className="mb-8 hidden sm:block rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 p-4">
                 <div className="mb-4">
                   <input
                     type="text"
@@ -571,6 +613,7 @@ export default function Home() {
                   )}
                 </div>
               </div>
+              </>
               );
             })()}
 
@@ -588,16 +631,36 @@ export default function Home() {
           </div>
         )}
 
-        {/* Step 4: Output — #13: bigger copy button, #14: quieter New Council */}
+        {/* Step 4: Output — celebration redesign */}
         {step === "output" && selectedCouncil && (
-          <div>
-            <div className="mb-6">
+          <div className="animate-fade-in">
+            {/* Council celebration header */}
+            <div className="mb-6 text-center">
+              <div className="mb-3 flex items-center justify-center gap-2">
+                {getCustomizedMembers().map((m) => (
+                  <span key={m.id} className="text-2xl" title={m.name}>{m.emoji}</span>
+                ))}
+              </div>
               <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
-                Your {selectedCouncil.name} council is ready to work
+                Your Council
               </h2>
-              <p className="text-zinc-600 dark:text-zinc-400">
-                {activeMembers.length} advisors · Review, copy, paste into your AI tool.
+              <p className="text-zinc-500">
+                {activeMembers.length} advisors ready to work · Copy and paste into your AI tool
               </p>
+            </div>
+
+            {/* Copy All — hero placement above member list */}
+            <div className="mb-6 flex justify-center">
+              <button
+                onClick={copyOutput}
+                className={`rounded-lg px-10 py-3.5 text-base font-semibold ${
+                  copied
+                    ? "bg-green-600 text-white"
+                    : "bg-amber-500 text-white hover:bg-amber-400"
+                }`}
+              >
+                {copied ? "✓ Copied!" : "Copy All"}
+              </button>
             </div>
 
             <div className="mb-6 space-y-2">
@@ -627,18 +690,8 @@ export default function Home() {
               ))}
             </div>
 
-            {/* Actions — #13: Copy All is hero, #14: New Council is quiet */}
+            {/* Actions */}
             <div className="grid grid-cols-2 sm:flex sm:flex-wrap sm:items-center gap-2 sm:gap-3">
-              <button
-                onClick={copyOutput}
-                className={`col-span-2 rounded-lg px-8 py-3 text-sm font-semibold ${
-                  copied
-                    ? "bg-green-600 text-white"
-                    : "bg-zinc-900 text-white hover:bg-zinc-800 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-200"
-                }`}
-              >
-                {copied ? "✓ Copied!" : "Copy All"}
-              </button>
               <button
                 onClick={downloadOutput}
                 className="rounded-lg border border-zinc-200 dark:border-zinc-800 px-4 sm:px-6 py-2.5 text-sm text-zinc-600 dark:text-zinc-400 hover:border-zinc-400 dark:hover:border-zinc-600 hover:text-zinc-900 dark:hover:text-zinc-100"
@@ -721,7 +774,7 @@ export default function Home() {
             <button
               onClick={generate}
               disabled={activeMembers.length < 2}
-              className="rounded-lg bg-zinc-900 px-8 py-2.5 text-sm font-semibold text-white hover:bg-zinc-800 disabled:cursor-not-allowed disabled:opacity-40 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-200"
+              className="rounded-lg bg-amber-500 px-8 py-2.5 text-sm font-semibold text-white hover:bg-amber-400 disabled:cursor-not-allowed disabled:opacity-40"
             >
               Generate Council →
             </button>

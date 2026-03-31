@@ -77,8 +77,8 @@ export default function TemplatesPage() {
           {filtered.map((template) => (
             <Link
               key={template.id}
-              href={`/?template=${template.id}`}
-              className="group rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 p-4 sm:p-5 text-left hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors"
+              href={`/templates/${template.id}`}
+              className="group rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 p-4 sm:p-5 text-left hover:border-amber-400 dark:hover:border-amber-500 hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors"
             >
               <div className="flex items-start justify-between">
                 <span className="text-2xl">{template.emoji}</span>
@@ -103,7 +103,7 @@ export default function TemplatesPage() {
         <div className="mt-10 text-center">
           <Link
             href="/"
-            className="inline-block rounded-lg bg-zinc-900 px-6 py-2.5 text-sm font-semibold text-white hover:bg-zinc-800 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-200"
+            className="inline-block rounded-lg bg-amber-500 px-6 py-2.5 text-sm font-semibold text-white hover:bg-amber-400"
           >
             Or build from scratch →
           </Link>

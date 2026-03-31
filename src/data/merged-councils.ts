@@ -20,18 +20,21 @@ import {
   extraParentingMembers,
   extraLifeMembers,
   extraUniversalMembers,
+  extraCareerTemplateMembers,
+  extraStartupTemplateMembers,
+  extraLifeTemplateMembers,
 } from "./extra-members";
 
 // Map of council id → new members to add
 const newMemberMap: Record<string, CouncilMember[]> = {
-  startup: [...startupNewMembers, ...extraStartupMembers],
+  startup: [...startupNewMembers, ...extraStartupMembers, ...extraStartupTemplateMembers],
   health: [...healthNewMembers, ...extraHealthMembers],
-  career: [...careerNewMembers, ...extraCareerMembers],
+  career: [...careerNewMembers, ...extraCareerMembers, ...extraCareerTemplateMembers],
   investment: [...investmentNewMembers, ...extraInvestmentMembers],
   realestate: realEstateNewMembers,
   creative: [...creativeNewMembers, ...extraCreativeMembers],
   parenting: [...parentingNewMembers, ...extraParentingMembers],
-  life: [...lifeNewMembers, ...extraLifeMembers],
+  life: [...lifeNewMembers, ...extraLifeMembers, ...extraLifeTemplateMembers],
 };
 
 // Merge new members into each council
