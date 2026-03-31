@@ -40,6 +40,32 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebApplication",
+              "name": "RunCouncil",
+              "url": "https://runcouncil.com",
+              "description": "Build a custom AI advisory council for your startup, career, health, investments, or life decisions. Works with ChatGPT, Claude, and Gemini.",
+              "applicationCategory": "ProductivityApplication",
+              "operatingSystem": "Web",
+              "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+              },
+              "author": {
+                "@type": "Person",
+                "name": "Perrow",
+                "url": "https://x.com/perrow"
+              }
+            }),
+          }}
+        />
+      </head>
       <body className={`${GeistSans.className} bg-zinc-50 text-zinc-900 antialiased dark:bg-zinc-950 dark:text-zinc-100`}>
         {children}
         <footer className="border-t border-zinc-200 dark:border-zinc-800/50 bg-zinc-50 dark:bg-zinc-950 px-6 py-8">
