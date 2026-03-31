@@ -79,9 +79,9 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${GeistSans.className} bg-zinc-50 text-zinc-900 antialiased dark:bg-zinc-950 dark:text-zinc-100`}>
+      <body className={`${GeistSans.className} bg-[var(--background)] text-[var(--foreground)] antialiased`}>
         {children}
-        <footer className="border-t border-zinc-200 dark:border-zinc-800/50 bg-zinc-50 dark:bg-zinc-950 px-6 py-8">
+        <footer className="border-t border-[var(--rc-border)] bg-[var(--background)] px-6 py-8">
           <div className="mx-auto flex max-w-5xl flex-col items-center gap-3 text-center">
             <div className="flex items-center gap-4 text-sm text-zinc-500 dark:text-zinc-600">
               <span>Built by <a href="https://x.com/perrow" target="_blank" rel="noopener noreferrer" className="text-zinc-700 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200">Perrow</a></span>

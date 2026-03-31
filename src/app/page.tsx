@@ -8,6 +8,7 @@ import { buildShareUrl } from "@/lib/share";
 import CouncilConfigurator, { COUNCIL_CONFIGS } from "@/components/CouncilConfigurator";
 import { applyPromptModifiers, getRecommendedMembers } from "@/data/prompt-modifiers";
 import { templates } from "@/data/templates";
+import { PrismLogoFull } from "@/components/PrismLogo";
 
 type Step = "select" | "context" | "members" | "output";
 
@@ -211,46 +212,45 @@ export default function Home() {
     : step === "select" ? 0 : step === "members" ? 1 : 2;
 
   return (
-    <main className="min-h-screen pb-24 bg-zinc-50 dark:bg-zinc-950">
+    <main className="min-h-screen pb-24 bg-[var(--background)]">
       {/* Header */}
-      <header className="border-b border-zinc-200 dark:border-zinc-800/50 px-6 py-4">
+      <header className="px-6 py-4 border-b border-[var(--rc-border)]">
         <div className="mx-auto flex max-w-5xl items-center justify-between">
           <button
             onClick={() => { setStep("select"); setSelectedCouncil(null); setActiveMembers([]); }}
-            className="text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-100"
           >
-            RunCouncil
+            <PrismLogoFull size={24} />
           </button>
-          <div className="flex items-center gap-4">
-            <a href="/templates" className="text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100">
+          <div className="flex items-center gap-5">
+            <a href="/templates" className="hidden sm:block text-sm text-[var(--rc-text-secondary)] hover:text-[var(--rc-text-primary)]">
               Templates
             </a>
-            <a href="/guide" className="text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100">
+            <a href="/guide" className="hidden sm:block text-sm text-[var(--rc-text-secondary)] hover:text-[var(--rc-text-primary)]">
               Guide
             </a>
-            <a href="/faq" className="text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100">
+            <a href="/faq" className="hidden sm:block text-sm text-[var(--rc-text-secondary)] hover:text-[var(--rc-text-primary)]">
               FAQ
             </a>
             {step === "select" && (
               <button
                 onClick={() => document.getElementById("councils")?.scrollIntoView({ behavior: "smooth" })}
-                className="hidden sm:block rounded-lg bg-amber-500 px-4 py-1.5 text-sm font-semibold text-white hover:bg-amber-400"
+                className="hidden sm:block rounded-full bg-[#111111] dark:bg-white px-5 py-2 text-sm font-medium text-white dark:text-[#111111] hover:opacity-90"
               >
                 Build my council
               </button>
             )}
             {step === "context" && (
-              <button onClick={goBack} className="text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100">
+              <button onClick={goBack} className="text-sm text-[var(--rc-text-secondary)] hover:text-[var(--rc-text-primary)]">
                 ← Council Types
               </button>
             )}
             {step === "members" && (
-              <button onClick={goBack} className="text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100">
+              <button onClick={goBack} className="text-sm text-[var(--rc-text-secondary)] hover:text-[var(--rc-text-primary)]">
                 {selectedCouncil && COUNCIL_CONFIGS[selectedCouncil.id] ? "← About You" : "← Council Types"}
               </button>
             )}
             {step === "output" && (
-              <button onClick={goBack} className="text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100">
+              <button onClick={goBack} className="text-sm text-[var(--rc-text-secondary)] hover:text-[var(--rc-text-primary)]">
                 ← Edit Members
               </button>
             )}
@@ -266,15 +266,15 @@ export default function Home() {
               <div key={label} className="flex items-center gap-1 sm:gap-2">
                 <div className={`flex items-center gap-1 sm:gap-1.5 rounded-full px-2 sm:px-3 py-1 text-[10px] sm:text-[11px] font-medium whitespace-nowrap ${
                   i <= adjustedIndex
-                    ? "bg-amber-500 text-white"
-                    : "bg-zinc-200 text-zinc-500 dark:bg-zinc-800 dark:text-zinc-500"
+                    ? "bg-[#111111] dark:bg-white text-white dark:text-[#111111]"
+                    : "bg-[var(--rc-surface)] text-[var(--rc-text-secondary)] dark:bg-[var(--rc-surface)]"
                 }`}>
                   <span>{i + 1}</span>
                   <span className="hidden sm:inline">{label}</span>
                   <span className="sm:hidden">{label === "About You" ? "You" : label}</span>
                 </div>
                 {i < stepLabels.length - 1 && (
-                  <div className={`h-px w-4 sm:w-10 ${i < adjustedIndex ? "bg-amber-400" : "bg-zinc-200 dark:bg-zinc-800"}`} />
+                  <div className={`h-px w-4 sm:w-10 ${i < adjustedIndex ? "bg-[#111111] dark:bg-white" : "bg-[var(--rc-border)]"}`} />
                 )}
               </div>
             ))}
@@ -286,75 +286,93 @@ export default function Home() {
         {/* Step 1: Select */}
         {step === "select" && (
           <>
-          {/* Hero — split layout (white bg) */}
+          {/* Hero */}
           <div className="mx-auto max-w-5xl px-4 sm:px-6">
-            <div className="py-12 sm:py-20 grid sm:grid-cols-2 gap-8 sm:gap-12 items-center">
-              <div>
-                <h1 className="mb-3 text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 sm:text-4xl leading-tight">
-                  Pressure-test big decisions before you make them
-                </h1>
-                <p className="mb-5 text-sm sm:text-base text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                  Build a private council of advisors, operators, and skeptics. Get sharper thinking on startups, career moves, investing, health, and life decisions.
-                </p>
-                <div className="flex flex-wrap gap-3 mb-4">
-                  <button
-                    onClick={() => { setShowAllCouncils(false); document.getElementById("councils")?.scrollIntoView({ behavior: "smooth" }); }}
-                    className="rounded-lg bg-amber-500 px-6 py-2.5 text-sm font-semibold text-white hover:bg-amber-400"
-                  >
-                    Build my council
-                  </button>
-                  <a
-                    href="/templates"
-                    className="rounded-lg border border-zinc-200 dark:border-zinc-800 px-6 py-2.5 text-sm font-semibold text-zinc-700 dark:text-zinc-300 hover:border-zinc-400 dark:hover:border-zinc-600"
-                  >
-                    Browse templates
-                  </a>
+            <div className="py-16 sm:py-24 flex flex-col items-center text-center">
+              {/* Eyebrow */}
+              <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-[var(--rc-text-muted)]">
+                AI council for better decisions
+              </p>
+
+              {/* Headline */}
+              <h1 className="mb-5 max-w-2xl text-3xl font-bold tracking-tight text-[var(--rc-text-primary)] sm:text-5xl sm:leading-[1.1]">
+                Pressure-test big decisions before you make them
+              </h1>
+
+              {/* Subheadline */}
+              <p className="mb-10 max-w-xl text-base leading-relaxed text-[var(--rc-text-secondary)] sm:text-lg">
+                Bring your question. Build a council of AI experts. Get a clear, actionable answer with tradeoffs, risks, and your next move.
+              </p>
+
+              {/* Final Recommendation Card */}
+              <div className="mb-10 w-full max-w-sm rounded-xl border border-[var(--rc-border)] bg-[var(--rc-card)] p-5 shadow-[0_4px_24px_rgba(0,0,0,0.06)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.3)] text-left">
+                <div className="mb-3 flex items-center gap-2">
+                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" className="text-amber-500"><path d="M8 0l2.35 5.15L16 6l-4 3.9.95 5.6L8 12.85 3.05 15.5 4 9.9 0 6l5.65-.85L8 0z" fill="currentColor"/></svg>
+                  <span className="text-[11px] font-semibold uppercase tracking-wider text-[var(--rc-text-secondary)]">Final Recommendation</span>
                 </div>
-                <p className="text-xs text-zinc-400 dark:text-zinc-600">
-                  Used for fundraising, hiring, severance, strategy, and personal decisions. No signup required.
+                <p className="mb-4 text-[15px] font-semibold leading-snug text-[var(--rc-text-primary)]">
+                  Raise a $3–5M round now, but reduce burn by 20% first.
                 </p>
+
+                <p className="mb-2 text-[11px] font-medium uppercase tracking-wider text-[var(--rc-text-muted)]">Key Tradeoffs</p>
+                <div className="space-y-1.5 mb-4">
+                  <div className="flex items-start gap-2.5 rounded-lg bg-[var(--rc-surface)] px-3 py-2">
+                    <span className="mt-0.5 h-2 w-2 shrink-0 rounded-full bg-red-500" />
+                    <div><span className="text-xs font-semibold text-[var(--rc-text-primary)]">Speed vs Dilution</span> <span className="text-xs text-[var(--rc-text-secondary)]">Move fast, give up 8–12%</span></div>
+                  </div>
+                  <div className="flex items-start gap-2.5 rounded-lg bg-[var(--rc-surface)] px-3 py-2">
+                    <span className="mt-0.5 h-2 w-2 shrink-0 rounded-full bg-amber-400" />
+                    <div><span className="text-xs font-semibold text-[var(--rc-text-primary)]">Market Timing</span> <span className="text-xs text-[var(--rc-text-secondary)]">Window open 6–9 months</span></div>
+                  </div>
+                  <div className="flex items-start gap-2.5 rounded-lg bg-[var(--rc-surface)] px-3 py-2">
+                    <span className="mt-0.5 h-2 w-2 shrink-0 rounded-full bg-blue-500" />
+                    <div><span className="text-xs font-semibold text-[var(--rc-text-primary)]">Runway</span> <span className="text-xs text-[var(--rc-text-secondary)]">Extend to 18–24 months</span></div>
+                  </div>
+                </div>
+
+                <p className="mb-2 text-[11px] font-medium uppercase tracking-wider text-[var(--rc-text-muted)]">Next Move</p>
+                <div className="flex items-center gap-2.5 rounded-lg bg-[var(--rc-surface)] px-3 py-2">
+                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" className="shrink-0 text-emerald-500"><circle cx="8" cy="8" r="8" fill="currentColor"/><path d="M5 8l2 2 4-4" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                  <span className="text-xs font-medium text-[var(--rc-text-primary)]">Start investor conversations within 2 weeks</span>
+                </div>
               </div>
 
-              {/* Mock council output */}
-              <div className="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 p-5 shadow-sm">
-                <div className="mb-3 flex items-center gap-2">
-                  <span className="text-xs font-medium uppercase tracking-wider text-amber-600">Sample Output</span>
-                  <span className="text-xs text-zinc-400">&middot; Startup Council</span>
-                </div>
-                <p className="mb-3 text-xs font-medium text-zinc-500 dark:text-zinc-400 italic">&ldquo;Should I raise a Series A or stay bootstrapped?&rdquo;</p>
-                <div className="space-y-2.5">
-                  <div className="flex items-start gap-2">
-                    <span className="text-sm">🧠</span>
-                    <div>
-                      <span className="text-xs font-semibold text-zinc-900 dark:text-zinc-100">CEO Mind</span>
-                      <p className="text-xs text-zinc-500 leading-relaxed">Raise only if you have a clear use of funds that unlocks non-linear growth. Otherwise you&apos;re selling equity for optionality you don&apos;t need.</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <span className="text-sm">💰</span>
-                    <div>
-                      <span className="text-xs font-semibold text-zinc-900 dark:text-zinc-100">CFO</span>
-                      <p className="text-xs text-zinc-500 leading-relaxed">At current burn you have 14 months of runway. A raise at this stage means 18-22% dilution for $2-3M. The math only works if CAC drops 40% with paid acquisition.</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <span className="text-sm">👹</span>
-                    <div>
-                      <span className="text-xs font-semibold text-zinc-900 dark:text-zinc-100">Devil&apos;s Advocate</span>
-                      <p className="text-xs text-zinc-500 leading-relaxed">You&apos;re raising because competitors raised. That&apos;s fear, not strategy. Name one thing you can&apos;t do bootstrapped that changes the outcome.</p>
-                    </div>
-                  </div>
-                  <div className="border-t border-zinc-100 dark:border-zinc-800 pt-2">
-                    <p className="text-xs font-semibold text-amber-600">⚡ Recommendation:</p>
-                    <p className="text-xs text-zinc-600 dark:text-zinc-400">Delay 90 days. Hit $50K MRR first — you&apos;ll raise at 2x the valuation with proof, not projections.</p>
-                  </div>
-                </div>
+              {/* CTAs */}
+              <div className="flex flex-wrap items-center justify-center gap-3 mb-10">
+                <button
+                  onClick={() => { setShowAllCouncils(false); document.getElementById("councils")?.scrollIntoView({ behavior: "smooth" }); }}
+                  className="rounded-full bg-[#111111] dark:bg-white px-7 py-3 text-sm font-medium text-white dark:text-[#111111] hover:opacity-90"
+                >
+                  Build my council →
+                </button>
+                <a
+                  href="/guide"
+                  className="rounded-full border border-[var(--rc-border)] px-7 py-3 text-sm font-medium text-[var(--rc-text-primary)] hover:border-[var(--rc-text-muted)]"
+                >
+                  ▷ See it in action
+                </a>
+              </div>
+
+              {/* Value Props Bar */}
+              <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-[13px] text-[var(--rc-text-muted)]">
+                <span className="flex items-center gap-2">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-60"><circle cx="8" cy="8" r="6"/><circle cx="8" cy="8" r="2.5"/></svg>
+                  Multi-perspective analysis
+                </span>
+                <span className="flex items-center gap-2">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-60"><path d="M8 2v12M4 6l4-4 4 4"/></svg>
+                  Conflicting views surfaced
+                </span>
+                <span className="flex items-center gap-2">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-60"><path d="M3 8.5l3 3 7-7"/></svg>
+                  Clear, actionable output
+                </span>
               </div>
             </div>
           </div>
 
-          {/* Council cards (light gray bg) */}
-          <div className="bg-zinc-100/50 dark:bg-zinc-900/30 border-y border-zinc-200/50 dark:border-zinc-800/50">
+          {/* Council cards */}
+          <div className="bg-[var(--rc-surface)] border-y border-[var(--rc-border)]">
             <div id="councils" className="mx-auto max-w-5xl px-4 sm:px-6 py-14 sm:py-20">
               <div className="grid gap-3 sm:gap-4 grid-cols-2 lg:grid-cols-4">
                 {featuredCouncils.map((council) => {
@@ -369,19 +387,19 @@ export default function Home() {
                     <button
                       key={council.id}
                       onClick={() => selectCouncil(council)}
-                      className="group rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 p-3 sm:p-4 text-left hover:border-amber-400 dark:hover:border-amber-500 hover:bg-white dark:hover:bg-zinc-900 hover:shadow-md transition-all"
+                      className="group rounded-xl border border-[var(--rc-border)] bg-[var(--rc-card)] p-3 sm:p-4 text-left hover:border-[var(--rc-text-muted)] hover:shadow-md transition-all"
                     >
                       <div className="mb-1.5 sm:mb-2 text-2xl sm:text-3xl">{council.emoji}</div>
-                      <h3 className="text-sm sm:text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">
+                      <h3 className="text-sm sm:text-lg font-semibold tracking-tight text-[var(--rc-text-primary)]">
                         {council.name}
                       </h3>
-                      <p className="mt-1 text-xs sm:text-sm italic text-zinc-400 sm:text-zinc-500 line-clamp-2 sm:line-clamp-none">
+                      <p className="mt-1 text-xs sm:text-sm italic text-[var(--rc-text-muted)] sm:text-[var(--rc-text-secondary)] line-clamp-2 sm:line-clamp-none">
                         &ldquo;{copy ? copy.q : council.description}&rdquo;
                       </p>
-                      <p className="hidden sm:block mt-2 text-xs text-zinc-600 dark:text-zinc-400">
+                      <p className="hidden sm:block mt-2 text-xs text-[var(--rc-text-secondary)]">
                         {copy ? copy.desc : council.tagline}
                       </p>
-                      <div className="mt-2 text-xs text-amber-500 font-medium text-right opacity-0 group-hover:opacity-100 transition-opacity">Build →</div>
+                      <div className="mt-2 text-xs text-[var(--rc-text-secondary)] font-medium text-right opacity-0 group-hover:opacity-100 transition-opacity">Build →</div>
                     </button>
                   );
                 })}
@@ -391,7 +409,7 @@ export default function Home() {
                 <div className="mt-8 text-center">
                   <button
                     onClick={() => setShowAllCouncils(true)}
-                    className="rounded-lg border border-amber-300 dark:border-amber-700 px-4 py-2 text-sm font-medium text-amber-600 hover:bg-amber-50 hover:border-amber-400 dark:text-amber-400 dark:hover:bg-amber-950/20 dark:hover:border-amber-600"
+                    className="rounded-full border border-[var(--rc-border)] px-5 py-2 text-sm font-medium text-[var(--rc-text-secondary)] hover:border-[var(--rc-text-muted)] hover:text-[var(--rc-text-primary)]"
                   >
                     Explore all councils →
                   </button>
@@ -403,27 +421,27 @@ export default function Home() {
                       <button
                         key={council.id}
                         onClick={() => selectCouncil(council)}
-                        className="group rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 p-3 sm:p-4 text-left hover:border-amber-400 dark:hover:border-amber-500 hover:bg-white dark:hover:bg-zinc-900 hover:shadow-md transition-all"
+                        className="group rounded-xl border border-[var(--rc-border)] bg-[var(--rc-card)] p-3 sm:p-4 text-left hover:border-[var(--rc-text-muted)] hover:shadow-md transition-all"
                       >
                         <div className="mb-1 sm:mb-2 text-2xl sm:text-3xl">{council.emoji}</div>
-                        <h3 className="text-sm sm:text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">
+                        <h3 className="text-sm sm:text-lg font-semibold tracking-tight text-[var(--rc-text-primary)]">
                           {council.name}
                         </h3>
-                        <p className="mt-1 text-xs sm:text-sm italic text-zinc-400 sm:text-zinc-500 line-clamp-1 sm:line-clamp-none">&ldquo;{council.description}&rdquo;</p>
-                        <p className="hidden sm:block mt-2 text-xs text-zinc-600 dark:text-zinc-400">
+                        <p className="mt-1 text-xs sm:text-sm italic text-[var(--rc-text-muted)] sm:text-[var(--rc-text-secondary)] line-clamp-1 sm:line-clamp-none">&ldquo;{council.description}&rdquo;</p>
+                        <p className="hidden sm:block mt-2 text-xs text-[var(--rc-text-secondary)]">
                           {council.tagline}
                         </p>
-                        <div className="mt-2 text-xs text-amber-500 font-medium text-right opacity-0 group-hover:opacity-100 transition-opacity">Build →</div>
+                        <div className="mt-2 text-xs text-[var(--rc-text-secondary)] font-medium text-right opacity-0 group-hover:opacity-100 transition-opacity">Build →</div>
                       </button>
                     ))}
                     <button
                       onClick={() => selectCouncil(customCouncil)}
-                      className="group rounded-xl border border-dashed border-zinc-300 dark:border-zinc-800 bg-transparent p-3 sm:p-4 text-left hover:border-zinc-400 dark:hover:border-zinc-600"
+                      className="group rounded-xl border border-dashed border-[var(--rc-border)] bg-transparent p-3 sm:p-4 text-left hover:border-[var(--rc-text-muted)]"
                     >
                       <div className="mb-1 sm:mb-2 text-2xl sm:text-3xl">{customCouncil.emoji}</div>
-                      <h3 className="text-sm sm:text-lg font-semibold tracking-tight text-zinc-500">{customCouncil.name}</h3>
-                      <p className="hidden sm:block text-sm text-zinc-400 dark:text-zinc-600">{customCouncil.description}</p>
-                      <p className="mt-2 text-xs text-zinc-400 dark:text-zinc-600">{customCouncil.tagline}</p>
+                      <h3 className="text-sm sm:text-lg font-semibold tracking-tight text-[var(--rc-text-muted)]">{customCouncil.name}</h3>
+                      <p className="hidden sm:block text-sm text-[var(--rc-text-muted)]">{customCouncil.description}</p>
+                      <p className="mt-2 text-xs text-[var(--rc-text-muted)]">{customCouncil.tagline}</p>
                     </button>
                   </div>
                 </div>
@@ -431,157 +449,157 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Ready-made councils (white bg) */}
+          {/* Ready-made templates */}
           <div className="mx-auto max-w-5xl px-4 sm:px-6 py-14 sm:py-20">
             <div className="mb-8 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2">
               <div>
-                <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
+                <h2 className="text-2xl font-bold tracking-tight text-[var(--rc-text-primary)]">
                   Start with a proven council
                 </h2>
-                <p className="text-sm text-zinc-500 dark:text-zinc-400">
+                <p className="text-sm text-[var(--rc-text-secondary)]">
                   Pre-built templates for common high-stakes decisions.
                 </p>
               </div>
-              <a href="/templates" className="text-sm text-amber-600 hover:text-amber-500 font-medium shrink-0">
+              <a href="/templates" className="text-sm text-[var(--rc-text-secondary)] hover:text-[var(--rc-text-primary)] font-medium shrink-0">
                 See all templates →
               </a>
             </div>
             <div className="grid gap-3 sm:gap-4 sm:grid-cols-3">
               <a
                 href="/templates/severance-negotiation"
-                className="group rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 p-5 hover:border-amber-400 dark:hover:border-amber-500 hover:shadow-md transition-all"
+                className="group rounded-xl border border-[var(--rc-border)] bg-[var(--rc-card)] p-5 hover:border-[var(--rc-text-muted)] hover:shadow-md transition-all"
               >
                 <div className="mb-2 flex items-center gap-2">
                   <span className="text-2xl">⚖️</span>
-                  <span className="rounded-full bg-zinc-100 dark:bg-zinc-800 px-2 py-0.5 text-[10px] font-medium text-zinc-500">Career</span>
+                  <span className="rounded-full bg-[var(--rc-surface)] px-2 py-0.5 text-[10px] font-medium text-[var(--rc-text-secondary)]">Career</span>
                 </div>
-                <h3 className="text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-100 group-hover:text-amber-600">
+                <h3 className="text-lg font-semibold tracking-tight text-[var(--rc-text-primary)] group-hover:text-[var(--rc-text-secondary)]">
                   Severance Negotiation Council
                 </h3>
-                <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+                <p className="mt-1 text-sm text-[var(--rc-text-secondary)]">
                   Review your package, find leverage, and surface what actually matters before you reply.
                 </p>
-                <div className="mt-3 text-sm font-medium text-amber-600 group-hover:text-amber-500">
+                <div className="mt-3 text-sm font-medium text-[var(--rc-text-secondary)] group-hover:text-[var(--rc-text-primary)]">
                   Use this template →
                 </div>
               </a>
               <a
                 href="/templates/fundraising-war-room"
-                className="group rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 p-5 hover:border-amber-400 dark:hover:border-amber-500 hover:shadow-md transition-all"
+                className="group rounded-xl border border-[var(--rc-border)] bg-[var(--rc-card)] p-5 hover:border-[var(--rc-text-muted)] hover:shadow-md transition-all"
               >
                 <div className="mb-2 flex items-center gap-2">
                   <span className="text-2xl">🎯</span>
-                  <span className="rounded-full bg-zinc-100 dark:bg-zinc-800 px-2 py-0.5 text-[10px] font-medium text-zinc-500">Startup</span>
-                  <span className="rounded-full bg-amber-100 dark:bg-amber-900/30 px-2 py-0.5 text-[10px] font-medium text-amber-600 dark:text-amber-400">Popular</span>
+                  <span className="rounded-full bg-[var(--rc-surface)] px-2 py-0.5 text-[10px] font-medium text-[var(--rc-text-secondary)]">Startup</span>
+                  <span className="rounded-full bg-[var(--rc-surface)] px-2 py-0.5 text-[10px] font-medium text-[var(--rc-text-primary)]">Popular</span>
                 </div>
-                <h3 className="text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-100 group-hover:text-amber-600">
+                <h3 className="text-lg font-semibold tracking-tight text-[var(--rc-text-primary)] group-hover:text-[var(--rc-text-secondary)]">
                   Startup Fundraising War Room
                 </h3>
-                <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+                <p className="mt-1 text-sm text-[var(--rc-text-secondary)]">
                   Pressure-test your raise from pitch clarity to dilution, runway, and investor psychology.
                 </p>
-                <div className="mt-3 text-sm font-medium text-amber-600 group-hover:text-amber-500">
+                <div className="mt-3 text-sm font-medium text-[var(--rc-text-secondary)] group-hover:text-[var(--rc-text-primary)]">
                   Use this template →
                 </div>
               </a>
               <a
                 href="/templates/first-time-homebuyer"
-                className="group rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 p-5 hover:border-amber-400 dark:hover:border-amber-500 hover:shadow-md transition-all"
+                className="group rounded-xl border border-[var(--rc-border)] bg-[var(--rc-card)] p-5 hover:border-[var(--rc-text-muted)] hover:shadow-md transition-all"
               >
                 <div className="mb-2 flex items-center gap-2">
                   <span className="text-2xl">🏡</span>
-                  <span className="rounded-full bg-zinc-100 dark:bg-zinc-800 px-2 py-0.5 text-[10px] font-medium text-zinc-500">Life</span>
+                  <span className="rounded-full bg-[var(--rc-surface)] px-2 py-0.5 text-[10px] font-medium text-[var(--rc-text-secondary)]">Life</span>
                 </div>
-                <h3 className="text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-100 group-hover:text-amber-600">
+                <h3 className="text-lg font-semibold tracking-tight text-[var(--rc-text-primary)] group-hover:text-[var(--rc-text-secondary)]">
                   First-Time Homebuyer Advisory Board
                 </h3>
-                <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+                <p className="mt-1 text-sm text-[var(--rc-text-secondary)]">
                   See the deal through legal, financing, inspection, and long-term ownership lenses.
                 </p>
-                <div className="mt-3 text-sm font-medium text-amber-600 group-hover:text-amber-500">
+                <div className="mt-3 text-sm font-medium text-[var(--rc-text-secondary)] group-hover:text-[var(--rc-text-primary)]">
                   Use this template →
                 </div>
               </a>
             </div>
           </div>
 
-          {/* How it works (light gray bg) */}
-          <div className="bg-zinc-100/50 dark:bg-zinc-900/30 border-y border-zinc-200/50 dark:border-zinc-800/50">
+          {/* How it works */}
+          <div className="bg-[var(--rc-surface)] border-y border-[var(--rc-border)]">
             <div className="mx-auto max-w-5xl px-4 sm:px-6 py-14 sm:py-20">
-              <h2 className="mb-10 text-center text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
+              <h2 className="mb-10 text-center text-2xl font-bold tracking-tight text-[var(--rc-text-primary)]">
                 How it works
               </h2>
               <div className="grid gap-8 sm:grid-cols-3">
                 <div className="text-center">
-                  <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-amber-500 text-sm font-bold text-white">1</div>
-                  <h3 className="mb-1 font-semibold text-zinc-900 dark:text-zinc-100">Pick a council</h3>
-                  <p className="text-sm text-zinc-600 dark:text-zinc-400">Start from a template or build your own from scratch.</p>
+                  <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-[#111111] dark:bg-white text-sm font-bold text-white dark:text-[#111111]">1</div>
+                  <h3 className="mb-1 font-semibold text-[var(--rc-text-primary)]">Pick a council</h3>
+                  <p className="text-sm text-[var(--rc-text-secondary)]">Start from a template or build your own from scratch.</p>
                 </div>
                 <div className="text-center">
-                  <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-amber-500 text-sm font-bold text-white">2</div>
-                  <h3 className="mb-1 font-semibold text-zinc-900 dark:text-zinc-100">Customize the room</h3>
-                  <p className="text-sm text-zinc-600 dark:text-zinc-400">Add, remove, or create advisors. Tune how aggressive or conservative they think.</p>
+                  <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-[#111111] dark:bg-white text-sm font-bold text-white dark:text-[#111111]">2</div>
+                  <h3 className="mb-1 font-semibold text-[var(--rc-text-primary)]">Customize the room</h3>
+                  <p className="text-sm text-[var(--rc-text-secondary)]">Add, remove, or create advisors. Tune how aggressive or conservative they think.</p>
                 </div>
                 <div className="text-center">
-                  <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-amber-500 text-sm font-bold text-white">3</div>
-                  <h3 className="mb-1 font-semibold text-zinc-900 dark:text-zinc-100">Run the council</h3>
-                  <p className="text-sm text-zinc-600 dark:text-zinc-400">Paste the prompt into ChatGPT, Claude, or Gemini and get a decision memo in minutes.</p>
+                  <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-[#111111] dark:bg-white text-sm font-bold text-white dark:text-[#111111]">3</div>
+                  <h3 className="mb-1 font-semibold text-[var(--rc-text-primary)]">Run the council</h3>
+                  <p className="text-sm text-[var(--rc-text-secondary)]">Paste the prompt into ChatGPT, Claude, or Gemini and get a decision memo in minutes.</p>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Why councils work (white bg) */}
+          {/* Why councils work */}
           <div className="mx-auto max-w-5xl px-4 sm:px-6 py-14 sm:py-20">
-            <h2 className="mb-8 text-center text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
+            <h2 className="mb-8 text-center text-2xl font-bold tracking-tight text-[var(--rc-text-primary)]">
               Why councils work better than a single answer
             </h2>
             <div className="grid gap-6 sm:grid-cols-3">
-              <div className="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 p-6">
+              <div className="rounded-xl border border-[var(--rc-border)] bg-[var(--rc-card)] p-6">
                 <div className="mb-3 text-2xl">🔍</div>
-                <h3 className="mb-1 font-semibold text-zinc-900 dark:text-zinc-100">Multiple lenses</h3>
-                <p className="text-sm text-zinc-600 dark:text-zinc-400">Finance, legal, brand, ops, risk — each advisor sees what the others miss.</p>
+                <h3 className="mb-1 font-semibold text-[var(--rc-text-primary)]">Multiple lenses</h3>
+                <p className="text-sm text-[var(--rc-text-secondary)]">Finance, legal, brand, ops, risk — each advisor sees what the others miss.</p>
               </div>
-              <div className="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 p-6">
+              <div className="rounded-xl border border-[var(--rc-border)] bg-[var(--rc-card)] p-6">
                 <div className="mb-3 text-2xl">⚡</div>
-                <h3 className="mb-1 font-semibold text-zinc-900 dark:text-zinc-100">Built-in disagreement</h3>
-                <p className="text-sm text-zinc-600 dark:text-zinc-400">The system argues before you act. A Devil&apos;s Advocate catches what consensus thinking misses.</p>
+                <h3 className="mb-1 font-semibold text-[var(--rc-text-primary)]">Built-in disagreement</h3>
+                <p className="text-sm text-[var(--rc-text-secondary)]">The system argues before you act. A Devil&apos;s Advocate catches what consensus thinking misses.</p>
               </div>
-              <div className="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 p-6">
+              <div className="rounded-xl border border-[var(--rc-border)] bg-[var(--rc-card)] p-6">
                 <div className="mb-3 text-2xl">📋</div>
-                <h3 className="mb-1 font-semibold text-zinc-900 dark:text-zinc-100">Clear output</h3>
-                <p className="text-sm text-zinc-600 dark:text-zinc-400">Recommendation, tradeoffs, and the immediate next move — not a wall of text.</p>
+                <h3 className="mb-1 font-semibold text-[var(--rc-text-primary)]">Clear output</h3>
+                <p className="text-sm text-[var(--rc-text-secondary)]">Recommendation, tradeoffs, and the immediate next move — not a wall of text.</p>
               </div>
             </div>
           </div>
 
-          {/* Guide CTA (light gray bg) */}
-          <div className="bg-zinc-100/50 dark:bg-zinc-900/30 border-y border-zinc-200/50 dark:border-zinc-800/50">
+          {/* Guide CTA */}
+          <div className="bg-[var(--rc-surface)] border-y border-[var(--rc-border)]">
             <div className="mx-auto max-w-5xl px-4 sm:px-6 py-14 sm:py-20">
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <div>
-                  <h3 className="text-xl font-bold text-zinc-900 dark:text-zinc-100">See what a council actually looks like</h3>
-                  <p className="mt-1 text-sm text-zinc-500">Real examples, best practices, and the mistakes that make councils useless.</p>
+                  <h3 className="text-xl font-bold text-[var(--rc-text-primary)]">See what a council actually looks like</h3>
+                  <p className="mt-1 text-sm text-[var(--rc-text-secondary)]">Real examples, best practices, and the mistakes that make councils useless.</p>
                 </div>
-                <a href="/guide" className="shrink-0 rounded-lg bg-amber-500 px-6 py-2.5 text-sm font-semibold text-white hover:bg-amber-400">
+                <a href="/guide" className="shrink-0 rounded-full bg-[#111111] dark:bg-white px-6 py-2.5 text-sm font-medium text-white dark:text-[#111111] hover:opacity-90">
                   Read the Guide →
                 </a>
               </div>
             </div>
           </div>
 
-          {/* Final CTA (white bg) */}
+          {/* Final CTA */}
           <div className="mx-auto max-w-5xl px-4 sm:px-6 py-16 sm:py-24 text-center">
-            <h2 className="mb-4 text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 sm:text-3xl">
+            <h2 className="mb-4 text-2xl font-bold tracking-tight text-[var(--rc-text-primary)] sm:text-3xl">
               Ready to think better?
             </h2>
             <button
               onClick={() => document.getElementById("councils")?.scrollIntoView({ behavior: "smooth" })}
-              className="rounded-lg bg-amber-500 px-8 py-3 text-sm font-semibold text-white hover:bg-amber-400"
+              className="rounded-full bg-[#111111] dark:bg-white px-8 py-3 text-sm font-medium text-white dark:text-[#111111] hover:opacity-90"
             >
               Build my council →
             </button>
-            <p className="mt-3 text-xs text-zinc-400">No signup &middot; No API key &middot; Works with any AI tool</p>
+            <p className="mt-3 text-xs text-[var(--rc-text-muted)]">No signup · No API key · Works with any AI tool</p>
           </div>
           </>
         )}
