@@ -36,12 +36,14 @@ export async function generateMetadata({
   const { slug } = await params;
   const template = templates.find((t) => t.id === slug);
   if (!template) return { title: "Template Not Found" };
+  const title = template.seoTitle || `${template.emoji} ${template.title} — RunCouncil`;
+  const description = template.seoDescription || template.description;
   return {
-    title: `${template.emoji} ${template.title} — RunCouncil`,
-    description: template.description,
+    title,
+    description,
     openGraph: {
-      title: `${template.emoji} ${template.title} — RunCouncil`,
-      description: template.description,
+      title,
+      description,
       url: `https://runcouncil.com/templates/${template.id}`,
       siteName: "RunCouncil",
       type: "website",
@@ -49,8 +51,8 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: `${template.emoji} ${template.title} — RunCouncil`,
-      description: template.description,
+      title,
+      description,
     },
   };
 }
@@ -165,6 +167,41 @@ export default async function TemplatePage({
             Free · No signup · Works with ChatGPT, Claude, Gemini
           </p>
         </div>
+
+        {/* Related Templates */}
+        {template.relatedIds && template.relatedIds.length > 0 && (() => {
+          const related = template.relatedIds
+            .map((id) => templates.find((t) => t.id === id))
+            .filter(Boolean);
+          return related.length > 0 ? (
+            <div className="mt-16 border-t border-zinc-200 dark:border-zinc-800 pt-10">
+              <h2 className="mb-4 text-lg font-semibold text-zinc-900 dark:text-zinc-100">
+                Related Councils
+              </h2>
+              <div className="grid gap-3 sm:grid-cols-3">
+                {related.map((r) =>
+                  r ? (
+                    <Link
+                      key={r.id}
+                      href={`/templates/${r.id}`}
+                      className="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 p-4 hover:border-amber-300 dark:hover:border-amber-700 transition-colors"
+                    >
+                      <div className="flex items-center gap-2">
+                        <span className="text-lg">{r.emoji}</span>
+                        <span className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
+                          {r.title}
+                        </span>
+                      </div>
+                      <p className="mt-1.5 text-xs text-zinc-500 line-clamp-2">
+                        {r.description}
+                      </p>
+                    </Link>
+                  ) : null
+                )}
+              </div>
+            </div>
+          ) : null;
+        })()}
       </div>
     </main>
   );
