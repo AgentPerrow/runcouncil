@@ -1,8 +1,15 @@
 import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
+import { Playfair_Display } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import Script from "next/script";
 import "./globals.css";
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["700"],
+  variable: "--font-playfair",
+});
 
 export const metadata: Metadata = {
   title: "RunCouncil — Build Your AI Advisory Board in 60 Seconds",
@@ -79,7 +86,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${GeistSans.className} bg-[var(--background)] text-[var(--foreground)] antialiased`}>
+      <body className={`${GeistSans.className} ${playfair.variable} bg-[var(--background)] text-[var(--foreground)] antialiased`}>
         {children}
         <footer className="border-t border-[var(--rc-border)] bg-[var(--background)] px-6 py-8">
           <div className="mx-auto flex max-w-5xl flex-col items-center gap-3 text-center">

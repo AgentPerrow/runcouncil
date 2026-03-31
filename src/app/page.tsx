@@ -215,30 +215,40 @@ export default function Home() {
   return (
     <main className="min-h-screen pb-24 bg-[var(--background)]">
       {/* Header */}
-      <header className="px-6 py-4 border-b border-[var(--rc-border)]">
-        <div className="mx-auto flex max-w-5xl items-center justify-between">
+      <header className="px-6 py-5">
+        <div className="mx-auto flex max-w-6xl items-center justify-between">
+          {/* Logo */}
           <button
             onClick={() => { setStep("select"); setSelectedCouncil(null); setActiveMembers([]); }}
           >
-            <PrismLogoFull size={24} />
+            <PrismLogoFull size={28} />
           </button>
-          <div className="flex items-center gap-5">
-            <a href="/templates" className="hidden sm:block text-sm text-[var(--rc-text-secondary)] hover:text-[var(--rc-text-primary)]">
-              Templates
-            </a>
-            <a href="/guide" className="hidden sm:block text-sm text-[var(--rc-text-secondary)] hover:text-[var(--rc-text-primary)]">
-              Guide
-            </a>
-            <a href="/faq" className="hidden sm:block text-sm text-[var(--rc-text-secondary)] hover:text-[var(--rc-text-primary)]">
-              FAQ
-            </a>
+
+          {/* Center nav links */}
+          {step === "select" && (
+            <nav className="hidden md:flex items-center gap-8">
+              <a href="#councils" className="text-[15px] text-[#4A4A5A] hover:text-[#111]">Product</a>
+              <a href="#how-it-works" className="text-[15px] text-[#4A4A5A] hover:text-[#111]">How it Works</a>
+              <a href="/templates" className="text-[15px] text-[#4A4A5A] hover:text-[#111]">Use Cases</a>
+              <a href="/faq" className="text-[15px] text-[#4A4A5A] hover:text-[#111]">FAQ</a>
+              <a href="/guide" className="text-[15px] text-[#4A4A5A] hover:text-[#111]">Docs</a>
+            </nav>
+          )}
+
+          {/* Right side */}
+          <div className="flex items-center gap-3">
             {step === "select" && (
-              <button
-                onClick={() => document.getElementById("councils")?.scrollIntoView({ behavior: "smooth" })}
-                className="hidden sm:block rounded-full bg-[#111111] dark:bg-white px-5 py-2 text-sm font-medium text-white dark:text-[#111111] hover:opacity-90"
-              >
-                Build my council
-              </button>
+              <>
+                <a href="/guide" className="hidden sm:block rounded-full border border-[#D1D5DB] px-4 py-2 text-[15px] font-medium text-[#1A1A2E] hover:border-[#9CA3AF]">
+                  Log in
+                </a>
+                <button
+                  onClick={() => document.getElementById("councils")?.scrollIntoView({ behavior: "smooth" })}
+                  className="rounded-full bg-[#1A1A2E] px-5 py-2 text-[15px] font-medium text-white hover:opacity-90"
+                >
+                  Build My Council
+                </button>
+              </>
             )}
             {step === "context" && (
               <button onClick={goBack} className="text-sm text-[var(--rc-text-secondary)] hover:text-[var(--rc-text-primary)]">
@@ -294,7 +304,7 @@ export default function Home() {
               <p className="mb-4 text-xs font-medium uppercase tracking-[0.25em] text-[var(--rc-text-muted)]">
                 AI council for better decisions
               </p>
-              <h1 className="mb-5 mx-auto max-w-3xl text-3xl font-bold tracking-tight text-[var(--rc-text-primary)] sm:text-[52px] sm:leading-[1.08]">
+              <h1 className="mb-5 mx-auto max-w-3xl text-3xl font-bold tracking-tight text-[#111827] sm:text-[56px] sm:leading-[1.12] font-[var(--font-playfair)]" style={{ fontFamily: "var(--font-playfair), serif" }}>
                 Pressure-test big decisions before you make them
               </h1>
               <p className="mx-auto max-w-xl text-base leading-relaxed text-[var(--rc-text-secondary)] sm:text-[17px]">
@@ -310,12 +320,12 @@ export default function Home() {
               </div>
 
               {/* Final Recommendation Card — floating right, overlapping prism */}
-              <div className="relative sm:absolute sm:right-0 sm:top-1/2 sm:-translate-y-1/2 z-10 w-full max-w-[360px] mx-auto sm:mx-0 rounded-2xl border border-[var(--rc-border)] bg-[var(--rc-card)] p-5 sm:p-6 shadow-[0_8px_40px_rgba(0,0,0,0.08)] dark:shadow-[0_8px_40px_rgba(0,0,0,0.4)]">
+              <div className="relative sm:absolute sm:right-0 sm:top-1/2 sm:-translate-y-1/2 z-10 w-full max-w-[340px] mx-auto sm:mx-0 rounded-2xl bg-white p-6 shadow-[0_8px_30px_rgba(0,0,0,0.08)]">
                 <div className="mb-3 flex items-center gap-2">
                   <svg width="14" height="14" viewBox="0 0 16 16" fill="none" className="text-amber-500"><path d="M8 0l2.35 5.15L16 6l-4 3.9.95 5.6L8 12.85 3.05 15.5 4 9.9 0 6l5.65-.85L8 0z" fill="currentColor"/></svg>
                   <span className="text-[11px] font-semibold uppercase tracking-wider text-[var(--rc-text-secondary)]">Final Recommendation</span>
                 </div>
-                <p className="mb-5 text-[16px] font-bold leading-snug text-[var(--rc-text-primary)]">
+                <p className="mb-5 text-[20px] font-bold leading-[1.3] text-[#111827]">
                   Raise a $3–5M round now, but reduce burn by 20% first.
                 </p>
 
@@ -344,24 +354,24 @@ export default function Home() {
             </div>
 
             {/* CTAs — centered */}
-            <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
+            <div className="flex flex-wrap items-center justify-center gap-4 mb-10">
               <button
                 onClick={() => { setShowAllCouncils(false); document.getElementById("councils")?.scrollIntoView({ behavior: "smooth" }); }}
-                className="rounded-full bg-[#111111] dark:bg-white px-7 py-3 text-sm font-medium text-white dark:text-[#111111] hover:opacity-90"
+                className="rounded-full bg-[#1A1A2E] px-7 py-3.5 text-base font-medium text-white hover:opacity-90"
               >
                 Build my council →
               </button>
               <a
                 href="/guide"
-                className="flex items-center gap-2 rounded-full border border-[var(--rc-border)] px-7 py-3 text-sm font-medium text-[var(--rc-text-primary)] hover:border-[var(--rc-text-muted)]"
+                className="flex items-center gap-2 rounded-full border border-[#D1D5DB] bg-white px-7 py-3.5 text-base font-medium text-[#374151] hover:border-[#9CA3AF]"
               >
-                <svg width="10" height="12" viewBox="0 0 10 12" fill="currentColor" opacity="0.7"><polygon points="1,0 10,6 1,12" /></svg>
+                <svg width="10" height="12" viewBox="0 0 10 12" fill="currentColor" opacity="0.6"><polygon points="1,0 10,6 1,12" /></svg>
                 See it in action
               </a>
             </div>
 
             {/* Value Props Bar */}
-            <div className="border-t border-[var(--rc-border)] py-6 flex flex-wrap items-center justify-center gap-6 sm:gap-12 text-[13px] text-[var(--rc-text-muted)]">
+            <div className="py-6 flex flex-wrap items-center justify-center gap-8 sm:gap-12 text-[13px] text-[#9CA3AF]">
               <span className="flex items-center gap-2">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-50"><circle cx="8" cy="8" r="6"/><circle cx="8" cy="8" r="2.5"/></svg>
                 Multi-perspective analysis
@@ -530,7 +540,7 @@ export default function Home() {
           </div>
 
           {/* How it works */}
-          <div className="bg-[var(--rc-surface)] border-y border-[var(--rc-border)]">
+          <div id="how-it-works" className="bg-[var(--rc-surface)] border-y border-[var(--rc-border)]">
             <div className="mx-auto max-w-5xl px-4 sm:px-6 py-14 sm:py-20">
               <h2 className="mb-10 text-center text-2xl font-bold tracking-tight text-[var(--rc-text-primary)]">
                 How it works
