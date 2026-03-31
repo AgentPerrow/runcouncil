@@ -254,7 +254,7 @@ export default function Home() {
                   onClick={() => selectCouncil(council)}
                   className="group rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 p-3 sm:p-4 text-left hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-zinc-50 dark:hover:bg-zinc-900"
                 >
-                  <div className="mb-1 sm:mb-2 text-2xl sm:text-3xl">{council.emoji}</div>
+                  <div className="mb-1.5 sm:mb-2 text-2xl sm:text-3xl">{council.emoji}</div>
                   <h3 className="text-sm sm:text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">
                     {council.name}
                   </h3>
@@ -262,6 +262,7 @@ export default function Home() {
                   <p className="hidden sm:block mt-2 text-xs text-zinc-500 dark:text-zinc-400">
                     {council.tagline}
                   </p>
+                  <div className="mt-2 text-xs text-zinc-300 dark:text-zinc-700 text-right">→</div>
                 </button>
               ))}
             </div>
@@ -293,6 +294,7 @@ export default function Home() {
                       <p className="hidden sm:block mt-2 text-xs text-zinc-500 dark:text-zinc-400">
                         {council.tagline}
                       </p>
+                      <div className="mt-2 text-xs text-zinc-300 dark:text-zinc-700 text-right">→</div>
                     </button>
                   ))}
                   <button
