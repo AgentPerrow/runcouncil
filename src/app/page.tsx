@@ -324,35 +324,35 @@ export default function Home() {
               </div>
 
               {/* Final Recommendation Card — floating over right side of image */}
-              <div className="relative sm:absolute sm:right-[3%] sm:top-[8%] z-10 w-full max-w-[360px] mx-auto sm:mx-0 rounded-2xl bg-white p-7 shadow-[0_12px_48px_rgba(0,0,0,0.1)]">
-                <div className="mb-4 flex items-center gap-2.5">
-                  <svg width="18" height="18" viewBox="0 0 16 16" fill="none" className="text-amber-500"><path d="M8 0l2.35 5.15L16 6l-4 3.9.95 5.6L8 12.85 3.05 15.5 4 9.9 0 6l5.65-.85L8 0z" fill="currentColor"/></svg>
-                  <span className="text-[12px] font-semibold uppercase tracking-[0.15em] text-[#6B7280]">Final Recommendation</span>
+              <div className="relative sm:absolute sm:right-[3%] sm:top-[5%] z-10 w-full max-w-[340px] mx-auto sm:mx-0 rounded-2xl bg-white p-6 shadow-[0_12px_48px_rgba(0,0,0,0.1)]">
+                <div className="mb-3 flex items-center gap-2">
+                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" className="text-amber-500"><path d="M8 0l2.35 5.15L16 6l-4 3.9.95 5.6L8 12.85 3.05 15.5 4 9.9 0 6l5.65-.85L8 0z" fill="currentColor"/></svg>
+                  <span className="text-[11px] font-semibold uppercase tracking-[0.15em] text-[#6B7280]">Final Recommendation</span>
                 </div>
-                <p className="mb-7 text-[24px] font-bold leading-[1.25] text-[#111827]">
+                <p className="mb-5 text-[20px] font-bold leading-[1.25] text-[#111827]">
                   Raise a $3–5M round now, but reduce burn by 20% first.
                 </p>
 
-                <p className="mb-3 text-[13px] font-semibold text-[#6B7280]">Key Tradeoffs</p>
-                <div className="space-y-2.5 mb-7">
-                  <div className="flex items-start gap-3.5 rounded-xl bg-[#F9FAFB] px-4 py-3.5">
-                    <span className="mt-1 h-3 w-3 shrink-0 rounded-full bg-[#EF4444]" />
-                    <div><span className="text-[14px] font-semibold text-[#111827]">Speed vs Dilution</span> <span className="text-[14px] text-[#6B7280]">Move fast, give up 8–12%</span></div>
+                <p className="mb-2 text-[11px] font-semibold uppercase tracking-wider text-[#9CA3AF]">Key Tradeoffs</p>
+                <div className="space-y-1.5 mb-5">
+                  <div className="flex items-center gap-3 rounded-lg bg-[#F9FAFB] px-3 py-2">
+                    <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-[#EF4444]" />
+                    <span className="text-[13px] text-[#111827]"><strong>Speed vs Dilution</strong> Move fast, give up 8–12%</span>
                   </div>
-                  <div className="flex items-start gap-3.5 rounded-xl bg-[#F9FAFB] px-4 py-3.5">
-                    <span className="mt-1 h-3 w-3 shrink-0 rounded-full bg-[#F59E0B]" />
-                    <div><span className="text-[14px] font-semibold text-[#111827]">Market Timing</span> <span className="text-[14px] text-[#6B7280]">Window open 6–9 months</span></div>
+                  <div className="flex items-center gap-3 rounded-lg bg-[#F9FAFB] px-3 py-2">
+                    <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-[#F59E0B]" />
+                    <span className="text-[13px] text-[#111827]"><strong>Market Timing</strong> Window open 6–9 months</span>
                   </div>
-                  <div className="flex items-start gap-3.5 rounded-xl bg-[#F9FAFB] px-4 py-3.5">
-                    <span className="mt-1 h-3 w-3 shrink-0 rounded-full bg-[#3B82F6]" />
-                    <div><span className="text-[14px] font-semibold text-[#111827]">Runway</span> <span className="text-[14px] text-[#6B7280]">Extend to 18–24 months</span></div>
+                  <div className="flex items-center gap-3 rounded-lg bg-[#F9FAFB] px-3 py-2">
+                    <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-[#3B82F6]" />
+                    <span className="text-[13px] text-[#111827]"><strong>Runway</strong> Extend to 18–24 months</span>
                   </div>
                 </div>
 
-                <p className="mb-3 text-[13px] font-semibold text-[#6B7280]">Next Move</p>
-                <div className="flex items-center gap-3.5 rounded-xl bg-[#F9FAFB] px-4 py-3.5">
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="shrink-0"><circle cx="10" cy="10" r="10" fill="#22C55E"/><path d="M6 10l3 3 5-5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                  <span className="text-[14px] font-medium text-[#374151]">Start investor conversations within 2 weeks</span>
+                <p className="mb-2 text-[11px] font-semibold uppercase tracking-wider text-[#9CA3AF]">Next Move</p>
+                <div className="flex items-center gap-3 rounded-lg bg-[#F9FAFB] px-3 py-2">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0"><circle cx="8" cy="8" r="8" fill="#22C55E"/><path d="M5 8l2 2 4-4" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                  <span className="text-[13px] font-medium text-[#374151]">Start investor conversations within 2 weeks</span>
                 </div>
               </div>
             </div>
