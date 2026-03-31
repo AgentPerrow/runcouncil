@@ -45,9 +45,9 @@ export default function RootLayout({
         <footer className="border-t border-zinc-200 dark:border-zinc-800/50 bg-zinc-50 dark:bg-zinc-950 px-6 py-8">
           <div className="mx-auto flex max-w-5xl flex-col items-center gap-3 text-center">
             <div className="flex items-center gap-4 text-sm text-zinc-500 dark:text-zinc-600">
-              <span>Built by <a href="https://x.com/mperrow" target="_blank" rel="noopener noreferrer" className="text-zinc-700 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200">Perrow</a></span>
+              <span>Built by <a href="https://x.com/perrow" target="_blank" rel="noopener noreferrer" className="text-zinc-700 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200">Perrow</a></span>
               <span>·</span>
-              <a href="https://x.com/mperrow" target="_blank" rel="noopener noreferrer" className="text-zinc-500 dark:text-zinc-600 hover:text-zinc-700 dark:hover:text-zinc-400">𝕏</a>
+              <a href="https://x.com/perrow" target="_blank" rel="noopener noreferrer" className="text-zinc-500 dark:text-zinc-600 hover:text-zinc-700 dark:hover:text-zinc-400">𝕏</a>
             </div>
             <p className="text-xs text-zinc-400 dark:text-zinc-700">130+ AI advisors · 8 councils</p>
           </div>
