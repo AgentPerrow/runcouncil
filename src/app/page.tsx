@@ -22,6 +22,7 @@ export default function Home() {
   const [showCustomCreator, setShowCustomCreator] = useState(false);
   const [showAllCouncils, setShowAllCouncils] = useState(false);
   const [expandedOutputMember, setExpandedOutputMember] = useState<string | null>(null);
+  const [memberSearch, setMemberSearch] = useState("");
   const [nextStepDone, setNextStepDone] = useState(false);
   const [configAnswers, setConfigAnswers] = useState<Record<string, string>>({});
   const [configScales, setConfigScales] = useState<Record<string, number>>({});
@@ -467,10 +468,20 @@ export default function Home() {
 
             {showAddPanel && selectedCouncil.id !== "custom" && (
               <div className="mb-8 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 p-4">
+                <div className="mb-4">
+                  <input
+                    type="text"
+                    placeholder="Search members..."
+                    value={memberSearch}
+                    onChange={(e) => setMemberSearch(e.target.value)}
+                    className="w-full rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-3 py-2 text-sm text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-600"
+                  />
+                </div>
                 <h4 className="mb-3 text-sm font-medium text-zinc-600 dark:text-zinc-400">Council Specialists</h4>
                 <div className="grid gap-2 sm:grid-cols-2">
                   {selectedCouncil.members
                     .filter((m) => !activeMembers.find((a) => a.id === m.id))
+                    .filter((m) => !memberSearch || m.name.toLowerCase().includes(memberSearch.toLowerCase()) || m.role.toLowerCase().includes(memberSearch.toLowerCase()) || m.description.toLowerCase().includes(memberSearch.toLowerCase()))
                     .map((member) => (
                       <button
                         key={member.id}
@@ -494,6 +505,7 @@ export default function Home() {
                 <div className="grid gap-2 sm:grid-cols-2">
                   {universalMembers
                     .filter((m) => !activeMembers.find((a) => a.id === m.id))
+                    .filter((m) => !memberSearch || m.name.toLowerCase().includes(memberSearch.toLowerCase()) || m.role.toLowerCase().includes(memberSearch.toLowerCase()) || m.description.toLowerCase().includes(memberSearch.toLowerCase()))
                     .map((member) => (
                       <button
                         key={member.id}
@@ -504,6 +516,31 @@ export default function Home() {
                         <div>
                           <p className="text-sm font-medium text-zinc-900 dark:text-zinc-100">{member.name}</p>
                           <p className="text-xs text-zinc-500">{member.description}</p>
+                        </div>
+                      </button>
+                    ))}
+                </div>
+
+                {/* Cross-council members */}
+                <h4 className="mt-5 mb-3 text-sm font-medium text-zinc-600 dark:text-zinc-400">From Other Councils</h4>
+                <div className="grid gap-2 sm:grid-cols-2 max-h-60 overflow-y-auto">
+                  {councils
+                    .filter((c) => c.id !== selectedCouncil.id && c.id !== "custom")
+                    .flatMap((c) => c.members.map((m) => ({ ...m, councilName: c.name })))
+                    .filter((m) => !activeMembers.find((a) => a.id === m.id))
+                    .filter((m) => !selectedCouncil.members.find((s) => s.id === m.id))
+                    .filter((m) => !memberSearch || m.name.toLowerCase().includes(memberSearch.toLowerCase()) || m.role.toLowerCase().includes(memberSearch.toLowerCase()) || m.description.toLowerCase().includes(memberSearch.toLowerCase()))
+                    .map((member) => (
+                      <button
+                        key={member.id}
+                        onClick={() => addMember(member)}
+                        className="flex items-center gap-3 rounded-md border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 p-3 text-left hover:border-zinc-400 dark:hover:border-zinc-600"
+                      >
+                        <span className="text-lg">{member.emoji}</span>
+                        <div>
+                          <p className="text-sm font-medium text-zinc-900 dark:text-zinc-100">{member.name}</p>
+                          <p className="text-xs text-zinc-500">{member.description}</p>
+                          <p className="text-[10px] text-zinc-400">from {member.councilName}</p>
                         </div>
                       </button>
                     ))}

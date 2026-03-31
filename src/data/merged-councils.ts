@@ -11,17 +11,27 @@ import {
   lifeNewMembers,
   universalMembers,
 } from "./new-members";
+import {
+  extraStartupMembers,
+  extraHealthMembers,
+  extraCareerMembers,
+  extraInvestmentMembers,
+  extraCreativeMembers,
+  extraParentingMembers,
+  extraLifeMembers,
+  extraUniversalMembers,
+} from "./extra-members";
 
 // Map of council id → new members to add
 const newMemberMap: Record<string, CouncilMember[]> = {
-  startup: startupNewMembers,
-  health: healthNewMembers,
-  career: careerNewMembers,
-  investment: investmentNewMembers,
+  startup: [...startupNewMembers, ...extraStartupMembers],
+  health: [...healthNewMembers, ...extraHealthMembers],
+  career: [...careerNewMembers, ...extraCareerMembers],
+  investment: [...investmentNewMembers, ...extraInvestmentMembers],
   realestate: realEstateNewMembers,
-  creative: creativeNewMembers,
-  parenting: parentingNewMembers,
-  life: lifeNewMembers,
+  creative: [...creativeNewMembers, ...extraCreativeMembers],
+  parenting: [...parentingNewMembers, ...extraParentingMembers],
+  life: [...lifeNewMembers, ...extraLifeMembers],
 };
 
 // Merge new members into each council
@@ -34,7 +44,8 @@ export const mergedCouncils: CouncilType[] = baseCouncils.map((council) => {
 });
 
 // Export universal members for cross-council use
-export { universalMembers, customCouncil };
+const allUniversalMembers = [...universalMembers, ...extraUniversalMembers];
+export { allUniversalMembers as universalMembers, customCouncil };
 export type { CouncilType, CouncilMember };
 
 // Re-export the output generator
