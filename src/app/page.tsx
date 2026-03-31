@@ -313,9 +313,9 @@ export default function Home() {
             </div>
 
             {/* Prism + Card — side by side with overlap */}
-            <div className="relative mx-auto max-w-4xl mb-10 sm:mb-14" style={{ minHeight: "360px" }}>
-              {/* Prism illustration — large, left side */}
-              <div className="hidden sm:block absolute left-0 top-1/2 -translate-y-1/2 w-[480px] z-0">
+            <div className="relative mx-auto max-w-4xl mb-10 sm:mb-14" style={{ minHeight: "400px" }}>
+              {/* Prism illustration — large, left-center */}
+              <div className="hidden sm:block absolute left-[5%] top-1/2 -translate-y-1/2 w-[55%] z-0">
                 <HeroPrism />
               </div>
 
