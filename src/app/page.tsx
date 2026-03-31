@@ -9,7 +9,7 @@ import CouncilConfigurator, { COUNCIL_CONFIGS } from "@/components/CouncilConfig
 import { applyPromptModifiers, getRecommendedMembers } from "@/data/prompt-modifiers";
 import { templates } from "@/data/templates";
 import { PrismLogoFull } from "@/components/PrismLogo";
-import HeroPrism from "@/components/HeroPrism";
+// Hero uses /hero-bg.jpg directly
 
 type Step = "select" | "context" | "members" | "output";
 
@@ -312,15 +312,17 @@ export default function Home() {
               </p>
             </div>
 
-            {/* Prism + Card — cinematic layout */}
-            <div className="relative mx-auto max-w-5xl mb-14 sm:mb-20" style={{ minHeight: "440px" }}>
-              {/* Prism illustration — large, left side */}
-              <div className="hidden sm:block absolute -left-[5%] top-1/2 -translate-y-[45%] w-[60%] z-0">
-                <HeroPrism />
-              </div>
+            {/* Prism + Card — hero visual */}
+            <div className="relative mx-auto max-w-5xl mb-14 sm:mb-20 rounded-2xl overflow-hidden" style={{ minHeight: "380px" }}>
+              {/* Hero background image — prism with rainbow beams */}
+              <img
+                src="/hero-bg.jpg"
+                alt=""
+                className="hidden sm:block absolute inset-0 w-full h-full object-cover object-center"
+              />
 
-              {/* Final Recommendation Card — floating right */}
-              <div className="relative sm:absolute sm:right-[2%] sm:top-1/2 sm:-translate-y-1/2 z-10 w-full max-w-[400px] mx-auto sm:mx-0 rounded-2xl bg-white p-8 shadow-[0_12px_48px_rgba(0,0,0,0.1)]">
+              {/* Final Recommendation Card — positioned over the white area on right */}
+              <div className="relative sm:absolute sm:right-[4%] sm:top-1/2 sm:-translate-y-1/2 z-10 w-full max-w-[380px] mx-auto sm:mx-0 rounded-2xl bg-white/95 backdrop-blur-sm p-8 shadow-[0_12px_48px_rgba(0,0,0,0.08)]">
                 <div className="mb-4 flex items-center gap-2.5">
                   <svg width="18" height="18" viewBox="0 0 16 16" fill="none" className="text-amber-500"><path d="M8 0l2.35 5.15L16 6l-4 3.9.95 5.6L8 12.85 3.05 15.5 4 9.9 0 6l5.65-.85L8 0z" fill="currentColor"/></svg>
                   <span className="text-[12px] font-semibold uppercase tracking-[0.15em] text-[#6B7280]">Final Recommendation</span>
