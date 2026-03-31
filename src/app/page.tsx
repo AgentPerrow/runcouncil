@@ -313,16 +313,18 @@ export default function Home() {
             </div>
 
             {/* Prism + Card — hero visual */}
-            <div className="relative mx-auto max-w-5xl mb-14 sm:mb-20 rounded-2xl overflow-hidden" style={{ minHeight: "380px" }}>
+            <div className="relative mx-auto max-w-5xl mb-14 sm:mb-20">
               {/* Hero background image — prism with rainbow beams */}
-              <img
-                src="/hero-bg.jpg"
-                alt=""
-                className="hidden sm:block absolute inset-0 w-full h-full object-cover object-center"
-              />
+              <div className="hidden sm:block">
+                <img
+                  src="/hero-bg.jpg"
+                  alt="Light refracting through a prism"
+                  className="w-full h-auto rounded-xl"
+                />
+              </div>
 
-              {/* Final Recommendation Card — positioned over the white area on right */}
-              <div className="relative sm:absolute sm:right-[4%] sm:top-1/2 sm:-translate-y-1/2 z-10 w-full max-w-[380px] mx-auto sm:mx-0 rounded-2xl bg-white/95 backdrop-blur-sm p-8 shadow-[0_12px_48px_rgba(0,0,0,0.08)]">
+              {/* Final Recommendation Card — floating over right side of image */}
+              <div className="relative sm:absolute sm:right-[3%] sm:top-[8%] z-10 w-full max-w-[360px] mx-auto sm:mx-0 rounded-2xl bg-white p-7 shadow-[0_12px_48px_rgba(0,0,0,0.1)]">
                 <div className="mb-4 flex items-center gap-2.5">
                   <svg width="18" height="18" viewBox="0 0 16 16" fill="none" className="text-amber-500"><path d="M8 0l2.35 5.15L16 6l-4 3.9.95 5.6L8 12.85 3.05 15.5 4 9.9 0 6l5.65-.85L8 0z" fill="currentColor"/></svg>
                   <span className="text-[12px] font-semibold uppercase tracking-[0.15em] text-[#6B7280]">Final Recommendation</span>
