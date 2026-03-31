@@ -230,7 +230,7 @@ export default function Home() {
               <a href="#councils" className="text-[15px] text-[#4A4A5A] hover:text-[#111]">Product</a>
               <a href="#how-it-works" className="text-[15px] text-[#4A4A5A] hover:text-[#111]">How it Works</a>
               <a href="/templates" className="text-[15px] text-[#4A4A5A] hover:text-[#111]">Use Cases</a>
-              <a href="#" className="text-[15px] text-[#4A4A5A] hover:text-[#111]">Pricing</a>
+
               <a href="/guide" className="text-[15px] text-[#4A4A5A] hover:text-[#111]">Docs</a>
             </nav>
           )}
