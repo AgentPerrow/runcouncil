@@ -254,12 +254,12 @@ export default function Home() {
                   onClick={() => selectCouncil(council)}
                   className="group rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 p-3 sm:p-4 text-left hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-zinc-50 dark:hover:bg-zinc-900"
                 >
-                  <div className="mb-2 text-3xl">{council.emoji}</div>
-                  <h3 className="mb-1 text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">
+                  <div className="mb-1 sm:mb-2 text-2xl sm:text-3xl">{council.emoji}</div>
+                  <h3 className="text-sm sm:text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">
                     {council.name}
                   </h3>
-                  <p className="text-sm italic text-zinc-500">&ldquo;{council.description}&rdquo;</p>
-                  <p className="mt-2 text-xs text-zinc-500 dark:text-zinc-400">
+                  <p className="hidden sm:block text-sm italic text-zinc-500">&ldquo;{council.description}&rdquo;</p>
+                  <p className="hidden sm:block mt-2 text-xs text-zinc-500 dark:text-zinc-400">
                     {council.tagline}
                   </p>
                 </button>
@@ -285,23 +285,23 @@ export default function Home() {
                       onClick={() => selectCouncil(council)}
                       className="group rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 p-3 sm:p-4 text-left hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-zinc-50 dark:hover:bg-zinc-900"
                     >
-                      <div className="mb-2 text-3xl">{council.emoji}</div>
-                      <h3 className="mb-1 text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">
+                      <div className="mb-1 sm:mb-2 text-2xl sm:text-3xl">{council.emoji}</div>
+                      <h3 className="text-sm sm:text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">
                         {council.name}
                       </h3>
-                      <p className="text-sm italic text-zinc-500">&ldquo;{council.description}&rdquo;</p>
-                      <p className="mt-2 text-xs text-zinc-500 dark:text-zinc-400">
+                      <p className="hidden sm:block text-sm italic text-zinc-500">&ldquo;{council.description}&rdquo;</p>
+                      <p className="hidden sm:block mt-2 text-xs text-zinc-500 dark:text-zinc-400">
                         {council.tagline}
                       </p>
                     </button>
                   ))}
                   <button
                     onClick={() => selectCouncil(customCouncil)}
-                    className="group rounded-xl border border-dashed border-zinc-200 dark:border-zinc-800 bg-transparent p-5 text-left hover:border-zinc-400 dark:hover:border-zinc-600"
+                    className="group rounded-xl border border-dashed border-zinc-200 dark:border-zinc-800 bg-transparent p-3 sm:p-4 text-left hover:border-zinc-400 dark:hover:border-zinc-600"
                   >
-                    <div className="mb-2 text-3xl">{customCouncil.emoji}</div>
-                    <h3 className="mb-1 text-lg font-semibold tracking-tight text-zinc-500">{customCouncil.name}</h3>
-                    <p className="text-sm text-zinc-400 dark:text-zinc-600">{customCouncil.description}</p>
+                    <div className="mb-1 sm:mb-2 text-2xl sm:text-3xl">{customCouncil.emoji}</div>
+                    <h3 className="text-sm sm:text-lg font-semibold tracking-tight text-zinc-500">{customCouncil.name}</h3>
+                    <p className="hidden sm:block text-sm text-zinc-400 dark:text-zinc-600">{customCouncil.description}</p>
                     <p className="mt-2 text-xs text-zinc-400 dark:text-zinc-600">{customCouncil.tagline}</p>
                   </button>
                 </div>
