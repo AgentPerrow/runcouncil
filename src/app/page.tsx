@@ -226,11 +226,11 @@ export default function Home() {
 
           {/* Center nav links */}
           {step === "select" && (
-            <nav className="hidden md:flex items-center gap-8">
+            <nav className="hidden lg:flex items-center gap-10">
               <a href="#councils" className="text-[15px] text-[#4A4A5A] hover:text-[#111]">Product</a>
               <a href="#how-it-works" className="text-[15px] text-[#4A4A5A] hover:text-[#111]">How it Works</a>
               <a href="/templates" className="text-[15px] text-[#4A4A5A] hover:text-[#111]">Use Cases</a>
-              <a href="/faq" className="text-[15px] text-[#4A4A5A] hover:text-[#111]">FAQ</a>
+              <a href="#" className="text-[15px] text-[#4A4A5A] hover:text-[#111]">Pricing</a>
               <a href="/guide" className="text-[15px] text-[#4A4A5A] hover:text-[#111]">Docs</a>
             </nav>
           )}
@@ -297,91 +297,91 @@ export default function Home() {
         {/* Step 1: Select */}
         {step === "select" && (
           <>
-          {/* Hero — Centered text, prism + card visual, CTAs below */}
-          <div className="mx-auto max-w-5xl px-4 sm:px-6">
+          {/* Hero */}
+          <div className="mx-auto max-w-6xl px-6 sm:px-10">
             {/* Centered text */}
-            <div className="pt-12 sm:pt-20 pb-6 sm:pb-10 text-center">
-              <p className="mb-4 text-xs font-medium uppercase tracking-[0.25em] text-[var(--rc-text-muted)]">
+            <div className="pt-16 sm:pt-24 pb-8 sm:pb-12 text-center">
+              <p className="mb-5 text-[12px] font-semibold uppercase tracking-[0.25em] text-[#9CA3AF]">
                 AI council for better decisions
               </p>
-              <h1 className="mb-5 mx-auto max-w-3xl text-3xl font-bold tracking-tight text-[#111827] sm:text-[56px] sm:leading-[1.12] font-[var(--font-playfair)]" style={{ fontFamily: "var(--font-playfair), serif" }}>
+              <h1 className="mb-6 mx-auto max-w-4xl text-4xl font-bold tracking-tight text-[#111827] sm:text-[64px] sm:leading-[1.08]" style={{ fontFamily: "var(--font-playfair), serif" }}>
                 Pressure-test big decisions before you make them
               </h1>
-              <p className="mx-auto max-w-xl text-base leading-relaxed text-[var(--rc-text-secondary)] sm:text-[17px]">
+              <p className="mx-auto max-w-xl text-[17px] leading-relaxed text-[#6B7280]">
                 Bring your question. Build a council of AI experts. Get a clear, actionable answer with tradeoffs, risks, and your next move.
               </p>
             </div>
 
-            {/* Prism + Card visual — overlapping layout */}
-            <div className="relative mx-auto max-w-3xl mb-6 sm:mb-10">
-              {/* Prism illustration — center-left */}
-              <div className="hidden sm:block w-[380px] relative z-0 mx-auto sm:mx-0 sm:-ml-4">
+            {/* Prism + Card — side by side with overlap */}
+            <div className="relative mx-auto max-w-4xl mb-10 sm:mb-14" style={{ minHeight: "360px" }}>
+              {/* Prism illustration — large, left side */}
+              <div className="hidden sm:block absolute left-0 top-1/2 -translate-y-1/2 w-[480px] z-0">
                 <HeroPrism />
               </div>
 
-              {/* Final Recommendation Card — floating right, overlapping prism */}
-              <div className="relative sm:absolute sm:right-0 sm:top-1/2 sm:-translate-y-1/2 z-10 w-full max-w-[340px] mx-auto sm:mx-0 rounded-2xl bg-white p-6 shadow-[0_8px_30px_rgba(0,0,0,0.08)]">
+              {/* Final Recommendation Card — right side, overlapping prism */}
+              <div className="relative sm:absolute sm:right-0 sm:top-1/2 sm:-translate-y-1/2 z-10 w-full max-w-[380px] mx-auto sm:mx-0 rounded-2xl bg-white p-7 shadow-[0_8px_40px_rgba(0,0,0,0.08)]">
                 <div className="mb-3 flex items-center gap-2">
-                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" className="text-amber-500"><path d="M8 0l2.35 5.15L16 6l-4 3.9.95 5.6L8 12.85 3.05 15.5 4 9.9 0 6l5.65-.85L8 0z" fill="currentColor"/></svg>
-                  <span className="text-[11px] font-semibold uppercase tracking-wider text-[var(--rc-text-secondary)]">Final Recommendation</span>
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="text-amber-500"><path d="M8 0l2.35 5.15L16 6l-4 3.9.95 5.6L8 12.85 3.05 15.5 4 9.9 0 6l5.65-.85L8 0z" fill="currentColor"/></svg>
+                  <span className="text-[11px] font-semibold uppercase tracking-[0.15em] text-[#6B7280]">Final Recommendation</span>
                 </div>
-                <p className="mb-5 text-[20px] font-bold leading-[1.3] text-[#111827]">
+                <p className="mb-6 text-[22px] font-bold leading-[1.3] text-[#111827]">
                   Raise a $3–5M round now, but reduce burn by 20% first.
                 </p>
 
-                <p className="mb-2 text-[11px] font-medium uppercase tracking-wider text-[var(--rc-text-muted)]">Key Tradeoffs</p>
-                <div className="space-y-1.5 mb-5">
-                  <div className="flex items-start gap-2.5 rounded-lg bg-[var(--rc-surface)] px-3 py-2">
-                    <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-red-500" />
-                    <div><span className="text-xs font-semibold text-[var(--rc-text-primary)]">Speed vs Dilution</span> <span className="text-xs text-[var(--rc-text-secondary)]">Move fast, give up 8–12%</span></div>
+                <p className="mb-3 text-[13px] font-medium text-[#6B7280]">Key Tradeoffs</p>
+                <div className="space-y-2 mb-6">
+                  <div className="flex items-start gap-3 rounded-xl bg-[#F9FAFB] px-4 py-3">
+                    <span className="mt-1 h-2.5 w-2.5 shrink-0 rounded-full bg-[#EF4444]" />
+                    <div><span className="text-[13px] font-semibold text-[#111827]">Speed vs Dilution</span> <span className="text-[13px] text-[#6B7280]">Move fast, give up 8–12%</span></div>
                   </div>
-                  <div className="flex items-start gap-2.5 rounded-lg bg-[var(--rc-surface)] px-3 py-2">
-                    <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-amber-400" />
-                    <div><span className="text-xs font-semibold text-[var(--rc-text-primary)]">Market Timing</span> <span className="text-xs text-[var(--rc-text-secondary)]">Window open 6–9 months</span></div>
+                  <div className="flex items-start gap-3 rounded-xl bg-[#F9FAFB] px-4 py-3">
+                    <span className="mt-1 h-2.5 w-2.5 shrink-0 rounded-full bg-[#F59E0B]" />
+                    <div><span className="text-[13px] font-semibold text-[#111827]">Market Timing</span> <span className="text-[13px] text-[#6B7280]">Window open 6–9 months</span></div>
                   </div>
-                  <div className="flex items-start gap-2.5 rounded-lg bg-[var(--rc-surface)] px-3 py-2">
-                    <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-blue-500" />
-                    <div><span className="text-xs font-semibold text-[var(--rc-text-primary)]">Runway</span> <span className="text-xs text-[var(--rc-text-secondary)]">Extend to 18–24 months</span></div>
+                  <div className="flex items-start gap-3 rounded-xl bg-[#F9FAFB] px-4 py-3">
+                    <span className="mt-1 h-2.5 w-2.5 shrink-0 rounded-full bg-[#3B82F6]" />
+                    <div><span className="text-[13px] font-semibold text-[#111827]">Runway</span> <span className="text-[13px] text-[#6B7280]">Extend to 18–24 months</span></div>
                   </div>
                 </div>
 
-                <p className="mb-2 text-[11px] font-medium uppercase tracking-wider text-[var(--rc-text-muted)]">Next Move</p>
-                <div className="flex items-center gap-2.5 rounded-lg bg-[var(--rc-surface)] px-3 py-2">
-                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" className="shrink-0 text-emerald-500"><circle cx="8" cy="8" r="8" fill="currentColor"/><path d="M5 8l2 2 4-4" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                  <span className="text-xs font-medium text-[var(--rc-text-primary)]">Start investor conversations within 2 weeks</span>
+                <p className="mb-3 text-[13px] font-medium text-[#6B7280]">Next Move</p>
+                <div className="flex items-center gap-3 rounded-xl bg-[#F9FAFB] px-4 py-3">
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" className="shrink-0"><circle cx="9" cy="9" r="9" fill="#22C55E"/><path d="M5.5 9l2.5 2.5 4.5-4.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                  <span className="text-[13px] font-medium text-[#374151]">Start investor conversations within 2 weeks</span>
                 </div>
               </div>
             </div>
 
-            {/* CTAs — centered */}
-            <div className="flex flex-wrap items-center justify-center gap-4 mb-10">
+            {/* CTAs — centered with breathing room */}
+            <div className="flex flex-wrap items-center justify-center gap-4 mb-12">
               <button
                 onClick={() => { setShowAllCouncils(false); document.getElementById("councils")?.scrollIntoView({ behavior: "smooth" }); }}
-                className="rounded-full bg-[#1A1A2E] px-7 py-3.5 text-base font-medium text-white hover:opacity-90"
+                className="rounded-full bg-[#1A1A2E] px-8 py-4 text-[16px] font-medium text-white hover:opacity-90"
               >
                 Build my council →
               </button>
               <a
                 href="/guide"
-                className="flex items-center gap-2 rounded-full border border-[#D1D5DB] bg-white px-7 py-3.5 text-base font-medium text-[#374151] hover:border-[#9CA3AF]"
+                className="flex items-center gap-2.5 rounded-full border border-[#D1D5DB] bg-white px-8 py-4 text-[16px] font-medium text-[#374151] hover:border-[#9CA3AF]"
               >
-                <svg width="10" height="12" viewBox="0 0 10 12" fill="currentColor" opacity="0.6"><polygon points="1,0 10,6 1,12" /></svg>
+                <svg width="12" height="14" viewBox="0 0 12 14" fill="#374151" opacity="0.6"><polygon points="1,0 12,7 1,14" /></svg>
                 See it in action
               </a>
             </div>
 
             {/* Value Props Bar */}
-            <div className="py-6 flex flex-wrap items-center justify-center gap-8 sm:gap-12 text-[13px] text-[#9CA3AF]">
-              <span className="flex items-center gap-2">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-50"><circle cx="8" cy="8" r="6"/><circle cx="8" cy="8" r="2.5"/></svg>
+            <div className="pb-10 flex flex-wrap items-center justify-center gap-10 sm:gap-14 text-[14px] text-[#9CA3AF]">
+              <span className="flex items-center gap-2.5">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-50"><circle cx="9" cy="9" r="7"/><circle cx="9" cy="9" r="3"/></svg>
                 Multi-perspective analysis
               </span>
-              <span className="flex items-center gap-2">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-50"><path d="M4 12l4-8 4 8M5.5 9h5"/></svg>
+              <span className="flex items-center gap-2.5">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-50"><path d="M5 13l4-8 4 8M6.5 10h5"/></svg>
                 Conflicting views surfaced
               </span>
-              <span className="flex items-center gap-2">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-50"><path d="M3 8.5l3 3 7-7"/></svg>
+              <span className="flex items-center gap-2.5">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-50"><path d="M4 9.5l3.5 3.5 7-7"/></svg>
                 Clear, actionable output
               </span>
             </div>
