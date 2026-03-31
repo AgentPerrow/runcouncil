@@ -347,7 +347,43 @@ export default function Home() {
               </div>
             )}
 
-            {/* #7: mt-10, bold brand names */}
+            {/* Featured Templates */}
+            <div className="mt-16 mb-12">
+              <div className="mb-6 flex items-center justify-between">
+                <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
+                  Ready-made councils
+                </h2>
+                <a href="/templates" className="text-sm text-amber-600 hover:text-amber-500 font-medium">
+                  See all templates →
+                </a>
+              </div>
+              <div className="grid gap-3 sm:gap-4 sm:grid-cols-3">
+                {templates
+                  .filter((t) => ["severance-negotiation", "fundraising-war-room", "first-time-homebuyer"].includes(t.id))
+                  .map((t) => (
+                    <a
+                      key={t.id}
+                      href={`/templates/${t.id}`}
+                      className="group rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 p-5 hover:border-amber-400 dark:hover:border-amber-500 hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors"
+                    >
+                      <div className="mb-2 flex items-center gap-2">
+                        <span className="text-2xl">{t.emoji}</span>
+                        <span className="rounded-full bg-zinc-100 dark:bg-zinc-800 px-2 py-0.5 text-[10px] font-medium text-zinc-500">{t.category}</span>
+                      </div>
+                      <h3 className="text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-100 group-hover:text-amber-600">
+                        {t.title}
+                      </h3>
+                      <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400 line-clamp-2">
+                        {t.description}
+                      </p>
+                      <div className="mt-3 text-sm font-medium text-amber-600 group-hover:text-amber-500">
+                        Use this template →
+                      </div>
+                    </a>
+                  ))}
+              </div>
+            </div>
+
             {/* How it works */}
             <div className="mt-16 mb-12">
               <h2 className="mb-8 text-center text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
