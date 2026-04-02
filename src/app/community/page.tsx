@@ -102,9 +102,12 @@ export default function CommunityPage() {
     }
   };
 
+  const [submitError, setSubmitError] = useState("");
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
+    setSubmitError("");
     try {
       const res = await fetch("/api/community", {
         method: "POST",
@@ -122,9 +125,13 @@ export default function CommunityPage() {
       if (res.ok) {
         setSubmitSuccess(true);
         setFormName(""); setFormRole(""); setFormDescription(""); setFormExpertise(""); setFormSystemPrompt("");
-        // Refresh submissions list
         loadMySubmissions();
+      } else {
+        const data = await res.json().catch(() => ({}));
+        setSubmitError(data.error || `Failed (${res.status}). Try signing in again.`);
       }
+    } catch (err) {
+      setSubmitError("Network error. Please try again.");
     } finally {
       setSubmitting(false);
     }
@@ -321,6 +328,11 @@ export default function CommunityPage() {
                     />
                   </div>
                 </div>
+                {submitError && (
+                  <div className="mt-4 rounded-lg bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50 px-4 py-2 text-sm text-red-600 dark:text-red-400">
+                    {submitError}
+                  </div>
+                )}
                 <div className="mt-4 flex gap-3">
                   <button
                     type="submit" disabled={submitting}
