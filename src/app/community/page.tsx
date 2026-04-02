@@ -157,6 +157,12 @@ export default function CommunityPage() {
               <div className="flex items-center gap-2">
                 <span className="text-sm text-[var(--rc-text-secondary)]">{session.user.name}</span>
                 {session.user.image && <img src={session.user.image} alt="" className="h-7 w-7 rounded-full" />}
+                <button
+                  onClick={() => { window.location.href = "/api/auth/signout"; }}
+                  className="rounded-full border border-[var(--rc-border)] px-3 py-1 text-xs text-[var(--rc-text-muted)] hover:text-[var(--rc-text-primary)] hover:border-[var(--rc-text-muted)]"
+                >
+                  Sign out
+                </button>
               </div>
             ) : (
               <button onClick={signIn} className="rounded-full bg-[#111] px-5 py-2 text-sm font-medium text-white hover:bg-[#222]">
