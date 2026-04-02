@@ -33,7 +33,12 @@ export async function GET(req: NextRequest) {
 
 // POST — submit a new community member (requires auth)
 export async function POST(req: NextRequest) {
-  const session = await auth();
+  let session = null;
+  try {
+    session = await auth();
+  } catch (e) {
+    return NextResponse.json({ error: "Auth error: " + (e instanceof Error ? e.message : String(e)) }, { status: 500 });
+  }
   if (!session?.user?.email) {
     return NextResponse.json({ error: "Sign in required" }, { status: 401 });
   }
