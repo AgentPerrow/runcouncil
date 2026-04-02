@@ -76,7 +76,7 @@ export async function POST(req: NextRequest) {
     await saveCommunityMembers(members);
 
     return NextResponse.json(newMember, { status: 201 });
-  } catch {
-    return NextResponse.json({ error: "Server error" }, { status: 500 });
+  } catch (e) {
+    return NextResponse.json({ error: "Server error: " + (e instanceof Error ? e.message : String(e)) }, { status: 500 });
   }
 }
