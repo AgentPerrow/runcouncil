@@ -239,7 +239,7 @@ export default function CommunityPage() {
                     <label className="mb-1 block text-sm text-[var(--rc-text-secondary)]">Name *</label>
                     <input
                       type="text" value={formName} onChange={(e) => setFormName(e.target.value)} required maxLength={80}
-                      placeholder="e.g. Supply Chain Expert"
+                      placeholder="e.g. Ontario Family Lawyer"
                       className="w-full rounded-lg border border-[var(--rc-border)] bg-[var(--rc-card)] px-3 py-2 text-sm text-[var(--rc-text-primary)] placeholder-[var(--rc-text-muted)] outline-none focus:border-amber-400"
                     />
                   </div>
@@ -247,7 +247,7 @@ export default function CommunityPage() {
                     <label className="mb-1 block text-sm text-[var(--rc-text-secondary)]">Role *</label>
                     <input
                       type="text" value={formRole} onChange={(e) => setFormRole(e.target.value)} required maxLength={100}
-                      placeholder="e.g. Logistics & Operations"
+                      placeholder="e.g. Canadian Family Law & Custody Specialist"
                       className="w-full rounded-lg border border-[var(--rc-border)] bg-[var(--rc-card)] px-3 py-2 text-sm text-[var(--rc-text-primary)] placeholder-[var(--rc-text-muted)] outline-none focus:border-amber-400"
                     />
                   </div>
@@ -279,7 +279,7 @@ export default function CommunityPage() {
                     <label className="mb-1 block text-sm text-[var(--rc-text-secondary)]">Description *</label>
                     <textarea
                       value={formDescription} onChange={(e) => setFormDescription(e.target.value)} required maxLength={500}
-                      rows={2} placeholder="What does this member bring to the council?"
+                      rows={2} placeholder="e.g. 15 years practicing family law in Ontario. Specializes in custody agreements, spousal support, and property division. Knows the local court system inside out."
                       className="w-full rounded-lg border border-[var(--rc-border)] bg-[var(--rc-card)] px-3 py-2 text-sm text-[var(--rc-text-primary)] placeholder-[var(--rc-text-muted)] outline-none focus:border-amber-400"
                     />
                   </div>
@@ -287,7 +287,7 @@ export default function CommunityPage() {
                     <label className="mb-1 block text-sm text-[var(--rc-text-secondary)]">Expertise Areas (comma-separated)</label>
                     <input
                       type="text" value={formExpertise} onChange={(e) => setFormExpertise(e.target.value)}
-                      placeholder="e.g. Logistics, Vendor management, Cost reduction"
+                      placeholder="e.g. Custody law, Child support calculations, Separation agreements, Ontario family court procedures"
                       className="w-full rounded-lg border border-[var(--rc-border)] bg-[var(--rc-card)] px-3 py-2 text-sm text-[var(--rc-text-primary)] placeholder-[var(--rc-text-muted)] outline-none focus:border-amber-400"
                     />
                   </div>
@@ -295,7 +295,7 @@ export default function CommunityPage() {
                     <label className="mb-1 block text-sm text-[var(--rc-text-secondary)]">System Prompt (optional)</label>
                     <textarea
                       value={formSystemPrompt} onChange={(e) => setFormSystemPrompt(e.target.value)}
-                      rows={3} placeholder="Custom prompt for this advisor..."
+                      rows={3} placeholder="e.g. You are an Ontario family lawyer with 15 years of experience. You advise on custody, support, and property matters. Always cite relevant Ontario statutes and case law. Flag when the user should get in-person legal counsel."
                       className="w-full rounded-lg border border-[var(--rc-border)] bg-[var(--rc-card)] px-3 py-2 text-sm text-[var(--rc-text-primary)] placeholder-[var(--rc-text-muted)] outline-none focus:border-amber-400"
                     />
                   </div>
