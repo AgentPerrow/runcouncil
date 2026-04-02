@@ -122,7 +122,8 @@ export default function CommunityPage() {
       if (res.ok) {
         setSubmitSuccess(true);
         setFormName(""); setFormRole(""); setFormDescription(""); setFormExpertise(""); setFormSystemPrompt("");
-        setTimeout(() => { setSubmitSuccess(false); setShowSubmit(false); loadMembers(); }, 2000);
+        // Refresh submissions list
+        loadMySubmissions();
       }
     } finally {
       setSubmitting(false);
@@ -226,10 +227,24 @@ export default function CommunityPage() {
         {showSubmit && (
           <div className="mb-8 rounded-xl border border-amber-200 dark:border-amber-900/50 bg-amber-50 dark:bg-amber-950/20 p-6">
             {submitSuccess ? (
-              <div className="text-center py-6">
-                <div className="text-3xl mb-2">✅</div>
-                <h3 className="text-lg font-semibold text-[var(--rc-text-primary)]">Submitted!</h3>
-                <p className="text-sm text-[var(--rc-text-secondary)]">Your role is pending review.</p>
+              <div className="text-center py-8">
+                <div className="text-5xl mb-3">🎉</div>
+                <h3 className="text-xl font-bold text-[var(--rc-text-primary)] mb-1">Role Submitted!</h3>
+                <p className="text-sm text-[var(--rc-text-secondary)] mb-6">It&apos;ll appear in the marketplace once approved. Thanks for making RunCouncil better.</p>
+                <div className="flex gap-3 justify-center">
+                  <button
+                    onClick={() => { setSubmitSuccess(false); setShowSubmit(false); setShowMySubmissions(true); loadMySubmissions(); }}
+                    className="rounded-lg bg-amber-500 px-5 py-2.5 text-sm font-medium text-white hover:bg-amber-600"
+                  >
+                    View My Submissions
+                  </button>
+                  <button
+                    onClick={() => { setSubmitSuccess(false); setShowSubmit(true); }}
+                    className="rounded-lg border border-[var(--rc-border)] px-5 py-2.5 text-sm font-medium text-[var(--rc-text-secondary)] hover:border-[var(--rc-text-muted)]"
+                  >
+                    Submit Another
+                  </button>
+                </div>
               </div>
             ) : (
               <form onSubmit={handleSubmit}>
