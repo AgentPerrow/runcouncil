@@ -45,4 +45,6 @@ export const COUNCIL_OPTIONS = [
   { value: "creative", label: "Creative" },
   { value: "parenting", label: "Parenting" },
   { value: "life", label: "Life" },
+  { value: "realestate", label: "Real Estate" },
+  { value: "other", label: "Other" },
 ];
