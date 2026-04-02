@@ -851,28 +851,42 @@ export default function Home() {
                   />
                 </div>
                 <div className="flex-1 overflow-y-auto px-4 pb-4">
-                  {suggested.length > 0 && (
-                    <>
-                      <h4 className="mb-3 text-sm font-medium text-zinc-600 dark:text-zinc-400">Suggested</h4>
-                      <div className="grid gap-2 mb-5">
-                        {suggested.map(memberBtn)}
-                      </div>
-                    </>
-                  )}
-                  <h4 className="mb-3 text-sm font-medium text-zinc-600 dark:text-zinc-400">All</h4>
-                  <div className="grid gap-2">
-                    {allFiltered.map(memberBtn)}
+                  {/* OFFICIAL SECTION */}
+                  <div className="mb-6">
+                    <div className="mb-3 flex items-center gap-2">
+                      <h4 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Official</h4>
+                      <span className="text-xs text-zinc-400 dark:text-zinc-600">Curated</span>
+                    </div>
+                    {suggested.length > 0 && (
+                      <>
+                        <p className="mb-2 text-xs text-zinc-500">Suggested for this council</p>
+                        <div className="grid gap-2 mb-4">
+                          {suggested.map(memberBtn)}
+                        </div>
+                        {allFiltered.length > 0 && <p className="mb-2 text-xs text-zinc-500">All others</p>}
+                      </>
+                    )}
+                    <div className="grid gap-2">
+                      {allFiltered.map(memberBtn)}
+                    </div>
+                    {allFiltered.length === 0 && suggested.length === 0 && (
+                      <p className="text-sm text-zinc-400 dark:text-zinc-600">No official members match &ldquo;{memberSearch}&rdquo;</p>
+                    )}
                   </div>
+
+                  {/* COMMUNITY SECTION */}
                   {communityPool.length > 0 && (
-                    <>
-                      <h4 className="mb-3 mt-5 text-sm font-medium text-amber-600 dark:text-amber-400">Community</h4>
+                    <div className="rounded-lg border border-amber-500/20 bg-amber-500/5 p-4">
+                      <div className="mb-3 flex items-center gap-2">
+                        <h4 className="text-sm font-semibold text-amber-600 dark:text-amber-400">Community</h4>
+                        <span className="rounded-full bg-amber-500/15 px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wide text-amber-600 dark:text-amber-400">
+                          User Submitted
+                        </span>
+                      </div>
                       <div className="grid gap-2">
                         {communityPool.map(memberBtn)}
                       </div>
-                    </>
-                  )}
-                  {allFiltered.length === 0 && communityPool.length === 0 && suggested.length === 0 && (
-                    <p className="text-sm text-zinc-400 dark:text-zinc-600">No members match &ldquo;{memberSearch}&rdquo;</p>
+                    </div>
                   )}
                 </div>
               </div>
@@ -890,30 +904,44 @@ export default function Home() {
                   />
                 </div>
 
-                {suggested.length > 0 && (
-                  <>
-                    <h4 className="mb-3 text-sm font-medium text-zinc-600 dark:text-zinc-400">Suggested</h4>
-                    <div className="grid gap-2 sm:grid-cols-2 mb-5">
-                      {suggested.map(memberBtn)}
-                    </div>
-                  </>
-                )}
-
-                <h4 className="mb-3 text-sm font-medium text-zinc-600 dark:text-zinc-400">All <span className="text-xs text-zinc-400 dark:text-zinc-600">— {allFiltered.length + suggested.length + communityPool.length} available</span></h4>
-                <div className="grid gap-2 sm:grid-cols-2 max-h-80 overflow-y-auto">
-                  {allFiltered.map(memberBtn)}
-                  {communityPool.length > 0 && (
+                {/* OFFICIAL SECTION */}
+                <div className="mb-5">
+                  <div className="mb-3 flex items-center gap-2">
+                    <h4 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Official</h4>
+                    <span className="text-xs text-zinc-400 dark:text-zinc-600">Curated · {allFiltered.length + suggested.length} available</span>
+                  </div>
+                  {suggested.length > 0 && (
                     <>
-                      <div className="col-span-2 mt-3 mb-1">
-                        <h4 className="text-sm font-medium text-amber-600 dark:text-amber-400">Community</h4>
+                      <p className="mb-2 text-xs text-zinc-500">Suggested for this council</p>
+                      <div className="grid gap-2 sm:grid-cols-2 mb-4">
+                        {suggested.map(memberBtn)}
                       </div>
-                      {communityPool.map(memberBtn)}
+                      {allFiltered.length > 0 && <p className="mb-2 text-xs text-zinc-500">All others</p>}
                     </>
                   )}
-                  {allFiltered.length === 0 && communityPool.length === 0 && suggested.length === 0 && (
-                    <p className="text-sm text-zinc-400 dark:text-zinc-600 col-span-2">No members match &ldquo;{memberSearch}&rdquo;</p>
+                  <div className="grid gap-2 sm:grid-cols-2 max-h-60 overflow-y-auto">
+                    {allFiltered.map(memberBtn)}
+                  </div>
+                  {allFiltered.length === 0 && suggested.length === 0 && (
+                    <p className="text-sm text-zinc-400 dark:text-zinc-600">No official members match &ldquo;{memberSearch}&rdquo;</p>
                   )}
                 </div>
+
+                {/* COMMUNITY SECTION */}
+                {communityPool.length > 0 && (
+                  <div className="rounded-lg border border-amber-500/20 bg-amber-500/5 p-4">
+                    <div className="mb-3 flex items-center gap-2">
+                      <h4 className="text-sm font-semibold text-amber-600 dark:text-amber-400">Community</h4>
+                      <span className="rounded-full bg-amber-500/15 px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wide text-amber-600 dark:text-amber-400">
+                        User Submitted
+                      </span>
+                      <span className="text-xs text-amber-500/60">· {communityPool.length} available</span>
+                    </div>
+                    <div className="grid gap-2 sm:grid-cols-2 max-h-60 overflow-y-auto">
+                      {communityPool.map(memberBtn)}
+                    </div>
+                  </div>
+                )}
               </div>
               </>
               );
