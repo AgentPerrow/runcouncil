@@ -4,7 +4,8 @@ import { getCommunityMembers, saveCommunityMembers, CommunityMember } from "@/li
 
 // GET — return community members (public: approved only, authed: include user's own)
 export async function GET(req: NextRequest) {
-  const session = await auth();
+  let session = null;
+  try { session = await auth(); } catch {}
   const members = await getCommunityMembers();
   const { searchParams } = new URL(req.url);
   const filter = searchParams.get("filter"); // "mine" | "all" | "pending"
