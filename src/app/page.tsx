@@ -15,6 +15,18 @@ type Step = "select" | "context" | "members" | "output";
 
 const FEATURED_IDS = ["startup", "health", "career", "investment"];
 
+interface CommunityMemberData {
+  id: string;
+  name: string;
+  role: string;
+  emoji: string;
+  description: string;
+  expertise: string;
+  systemPrompt: string;
+  council: string;
+  upvotes: number;
+}
+
 export default function Home() {
   const [step, setStep] = useState<Step>("select");
   const [selectedCouncil, setSelectedCouncil] = useState<CouncilType | null>(null);
@@ -28,6 +40,15 @@ export default function Home() {
   const [memberSearch, setMemberSearch] = useState("");
   const [nextStepDone, setNextStepDone] = useState(false);
   const [configAnswers, setConfigAnswers] = useState<Record<string, string>>({});
+  const [communityMembers, setCommunityMembers] = useState<CommunityMemberData[]>([]);
+
+  // Fetch approved community members
+  useEffect(() => {
+    fetch("/api/community")
+      .then((res) => res.ok ? res.json() : [])
+      .then((data: CommunityMemberData[]) => setCommunityMembers(data))
+      .catch(() => {});
+  }, []);
   const [configScales, setConfigScales] = useState<Record<string, number>>({});
   const [isDark, setIsDark] = useState(false);
 
@@ -231,6 +252,7 @@ export default function Home() {
               <a href="#how-it-works" className="text-[15px] text-[#4A4A5A] hover:text-[#111]">How it Works</a>
               <a href="/templates" className="text-[15px] text-[#4A4A5A] hover:text-[#111]">Use Cases</a>
 
+              <a href="/community" className="text-[15px] text-[#4A4A5A] hover:text-[#111]">Community</a>
               <a href="/guide" className="text-[15px] text-[#4A4A5A] hover:text-[#111]">Docs</a>
             </nav>
           )}
@@ -704,11 +726,18 @@ export default function Home() {
                     </div>
                   </div>
                   <p className="text-sm text-zinc-600 dark:text-zinc-400">{member.description}</p>
-                  {member.isRequired && (
-                    <span className="mt-2 inline-block rounded-full bg-zinc-200 dark:bg-zinc-800 px-2 py-0.5 text-[10px] text-zinc-500">
-                      Required
-                    </span>
-                  )}
+                  <div className="mt-2 flex gap-1.5">
+                    {member.isRequired && (
+                      <span className="inline-block rounded-full bg-zinc-200 dark:bg-zinc-800 px-2 py-0.5 text-[10px] text-zinc-500">
+                        Required
+                      </span>
+                    )}
+                    {member.id.startsWith("community-") && (
+                      <span className="inline-block rounded-full bg-amber-500/15 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-amber-600 dark:text-amber-400">
+                        Community
+                      </span>
+                    )}
+                  </div>
                 </div>
               ))}
 
@@ -758,6 +787,24 @@ export default function Home() {
               }
               const allFiltered = allPool.filter(matchSearch);
 
+              // Convert approved community members to CouncilMember format
+              const communityPool: CouncilMember[] = communityMembers
+                .filter((cm) => !activeIds.has(`community-${cm.id}`))
+                .filter((cm) => !memberSearch || cm.name.toLowerCase().includes(memberSearch.toLowerCase()) || cm.role.toLowerCase().includes(memberSearch.toLowerCase()) || cm.description.toLowerCase().includes(memberSearch.toLowerCase()))
+                .sort((a, b) => b.upvotes - a.upvotes)
+                .map((cm) => ({
+                  id: `community-${cm.id}`,
+                  name: cm.name,
+                  role: cm.role,
+                  emoji: cm.emoji,
+                  description: cm.description,
+                  isDefault: false,
+                  isRequired: false,
+                  prompt: cm.systemPrompt || `You are ${cm.name}, a ${cm.role}. ${cm.description}\n\nFocus areas: ${cm.expertise}`,
+                }));
+
+              const isCommunityMember = (id: string) => id.startsWith("community-");
+
               const memberBtn = (member: CouncilMember) => (
                 <button
                   key={member.id}
@@ -767,7 +814,14 @@ export default function Home() {
                 >
                   <span className="text-lg">{member.emoji}</span>
                   <div>
-                    <p className="text-sm font-medium text-zinc-900 dark:text-zinc-100">{member.name}</p>
+                    <div className="flex items-center gap-1.5">
+                      <p className="text-sm font-medium text-zinc-900 dark:text-zinc-100">{member.name}</p>
+                      {isCommunityMember(member.id) && (
+                        <span className="rounded-full bg-amber-500/15 px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wide text-amber-600 dark:text-amber-400">
+                          Community
+                        </span>
+                      )}
+                    </div>
                     <p className="text-xs text-zinc-500">{member.description}</p>
                   </div>
                 </button>
@@ -808,10 +862,18 @@ export default function Home() {
                   <h4 className="mb-3 text-sm font-medium text-zinc-600 dark:text-zinc-400">All</h4>
                   <div className="grid gap-2">
                     {allFiltered.map(memberBtn)}
-                    {allFiltered.length === 0 && suggested.length === 0 && (
-                      <p className="text-sm text-zinc-400 dark:text-zinc-600">No members match &ldquo;{memberSearch}&rdquo;</p>
-                    )}
                   </div>
+                  {communityPool.length > 0 && (
+                    <>
+                      <h4 className="mb-3 mt-5 text-sm font-medium text-amber-600 dark:text-amber-400">Community</h4>
+                      <div className="grid gap-2">
+                        {communityPool.map(memberBtn)}
+                      </div>
+                    </>
+                  )}
+                  {allFiltered.length === 0 && communityPool.length === 0 && suggested.length === 0 && (
+                    <p className="text-sm text-zinc-400 dark:text-zinc-600">No members match &ldquo;{memberSearch}&rdquo;</p>
+                  )}
                 </div>
               </div>
 
@@ -837,10 +899,18 @@ export default function Home() {
                   </>
                 )}
 
-                <h4 className="mb-3 text-sm font-medium text-zinc-600 dark:text-zinc-400">All <span className="text-xs text-zinc-400 dark:text-zinc-600">— {allFiltered.length + suggested.length} available</span></h4>
+                <h4 className="mb-3 text-sm font-medium text-zinc-600 dark:text-zinc-400">All <span className="text-xs text-zinc-400 dark:text-zinc-600">— {allFiltered.length + suggested.length + communityPool.length} available</span></h4>
                 <div className="grid gap-2 sm:grid-cols-2 max-h-80 overflow-y-auto">
                   {allFiltered.map(memberBtn)}
-                  {allFiltered.length === 0 && suggested.length === 0 && (
+                  {communityPool.length > 0 && (
+                    <>
+                      <div className="col-span-2 mt-3 mb-1">
+                        <h4 className="text-sm font-medium text-amber-600 dark:text-amber-400">Community</h4>
+                      </div>
+                      {communityPool.map(memberBtn)}
+                    </>
+                  )}
+                  {allFiltered.length === 0 && communityPool.length === 0 && suggested.length === 0 && (
                     <p className="text-sm text-zinc-400 dark:text-zinc-600 col-span-2">No members match &ldquo;{memberSearch}&rdquo;</p>
                   )}
                 </div>
