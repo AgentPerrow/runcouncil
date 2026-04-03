@@ -4,6 +4,21 @@ import { getCommunityMembers, saveCommunityMembers, CommunityMember } from "@/li
 
 // GET — return community members (public: approved only, authed: include user's own)
 export async function GET(req: NextRequest) {
+  const { searchParams: sp } = new URL(req.url);
+  if (sp.get("debug") === "1") {
+    try {
+      const { list, get } = await import("@vercel/blob");
+      const { blobs } = await list({ prefix: "community-members.json" });
+      if (blobs.length === 0) return NextResponse.json({ debug: "no blobs found" });
+      const blob = await get(blobs[0].url, { access: "private" });
+      if (!blob || blob.statusCode !== 200) return NextResponse.json({ debug: true, status: blob?.statusCode ?? "null" });
+      const resp = new Response(blob.stream!);
+      const text = await resp.text();
+      return NextResponse.json({ debug: true, blobCount: blobs.length, blobUrl: blobs[0].url, status: blob.statusCode, content: text.substring(0, 500) });
+    } catch (e) {
+      return NextResponse.json({ debug: true, error: String(e) });
+    }
+  }
   let session = null;
   try { session = await auth(); } catch {}
   const members = await getCommunityMembers();

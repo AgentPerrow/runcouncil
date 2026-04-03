@@ -1,4 +1,4 @@
-import { list, put } from "@vercel/blob";
+import { list, put, get } from "@vercel/blob";
 
 const BLOB_KEY = "community-members.json";
 
@@ -21,17 +21,20 @@ export async function getCommunityMembers(): Promise<CommunityMember[]> {
   try {
     const { blobs } = await list({ prefix: BLOB_KEY });
     if (blobs.length === 0) return [];
-    const res = await fetch(blobs[0].url, { cache: "no-store" });
-    return res.json();
-  } catch {
+    const blob = await get(blobs[0].url, { access: "private" });
+    if (!blob || blob.statusCode !== 200) return [];
+    const resp = new Response(blob.stream!);
+    return resp.json();
+  } catch (e) {
+    console.error("getCommunityMembers error:", e);
     return [];
   }
 }
 
 export async function saveCommunityMembers(members: CommunityMember[]): Promise<void> {
   await put(BLOB_KEY, JSON.stringify(members), {
-    access: "public",
-    addRandomSuffix: false,
+    access: "private",
+    addRandomSuffix: false, allowOverwrite: true,
   });
 }
 
