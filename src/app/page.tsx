@@ -249,11 +249,10 @@ export default function Home() {
           {/* Center nav links — desktop */}
           {step === "select" && (
             <nav className="hidden lg:flex items-center gap-10">
-              <a href="#councils" className="text-[15px] text-[#4A4A5A] hover:text-[#111]">Product</a>
-              <a href="#how-it-works" className="text-[15px] text-[#4A4A5A] hover:text-[#111]">How it Works</a>
-              <a href="/templates" className="text-[15px] text-[#4A4A5A] hover:text-[#111]">Use Cases</a>
+              <a href="/guide" className="text-[15px] text-[#4A4A5A] hover:text-[#111]">How to</a>
               <a href="/community" className="text-[15px] text-[#4A4A5A] hover:text-[#111]">Community</a>
-              <a href="/guide" className="text-[15px] text-[#4A4A5A] hover:text-[#111]">Docs</a>
+              <a href="#councils" className="text-[15px] text-[#4A4A5A] hover:text-[#111]">Build a council</a>
+              <a href="/faq" className="text-[15px] text-[#4A4A5A] hover:text-[#111]">FAQ</a>
             </nav>
           )}
 
@@ -302,12 +301,10 @@ export default function Home() {
         {/* Mobile nav dropdown */}
         {mobileMenuOpen && step === "select" && (
           <nav className="lg:hidden border-t border-[var(--rc-border)] mt-4 pt-4 pb-2 flex flex-col gap-3 px-2">
-            <a href="#councils" onClick={() => setMobileMenuOpen(false)} className="text-[15px] text-[#4A4A5A] hover:text-[#111] py-1">Product</a>
-            <a href="#how-it-works" onClick={() => setMobileMenuOpen(false)} className="text-[15px] text-[#4A4A5A] hover:text-[#111] py-1">How it Works</a>
-            <a href="/templates" className="text-[15px] text-[#4A4A5A] hover:text-[#111] py-1">Use Cases</a>
-            <a href="/community" className="text-[15px] font-medium text-[#F97316] hover:text-[#EA580C] py-1">🏪 Community Marketplace</a>
-            {/* <a href="/request" className="text-[15px] text-[#4A4A5A] hover:text-[#111] py-1">Request an Expert</a> */}
-            <a href="/guide" className="text-[15px] text-[#4A4A5A] hover:text-[#111] py-1">Docs</a>
+            <a href="/guide" onClick={() => setMobileMenuOpen(false)} className="text-[15px] text-[#4A4A5A] hover:text-[#111] py-1">How to</a>
+            <a href="/community" onClick={() => setMobileMenuOpen(false)} className="text-[15px] text-[#4A4A5A] hover:text-[#111] py-1">Community</a>
+            <a href="#councils" onClick={() => setMobileMenuOpen(false)} className="text-[15px] text-[#4A4A5A] hover:text-[#111] py-1">Build a council</a>
+            <a href="/faq" onClick={() => setMobileMenuOpen(false)} className="text-[15px] text-[#4A4A5A] hover:text-[#111] py-1">FAQ</a>
           </nav>
         )}
       </header>
