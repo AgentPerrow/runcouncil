@@ -708,9 +708,9 @@ function BuildPageInner() {
             <div className="mb-6 flex justify-center">
               <button
                 onClick={copyOutput}
-                className={`rounded-lg px-10 py-3.5 text-base font-semibold ${
+                className={`rounded-lg px-10 py-3.5 text-base font-semibold transition-all duration-200 active:scale-95 ${
                   copied
-                    ? "bg-green-600 text-white"
+                    ? "bg-green-600 text-white scale-105"
                     : "bg-amber-500 text-white hover:bg-amber-400"
                 }`}
               >
@@ -762,6 +762,14 @@ function BuildPageInner() {
               >
                 {shareCopied ? "✓ Link Copied!" : "Share Council"}
               </button>
+              <a
+                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(`I just built a ${selectedCouncil.name} advisory council on RunCouncil`)}&url=${encodeURIComponent("https://runcouncil.com")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-lg border border-zinc-800 dark:border-zinc-200 bg-zinc-900 dark:bg-white px-4 sm:px-6 py-2.5 text-sm font-medium text-white dark:text-zinc-900 hover:bg-zinc-800 dark:hover:bg-zinc-100 flex items-center gap-1.5"
+              >
+                𝕏 Share
+              </a>
               <button
                 onClick={() => setStep("members")}
                 className="rounded-lg border border-zinc-200 dark:border-zinc-800 px-4 sm:px-6 py-2.5 text-sm text-zinc-600 dark:text-zinc-400 hover:border-zinc-400 dark:hover:border-zinc-600 hover:text-zinc-900 dark:hover:text-zinc-100"

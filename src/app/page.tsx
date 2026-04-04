@@ -4,12 +4,14 @@ import { useState } from "react";
 import { mergedCouncils as councils } from "@/data/merged-councils";
 import { PrismLogoFull } from "@/components/PrismLogo";
 import Link from "next/link";
+import EmailCapture from "@/components/EmailCapture";
 
 
 const FEATURED_IDS = ["startup", "health", "career", "investment"];
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [heroExpanded, setHeroExpanded] = useState(false);
   const featuredCouncils = councils.filter((c) => FEATURED_IDS.includes(c.id));
 
 
@@ -31,7 +33,7 @@ export default function Home() {
           </nav>
 
           <div className="flex items-center gap-3">
-            <a href="/guide" className="hidden sm:block text-[15px] font-medium text-[#4A4A5A] hover:text-[#111]">
+            <a href="/api/auth/signin" className="hidden sm:block text-[15px] font-medium text-[#4A4A5A] hover:text-[#111]">
               Log in
             </a>
             <Link
@@ -101,6 +103,16 @@ export default function Home() {
 
                 <div className="mb-5 h-px" style={{ background: "linear-gradient(to right, #F97316, #EAB308, #3B82F6, transparent)" }} />
 
+                {/* Mobile: collapsible toggle */}
+                <button
+                  onClick={() => setHeroExpanded((v) => !v)}
+                  className="sm:hidden w-full flex items-center justify-between text-[12px] font-semibold text-[#6B7280] mb-3"
+                >
+                  <span>See council response</span>
+                  <span className={`transition-transform ${heroExpanded ? "rotate-180" : ""}`}>▼</span>
+                </button>
+
+                <div className={`${heroExpanded ? "block" : "hidden"} sm:block`}>
                 <div className="space-y-4">
                   <div className="flex gap-3">
                     <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#EFF6FF] text-[13px]">💰</span>
@@ -131,6 +143,7 @@ export default function Home() {
                     <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#16A34A]">Council Recommendation</p>
                   </div>
                   <p className="text-[13px] leading-[1.5] font-medium text-[#374151]">Raise $3–5M, but cut burn 20% first. Start investor conversations within 2 weeks while the window is open.</p>
+                </div>
                 </div>
               </div>
             </div>
@@ -224,6 +237,11 @@ export default function Home() {
             <p className="text-sm text-[var(--rc-text-secondary)]">Recommendation, tradeoffs, and the immediate next move — not a wall of text.</p>
           </div>
         </div>
+      </div>
+
+      {/* Email Capture */}
+      <div className="mx-auto max-w-2xl px-4 sm:px-6 py-10">
+        <EmailCapture />
       </div>
 
       {/* Final CTA */}

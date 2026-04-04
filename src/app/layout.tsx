@@ -12,14 +12,14 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "RunCouncil — Build Your AI Advisory Board in 60 Seconds",
+  title: "RunCouncil — What would your personal council say?",
   description:
-    "Assemble a custom AI advisory council for your startup, career, health, investments, or life decisions. Free, no signup, works with ChatGPT, Claude, and Gemini.",
+    "Build an AI advisory council. Pick expert personas, configure the conversation, paste into ChatGPT, Claude, or Gemini. Free.",
   metadataBase: new URL("https://runcouncil.com"),
   openGraph: {
-    title: "RunCouncil — Build Your AI Advisory Board in 60 Seconds",
+    title: "RunCouncil — What would your personal council say?",
     description:
-      "Stop asking one AI one question. Assemble a council of specialized advisors who debate your decisions from every angle. Free, instant, no account needed.",
+      "Build an AI advisory council. Pick expert personas, configure the conversation, paste into ChatGPT, Claude, or Gemini. Free.",
     url: "https://runcouncil.com",
     siteName: "RunCouncil",
     type: "website",
@@ -37,9 +37,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "RunCouncil — Build Your AI Advisory Board in 60 Seconds",
+    title: "RunCouncil — What would your personal council say?",
     description:
-      "Stop asking one AI one question. Assemble a council of specialized advisors who debate your decisions from every angle.",
+      "Build an AI advisory council. Pick expert personas, configure the conversation, paste into ChatGPT, Claude, or Gemini. Free.",
     images: ["/og"],
   },
 };
