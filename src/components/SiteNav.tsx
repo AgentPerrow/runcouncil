@@ -12,6 +12,7 @@ export default function SiteNav({ activePage }: SiteNavProps) {
 
   const links = [
     { href: "/guide", label: "Guide", id: "guide" as const },
+    { href: "/templates", label: "Templates", id: "templates" as const },
     { href: "/community", label: "Community", id: "community" as const },
     { href: "/faq", label: "FAQ", id: "faq" as const },
   ];

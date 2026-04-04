@@ -23,6 +23,7 @@ export default function Home() {
 
           <nav className="hidden lg:flex items-center gap-10">
             <a href="/guide" className="text-[15px] text-[#4A4A5A] hover:text-[#111]">Guide</a>
+            <a href="/templates" className="text-[15px] text-[#4A4A5A] hover:text-[#111]">Templates</a>
             <a href="/community" className="text-[15px] text-[#4A4A5A] hover:text-[#111]">Community</a>
             <Link href="/build" className="text-[15px] text-[#4A4A5A] hover:text-[#111]">Build a council</Link>
             <a href="/faq" className="text-[15px] text-[#4A4A5A] hover:text-[#111]">FAQ</a>
@@ -53,6 +54,7 @@ export default function Home() {
         {mobileMenuOpen && (
           <nav className="lg:hidden border-t border-[var(--rc-border)] mt-4 pt-4 pb-2 flex flex-col gap-3 px-2">
             <a href="/guide" onClick={() => setMobileMenuOpen(false)} className="text-[15px] text-[#4A4A5A] hover:text-[#111] py-1">Guide</a>
+            <a href="/templates" onClick={() => setMobileMenuOpen(false)} className="text-[15px] text-[#4A4A5A] hover:text-[#111] py-1">Templates</a>
             <a href="/community" onClick={() => setMobileMenuOpen(false)} className="text-[15px] text-[#4A4A5A] hover:text-[#111] py-1">Community</a>
             <Link href="/build" onClick={() => setMobileMenuOpen(false)} className="text-[15px] text-[#4A4A5A] hover:text-[#111] py-1">Build a council</Link>
             <a href="/faq" onClick={() => setMobileMenuOpen(false)} className="text-[15px] text-[#4A4A5A] hover:text-[#111] py-1">FAQ</a>
