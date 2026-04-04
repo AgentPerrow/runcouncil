@@ -6,10 +6,11 @@ import { PrismLogoFull } from "@/components/PrismLogo";
 import Link from "next/link";
 
 
+const FEATURED_IDS = ["startup", "health", "career", "investment"];
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
+  const featuredCouncils = councils.filter((c) => FEATURED_IDS.includes(c.id));
 
 
   return (
@@ -153,28 +154,50 @@ export default function Home() {
         </div>
       </div>
 
-      {/* How it works */}
-      <div id="how-it-works" className="bg-[var(--rc-surface)] border-y border-[var(--rc-border)]">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 py-14 sm:py-20">
-          <h2 className="mb-10 text-center text-2xl font-bold tracking-tight text-[var(--rc-text-primary)]">
-            How it works
+      {/* Built for decisions that matter */}
+      <div className="bg-[var(--rc-surface)] border-y border-[var(--rc-border)]">
+        <div id="councils" className="mx-auto max-w-5xl px-4 sm:px-6 py-14 sm:py-20">
+          <h2 className="mb-8 text-center text-2xl font-bold tracking-tight text-[var(--rc-text-primary)]">
+            Built for decisions that matter
           </h2>
-          <div className="grid gap-8 sm:grid-cols-3">
-            <div className="text-center">
-              <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-[#111111] dark:bg-white text-sm font-bold text-white dark:text-[#111111]">1</div>
-              <h3 className="mb-1 font-semibold text-[var(--rc-text-primary)]">Pick a council</h3>
-              <p className="text-sm text-[var(--rc-text-secondary)]">Start from a template or build your own from scratch.</p>
-            </div>
-            <div className="text-center">
-              <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-[#111111] dark:bg-white text-sm font-bold text-white dark:text-[#111111]">2</div>
-              <h3 className="mb-1 font-semibold text-[var(--rc-text-primary)]">Customize the room</h3>
-              <p className="text-sm text-[var(--rc-text-secondary)]">Add, remove, or create advisors. Tune how aggressive or conservative they think.</p>
-            </div>
-            <div className="text-center">
-              <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-[#111111] dark:bg-white text-sm font-bold text-white dark:text-[#111111]">3</div>
-              <h3 className="mb-1 font-semibold text-[var(--rc-text-primary)]">Run the council</h3>
-              <p className="text-sm text-[var(--rc-text-secondary)]">Paste the prompt into ChatGPT, Claude, or Gemini and get a decision memo in minutes.</p>
-            </div>
+          <div className="grid gap-3 sm:gap-4 grid-cols-2 lg:grid-cols-4">
+            {featuredCouncils.map((council) => {
+              const cardCopy: Record<string, { q: string; desc: string }> = {
+                startup: { q: "Should I raise, cut burn, or buy time?", desc: "A CFO, growth strategist, and devil\u2019s advocate pressure-test your next move." },
+                health: { q: "Am I training smart, or running myself into the ground?", desc: "A sports doc, nutritionist, and recovery specialist review the plan." },
+                career: { q: "Should I take the offer, stay put, or negotiate?", desc: "Multiple perspectives before you make the call." },
+                investment: { q: "Is this conviction, or am I rationalizing a bad trade?", desc: "A bull, a bear, and a tax-aware strategist stress-test the thesis." },
+              };
+              const copy = cardCopy[council.id];
+              return (
+                <Link
+                  key={council.id}
+                  href={`/build?council=${council.id}`}
+                  className="group rounded-xl border border-[var(--rc-border)] bg-[var(--rc-card)] p-3 sm:p-4 text-left hover:border-[var(--rc-text-muted)] hover:shadow-md transition-all"
+                >
+                  <div className="mb-1.5 sm:mb-2 text-2xl sm:text-3xl">{council.emoji}</div>
+                  <h3 className="text-sm sm:text-lg font-semibold tracking-tight text-[var(--rc-text-primary)]">
+                    {council.name}
+                  </h3>
+                  <p className="mt-1 text-xs sm:text-sm italic text-[var(--rc-text-muted)] sm:text-[var(--rc-text-secondary)] line-clamp-2 sm:line-clamp-none">
+                    &ldquo;{copy ? copy.q : council.description}&rdquo;
+                  </p>
+                  <p className="hidden sm:block mt-2 text-xs text-[var(--rc-text-secondary)]">
+                    {copy ? copy.desc : council.tagline}
+                  </p>
+                  <div className="mt-2 text-xs text-[var(--rc-text-secondary)] font-medium text-right opacity-0 group-hover:opacity-100 transition-opacity">Build →</div>
+                </Link>
+              );
+            })}
+          </div>
+
+          <div className="mt-8 text-center">
+            <Link
+              href="/templates"
+              className="rounded-full border border-[var(--rc-border)] px-5 py-2 text-sm font-medium text-[var(--rc-text-secondary)] hover:border-[var(--rc-text-muted)] hover:text-[var(--rc-text-primary)]"
+            >
+              Browse all templates →
+            </Link>
           </div>
         </div>
       </div>
