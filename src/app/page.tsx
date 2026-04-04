@@ -348,10 +348,10 @@ export default function Home() {
                 {/* Left — text + CTAs */}
                 <div>
                   <h1 className="mb-6 text-4xl font-bold tracking-tight text-[#111111] sm:text-[52px] sm:leading-[1.1]">
-                    Every satisfying decision starts with multiple perspectives.
+                    Your personal council of experts.
                   </h1>
                   <p className="mb-10 max-w-md text-[17px] leading-[1.7] text-[#6B7280]">
-                    Build an AI advisory council. Ask your question. Get a synthesized recommendation with tradeoffs, risks, and your next move.
+                    Build an AI advisory council in minutes — pick your experts, copy the prompt, paste into ChatGPT or Claude.
                   </p>
                   <div className="flex flex-wrap items-center gap-4">
                     <button
