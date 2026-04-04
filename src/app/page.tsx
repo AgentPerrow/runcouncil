@@ -257,19 +257,6 @@ export default function Home() {
             </nav>
           )}
 
-          {/* Mobile hamburger */}
-          {step === "select" && (
-            <button
-              onClick={() => setMobileMenuOpen((v) => !v)}
-              className="lg:hidden flex flex-col items-center justify-center gap-1.5 p-2"
-              aria-label="Menu"
-            >
-              <span className={`block h-0.5 w-5 bg-[#111] transition-transform ${mobileMenuOpen ? "translate-y-[4px] rotate-45" : ""}`} />
-              <span className={`block h-0.5 w-5 bg-[#111] transition-opacity ${mobileMenuOpen ? "opacity-0" : ""}`} />
-              <span className={`block h-0.5 w-5 bg-[#111] transition-transform ${mobileMenuOpen ? "-translate-y-[4px] -rotate-45" : ""}`} />
-            </button>
-          )}
-
           {/* Right side */}
           <div className="flex items-center gap-3">
             {step === "select" && (
@@ -282,6 +269,15 @@ export default function Home() {
                   className="hidden sm:block rounded-full bg-[#111111] px-6 py-2.5 text-[15px] font-medium text-white hover:bg-[#222]"
                 >
                   Build My Council
+                </button>
+                <button
+                  onClick={() => setMobileMenuOpen((v) => !v)}
+                  className="lg:hidden flex flex-col items-center justify-center gap-1.5 p-2"
+                  aria-label="Menu"
+                >
+                  <span className={`block h-0.5 w-5 bg-[#111] transition-transform ${mobileMenuOpen ? "translate-y-[4px] rotate-45" : ""}`} />
+                  <span className={`block h-0.5 w-5 bg-[#111] transition-opacity ${mobileMenuOpen ? "opacity-0" : ""}`} />
+                  <span className={`block h-0.5 w-5 bg-[#111] transition-transform ${mobileMenuOpen ? "-translate-y-[4px] -rotate-45" : ""}`} />
                 </button>
               </>
             )}
