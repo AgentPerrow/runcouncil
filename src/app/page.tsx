@@ -410,6 +410,15 @@ export default function Home() {
                         </div>
                       </div>
                     </div>
+
+                    {/* Final recommendation */}
+                    <div className="mt-5 rounded-lg bg-[#F0FDF4] border border-[#BBF7D0] p-4">
+                      <div className="flex items-center gap-2 mb-1.5">
+                        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" className="shrink-0"><circle cx="8" cy="8" r="8" fill="#22C55E"/><path d="M5 8l2 2 4-4" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                        <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#16A34A]">Council Recommendation</p>
+                      </div>
+                      <p className="text-[13px] leading-[1.5] font-medium text-[#374151]">Raise $3–5M, but cut burn 20% first. Start investor conversations within 2 weeks while the window is open.</p>
+                    </div>
                   </div>
                 </div>
               </div>
