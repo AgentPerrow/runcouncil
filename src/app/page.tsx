@@ -33,9 +33,7 @@ export default function Home() {
           </nav>
 
           <div className="flex items-center gap-3">
-            <a href="/api/auth/signin" className="hidden sm:block text-[15px] font-medium text-[#4A4A5A] hover:text-[#111]">
-              Log in
-            </a>
+
             <Link
               href="/build"
               className="hidden sm:block rounded-full bg-[#111111] px-6 py-2.5 text-[15px] font-medium text-white hover:bg-[#222]"
