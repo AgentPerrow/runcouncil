@@ -38,6 +38,7 @@ export default function Home() {
   const [showAllCouncils, setShowAllCouncils] = useState(false);
   const [expandedOutputMember, setExpandedOutputMember] = useState<string | null>(null);
   const [memberSearch, setMemberSearch] = useState("");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [nextStepDone, setNextStepDone] = useState(false);
   const [configAnswers, setConfigAnswers] = useState<Record<string, string>>({});
   const [communityMembers, setCommunityMembers] = useState<CommunityMemberData[]>([]);
@@ -245,16 +246,28 @@ export default function Home() {
             <PrismLogoFull height={36} />
           </button>
 
-          {/* Center nav links */}
+          {/* Center nav links — desktop */}
           {step === "select" && (
             <nav className="hidden lg:flex items-center gap-10">
               <a href="#councils" className="text-[15px] text-[#4A4A5A] hover:text-[#111]">Product</a>
               <a href="#how-it-works" className="text-[15px] text-[#4A4A5A] hover:text-[#111]">How it Works</a>
               <a href="/templates" className="text-[15px] text-[#4A4A5A] hover:text-[#111]">Use Cases</a>
-
               <a href="/community" className="text-[15px] text-[#4A4A5A] hover:text-[#111]">Community</a>
               <a href="/guide" className="text-[15px] text-[#4A4A5A] hover:text-[#111]">Docs</a>
             </nav>
+          )}
+
+          {/* Mobile hamburger */}
+          {step === "select" && (
+            <button
+              onClick={() => setMobileMenuOpen((v) => !v)}
+              className="lg:hidden flex flex-col items-center justify-center gap-1.5 p-2"
+              aria-label="Menu"
+            >
+              <span className={`block h-0.5 w-5 bg-[#111] transition-transform ${mobileMenuOpen ? "translate-y-[4px] rotate-45" : ""}`} />
+              <span className={`block h-0.5 w-5 bg-[#111] transition-opacity ${mobileMenuOpen ? "opacity-0" : ""}`} />
+              <span className={`block h-0.5 w-5 bg-[#111] transition-transform ${mobileMenuOpen ? "-translate-y-[4px] -rotate-45" : ""}`} />
+            </button>
           )}
 
           {/* Right side */}
@@ -289,6 +302,18 @@ export default function Home() {
             )}
           </div>
         </div>
+
+        {/* Mobile nav dropdown */}
+        {mobileMenuOpen && step === "select" && (
+          <nav className="lg:hidden border-t border-[var(--rc-border)] mt-4 pt-4 pb-2 flex flex-col gap-3 px-2">
+            <a href="#councils" onClick={() => setMobileMenuOpen(false)} className="text-[15px] text-[#4A4A5A] hover:text-[#111] py-1">Product</a>
+            <a href="#how-it-works" onClick={() => setMobileMenuOpen(false)} className="text-[15px] text-[#4A4A5A] hover:text-[#111] py-1">How it Works</a>
+            <a href="/templates" className="text-[15px] text-[#4A4A5A] hover:text-[#111] py-1">Use Cases</a>
+            <a href="/community" className="text-[15px] font-medium text-[#F97316] hover:text-[#EA580C] py-1">🏪 Community Marketplace</a>
+            <a href="/request" className="text-[15px] text-[#4A4A5A] hover:text-[#111] py-1">Request an Expert</a>
+            <a href="/guide" className="text-[15px] text-[#4A4A5A] hover:text-[#111] py-1">Docs</a>
+          </nav>
+        )}
       </header>
 
       {/* Progress indicator — #8: wider connectors, #9: always show labels */}
