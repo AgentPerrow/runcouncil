@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { PrismLogoFull } from "./PrismLogo";
 
 interface SiteNavProps {
@@ -9,6 +9,14 @@ interface SiteNavProps {
 
 export default function SiteNav({ activePage }: SiteNavProps) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [user, setUser] = useState<{ name?: string; email?: string } | null>(null);
+
+  useEffect(() => {
+    fetch("/api/auth/session")
+      .then((r) => r.json())
+      .then((s) => { if (s?.user) setUser(s.user); })
+      .catch(() => {});
+  }, []);
 
   const links = [
     { href: "/guide", label: "Guide", id: "guide" as const },
@@ -42,8 +50,26 @@ export default function SiteNav({ activePage }: SiteNavProps) {
           ))}
         </nav>
 
-        {/* Right side — desktop CTA + mobile hamburger */}
+        {/* Right side — desktop CTA + auth + mobile hamburger */}
         <div className="flex items-center gap-3">
+          {user ? (
+            <div className="hidden md:flex items-center gap-3">
+              <span className="text-xs text-[var(--rc-text-muted)]">{user.email}</span>
+              <button
+                onClick={() => window.location.href = "/api/auth/signout"}
+                className="rounded-full border border-[var(--rc-border)] px-4 py-2 text-[13px] font-medium text-[var(--rc-text-secondary)] hover:border-red-400 hover:text-red-400 transition-colors"
+              >
+                Sign Out
+              </button>
+            </div>
+          ) : (
+            <a
+              href="/api/auth/signin"
+              className="hidden md:block rounded-full border border-[var(--rc-border)] px-4 py-2 text-[13px] font-medium text-[var(--rc-text-secondary)] hover:text-[var(--rc-text-primary)] transition-colors"
+            >
+              Sign In
+            </a>
+          )}
           <a
             href="/"
             className="hidden md:block rounded-full bg-[#111111] px-5 py-2 text-[14px] font-medium text-white hover:bg-[#222] transition-colors"
@@ -80,6 +106,21 @@ export default function SiteNav({ activePage }: SiteNavProps) {
               {link.label}
             </a>
           ))}
+          {user ? (
+            <button
+              onClick={() => window.location.href = "/api/auth/signout"}
+              className="mt-2 rounded-full border border-[var(--rc-border)] px-5 py-2.5 text-center text-[14px] font-medium text-[var(--rc-text-secondary)] hover:text-red-400 hover:border-red-400"
+            >
+              Sign Out ({user.email})
+            </button>
+          ) : (
+            <a
+              href="/api/auth/signin"
+              className="mt-2 rounded-full border border-[var(--rc-border)] px-5 py-2.5 text-center text-[14px] font-medium text-[var(--rc-text-secondary)] hover:text-[var(--rc-text-primary)]"
+            >
+              Sign In
+            </a>
+          )}
           <a
             href="/"
             className="mt-2 rounded-full bg-[#111111] px-5 py-2.5 text-center text-[14px] font-medium text-white hover:bg-[#222]"
