@@ -375,38 +375,40 @@ export default function Home() {
                   {/* Gradient accent line — top of card */}
                   <div className="absolute -top-px left-8 right-8 h-[2px] rounded-full" style={{ background: "linear-gradient(to right, #F97316, #EAB308, #3B82F6)" }} />
                   
-                  <div className="rounded-2xl border border-[#E5E7EB] bg-white p-8 shadow-[0_24px_64px_rgba(0,0,0,0.06)]">
-                    <div className="mb-4 flex items-center gap-2">
-                      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" className="text-[#F59E0B]"><path d="M8 0l2.35 5.15L16 6l-4 3.9.95 5.6L8 12.85 3.05 15.5 4 9.9 0 6l5.65-.85L8 0z" fill="currentColor"/></svg>
-                      <span className="text-[11px] font-semibold uppercase tracking-[0.15em] text-[#9CA3AF]">Final Recommendation</span>
-                    </div>
-                    <p className="mb-6 text-[20px] font-bold leading-[1.3] text-[#111111]">
-                      Raise a $3–5M round now, but reduce burn by 20% first.
-                    </p>
+                  <div className="rounded-2xl border border-[#E5E7EB] bg-white p-6 sm:p-8 shadow-[0_24px_64px_rgba(0,0,0,0.06)]">
+                    <p className="mb-1 text-[11px] font-semibold uppercase tracking-[0.15em] text-[#9CA3AF]">Question</p>
+                    <p className="mb-5 text-[15px] font-medium text-[#111] italic">&ldquo;Should I raise a $3–5M round right now?&rdquo;</p>
 
                     {/* Gradient divider */}
                     <div className="mb-5 h-px" style={{ background: "linear-gradient(to right, #F97316, #EAB308, #3B82F6, transparent)" }} />
 
-                    <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#9CA3AF]">Key Tradeoffs</p>
-                    <div className="space-y-2 mb-6">
-                      <div className="flex items-center gap-3">
-                        <span className="h-2 w-2 shrink-0 rounded-full bg-[#EF4444]" />
-                        <span className="text-[14px] text-[#374151]"><span className="font-semibold text-[#111]">Speed vs Dilution</span> — Move fast, give up 8–12%</span>
+                    <div className="space-y-4">
+                      {/* CFO */}
+                      <div className="flex gap-3">
+                        <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#EFF6FF] text-[13px]">💰</span>
+                        <div>
+                          <p className="text-[12px] font-semibold text-[#111]">CFO</p>
+                          <p className="text-[13px] leading-[1.5] text-[#374151]">Raise, but cut burn 20% first. You need 18–24 months of runway, not 12.</p>
+                        </div>
                       </div>
-                      <div className="flex items-center gap-3">
-                        <span className="h-2 w-2 shrink-0 rounded-full bg-[#F59E0B]" />
-                        <span className="text-[14px] text-[#374151]"><span className="font-semibold text-[#111]">Market Timing</span> — Window open 6–9 months</span>
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <span className="h-2 w-2 shrink-0 rounded-full bg-[#3B82F6]" />
-                        <span className="text-[14px] text-[#374151]"><span className="font-semibold text-[#111]">Runway</span> — Extend to 18–24 months</span>
-                      </div>
-                    </div>
 
-                    <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#9CA3AF]">Next Move</p>
-                    <div className="flex items-center gap-3">
-                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0"><circle cx="8" cy="8" r="8" fill="#22C55E"/><path d="M5 8l2 2 4-4" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                      <span className="text-[14px] font-medium text-[#374151]">Start investor conversations within 2 weeks</span>
+                      {/* Growth Strategist */}
+                      <div className="flex gap-3">
+                        <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#FFF7ED] text-[13px]">🚀</span>
+                        <div>
+                          <p className="text-[12px] font-semibold text-[#111]">Growth Strategist</p>
+                          <p className="text-[13px] leading-[1.5] text-[#374151]">Move now. The window is 6–9 months. Waiting costs you leverage and valuation.</p>
+                        </div>
+                      </div>
+
+                      {/* Devil&apos;s Advocate */}
+                      <div className="flex gap-3">
+                        <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#FEF2F2] text-[13px]">⚖️</span>
+                        <div>
+                          <p className="text-[12px] font-semibold text-[#111]">Devil&apos;s Advocate</p>
+                          <p className="text-[13px] leading-[1.5] text-[#374151]">You&apos;re solving a cash problem with dilution. Can you hit profitability in 6 months instead?</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
