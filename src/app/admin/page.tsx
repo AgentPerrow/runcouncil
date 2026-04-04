@@ -93,7 +93,12 @@ export default function AdminPage() {
       <header className="px-6 sm:px-12 py-5 border-b border-[var(--rc-border)]">
         <div className="mx-auto flex max-w-5xl items-center justify-between">
           <a href="/"><PrismLogoFull height={36} /></a>
-          <span className="text-sm font-medium text-amber-600">Admin Panel</span>
+          <div className="flex items-center gap-3">
+            <span className="text-sm font-medium text-amber-600">Admin Panel</span>
+            <button onClick={() => window.location.href = "/api/auth/signout"} className="text-sm text-[var(--rc-text-secondary)] hover:text-red-400">
+              Sign Out
+            </button>
+          </div>
         </div>
       </header>
 

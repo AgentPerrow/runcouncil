@@ -2,6 +2,8 @@
 
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+
+interface UserSession { name?: string; email?: string }
 import { decodeCouncilConfig } from "@/lib/share";
 import { councils, CouncilType, CouncilMember, generateCouncilOutput } from "@/data/councils";
 
@@ -12,6 +14,14 @@ export default function SharedCouncilPage() {
   const [members, setMembers] = useState<CouncilMember[]>([]);
   const [copied, setCopied] = useState(false);
   const [error, setError] = useState(false);
+  const [user, setUser] = useState<UserSession | null>(null);
+
+  useEffect(() => {
+    fetch("/api/auth/session")
+      .then((r) => r.json())
+      .then((s) => { if (s?.user) setUser(s.user); })
+      .catch(() => {});
+  }, []);
 
   useEffect(() => {
     const encoded = params.config as string;
@@ -93,12 +103,23 @@ export default function SharedCouncilPage() {
           >
             RunCouncil
           </button>
-          <button
-            onClick={() => router.push("/")}
-            className="rounded-lg border border-zinc-700 px-4 py-2 text-sm text-zinc-300 hover:border-zinc-500 hover:text-white"
-          >
-            Build Your Own
-          </button>
+          <div className="flex items-center gap-3">
+            {user ? (
+              <button onClick={() => window.location.href = "/api/auth/signout"} className="text-sm text-zinc-400 hover:text-red-400">
+                Sign Out
+              </button>
+            ) : (
+              <a href="/api/auth/signin" className="text-sm text-zinc-400 hover:text-white">
+                Sign In
+              </a>
+            )}
+            <button
+              onClick={() => router.push("/")}
+              className="rounded-lg border border-zinc-700 px-4 py-2 text-sm text-zinc-300 hover:border-zinc-500 hover:text-white"
+            >
+              Build Your Own
+            </button>
+          </div>
         </div>
       </header>
 

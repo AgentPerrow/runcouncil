@@ -33,6 +33,14 @@ function BuildPageInner() {
   const [step, setStep] = useState<Step>("select");
   const [selectedCouncil, setSelectedCouncil] = useState<CouncilType | null>(null);
   const [activeMembers, setActiveMembers] = useState<CouncilMember[]>([]);
+  const [user, setUser] = useState<{ name?: string; email?: string } | null>(null);
+
+  useEffect(() => {
+    fetch("/api/auth/session")
+      .then((r) => r.json())
+      .then((s) => { if (s?.user) setUser(s.user); })
+      .catch(() => {});
+  }, []);
   const [copied, setCopied] = useState(false);
   const [shareCopied, setShareCopied] = useState(false);
   const [showAddPanel, setShowAddPanel] = useState(false);
@@ -248,6 +256,15 @@ function BuildPageInner() {
           )}
 
           <div className="flex items-center gap-3">
+            {user ? (
+              <button onClick={() => window.location.href = "/api/auth/signout"} className="text-sm text-[var(--rc-text-secondary)] hover:text-red-400">
+                Sign Out
+              </button>
+            ) : (
+              <a href="/api/auth/signin" className="text-sm text-[var(--rc-text-secondary)] hover:text-[var(--rc-text-primary)]">
+                Sign In
+              </a>
+            )}
             {step === "select" && (
               <a href="/" className="text-sm text-[var(--rc-text-secondary)] hover:text-[var(--rc-text-primary)]">
                 ← Home
