@@ -1,0 +1,10 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "runcouncil.com" }],
+      "destination": "https://www.runcouncil.com/:path*",
+      "permanent": true
+    }
+  ]
+}
