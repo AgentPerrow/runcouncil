@@ -11,9 +11,36 @@ export default function GuidePage() {
 
       <div className="mx-auto max-w-3xl px-6 py-12">
         <h1 className="mb-2 text-3xl font-bold tracking-tight sm:text-4xl">
-          How to run your council
+          Guide
         </h1>
-        <p className="mb-12 text-lg text-zinc-500">
+        <p className="mb-10 text-lg text-zinc-500">
+          Why councils work, how to build one, and the mistakes to avoid.
+        </p>
+
+        {/* Why build a council */}
+        <section className="mb-16">
+          <h2 className="mb-6 text-2xl font-bold">Why build a council?</h2>
+          <div className="space-y-4 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+            <p>
+              When you ask ChatGPT a question, you get one perspective. It&apos;s helpful, but it&apos;s a single voice — eager to agree, unlikely to push back, and blind to what it doesn&apos;t know.
+            </p>
+            <p>
+              A council changes that. Instead of one generalist answer, you get a CFO who flags the financial risk, a lawyer who spots the liability, a strategist who sees the opportunity, and a devil&apos;s advocate who tells you why you&apos;re wrong. They deliberate, disagree, and synthesize — just like a real advisory board would.
+            </p>
+            <p>
+              The result? Decisions that account for what you didn&apos;t think to ask. Blind spots surfaced before they become problems. And a structured output you can actually act on — not a wall of hedging and caveats.
+            </p>
+            <p>
+              RunCouncil gives you the prompt to make this happen in any AI tool. Pick your experts, configure the conversation, and paste it in. It takes two minutes and it&apos;s free.
+            </p>
+          </div>
+        </section>
+
+        <hr className="mb-16 border-zinc-200 dark:border-zinc-800" />
+
+        {/* How to run your council */}
+        <h2 className="mb-2 text-2xl font-bold">How to run your council</h2>
+        <p className="mb-12 text-sm text-zinc-500">
           Prompt strategies, follow-up techniques, and the mistakes that make councils useless.
         </p>
 

@@ -11,7 +11,7 @@ export default function SiteNav({ activePage }: SiteNavProps) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const links = [
-    { href: "/guide", label: "How to", id: "guide" as const },
+    { href: "/guide", label: "Guide", id: "guide" as const },
     { href: "/community", label: "Community", id: "community" as const },
     { href: "/faq", label: "FAQ", id: "faq" as const },
   ];
