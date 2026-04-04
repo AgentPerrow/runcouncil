@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { mergedCouncils as councils } from "@/data/merged-councils";
 import { PrismLogoFull } from "@/components/PrismLogo";
 import Link from "next/link";
@@ -12,7 +12,15 @@ const FEATURED_IDS = ["startup", "health", "career", "investment"];
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [heroExpanded, setHeroExpanded] = useState(false);
+  const [user, setUser] = useState<{ name?: string; email?: string } | null>(null);
   const featuredCouncils = councils.filter((c) => FEATURED_IDS.includes(c.id));
+
+  useEffect(() => {
+    fetch("/api/auth/session")
+      .then((r) => r.json())
+      .then((s) => { if (s?.user) setUser(s.user); })
+      .catch(() => {});
+  }, []);
 
 
   return (
@@ -34,9 +42,15 @@ export default function Home() {
 
           <div className="flex items-center gap-3">
 
-            <a href="/api/auth/signin" className="hidden sm:block text-[15px] font-medium text-[#4A4A5A] hover:text-[#111]">
-              Log in
-            </a>
+            {user ? (
+              <button onClick={() => window.location.href = "/api/auth/signout"} className="hidden sm:block text-[15px] font-medium text-[#4A4A5A] hover:text-red-400">
+                Sign Out
+              </button>
+            ) : (
+              <a href="/api/auth/signin" className="hidden sm:block text-[15px] font-medium text-[#4A4A5A] hover:text-[#111]">
+                Log in
+              </a>
+            )}
             <Link
               href="/build"
               className="hidden sm:block rounded-full bg-[#111111] px-6 py-2.5 text-[15px] font-medium text-white hover:bg-[#222]"
@@ -62,6 +76,15 @@ export default function Home() {
             <a href="/community" onClick={() => setMobileMenuOpen(false)} className="text-[15px] text-[#4A4A5A] hover:text-[#111] py-1">Community</a>
             <Link href="/build" onClick={() => setMobileMenuOpen(false)} className="text-[15px] text-[#4A4A5A] hover:text-[#111] py-1">Build a council</Link>
             <a href="/faq" onClick={() => setMobileMenuOpen(false)} className="text-[15px] text-[#4A4A5A] hover:text-[#111] py-1">FAQ</a>
+            {user ? (
+              <button onClick={() => window.location.href = "/api/auth/signout"} className="text-left text-[15px] text-[#4A4A5A] hover:text-red-400 py-1">
+                Sign Out ({user.email})
+              </button>
+            ) : (
+              <a href="/api/auth/signin" onClick={() => setMobileMenuOpen(false)} className="text-[15px] text-[#4A4A5A] hover:text-[#111] py-1">
+                Sign In
+              </a>
+            )}
           </nav>
         )}
       </header>
