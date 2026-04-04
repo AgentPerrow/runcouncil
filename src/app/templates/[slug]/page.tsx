@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import SiteNav from "@/components/SiteNav";
 import { templates } from "@/data/templates";
 import { mergedCouncils as councils, universalMembers } from "@/data/merged-councils";
 import { notFound } from "next/navigation";
@@ -74,36 +75,7 @@ export default async function TemplatePage({
 
   return (
     <main className="min-h-screen bg-zinc-50 dark:bg-zinc-950">
-      <header className="border-b border-zinc-200 dark:border-zinc-800/50 px-6 py-4">
-        <div className="mx-auto flex max-w-5xl items-center justify-between">
-          <Link
-            href="/"
-            className="text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-100"
-          >
-            RunCouncil
-          </Link>
-          <div className="flex items-center gap-4">
-            <Link
-              href="/templates"
-              className="text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100"
-            >
-              Templates
-            </Link>
-            <Link
-              href="/guide"
-              className="text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100"
-            >
-              Guide
-            </Link>
-            <Link
-              href="/faq"
-              className="text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100"
-            >
-              FAQ
-            </Link>
-          </div>
-        </div>
-      </header>
+      <SiteNav activePage="templates" />
 
       <div className="mx-auto max-w-3xl px-4 sm:px-6 py-12 sm:py-16">
         <div className="mb-2">
