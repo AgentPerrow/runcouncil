@@ -5,12 +5,12 @@ import { mergedCouncils as councils } from "@/data/merged-councils";
 import { PrismLogoFull } from "@/components/PrismLogo";
 import Link from "next/link";
 
-const FEATURED_IDS = ["startup", "health", "career", "investment"];
+
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const featuredCouncils = councils.filter((c) => FEATURED_IDS.includes(c.id));
+
 
   return (
     <main className="min-h-screen bg-[var(--background)]">
@@ -153,125 +153,6 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Council cards */}
-      <div className="bg-[var(--rc-surface)] border-y border-[var(--rc-border)]">
-        <div id="councils" className="mx-auto max-w-5xl px-4 sm:px-6 py-14 sm:py-20">
-          <div className="grid gap-3 sm:gap-4 grid-cols-2 lg:grid-cols-4">
-            {featuredCouncils.map((council) => {
-              const cardCopy: Record<string, { q: string; desc: string }> = {
-                startup: { q: "Should I raise, cut burn, or buy time?", desc: "A CFO, growth strategist, and devil\u2019s advocate pressure-test your next move." },
-                health: { q: "Am I training smart, or running myself into the ground?", desc: "A sports doc, nutritionist, and recovery specialist review the plan." },
-                career: { q: "Should I take the offer, stay put, or negotiate?", desc: "Multiple perspectives before you make the call." },
-                investment: { q: "Is this conviction, or am I rationalizing a bad trade?", desc: "A bull, a bear, and a tax-aware strategist stress-test the thesis." },
-              };
-              const copy = cardCopy[council.id];
-              return (
-                <Link
-                  key={council.id}
-                  href={`/build?council=${council.id}`}
-                  className="group rounded-xl border border-[var(--rc-border)] bg-[var(--rc-card)] p-3 sm:p-4 text-left hover:border-[var(--rc-text-muted)] hover:shadow-md transition-all"
-                >
-                  <div className="mb-1.5 sm:mb-2 text-2xl sm:text-3xl">{council.emoji}</div>
-                  <h3 className="text-sm sm:text-lg font-semibold tracking-tight text-[var(--rc-text-primary)]">
-                    {council.name}
-                  </h3>
-                  <p className="mt-1 text-xs sm:text-sm italic text-[var(--rc-text-muted)] sm:text-[var(--rc-text-secondary)] line-clamp-2 sm:line-clamp-none">
-                    &ldquo;{copy ? copy.q : council.description}&rdquo;
-                  </p>
-                  <p className="hidden sm:block mt-2 text-xs text-[var(--rc-text-secondary)]">
-                    {copy ? copy.desc : council.tagline}
-                  </p>
-                  <div className="mt-2 text-xs text-[var(--rc-text-secondary)] font-medium text-right opacity-0 group-hover:opacity-100 transition-opacity">Build →</div>
-                </Link>
-              );
-            })}
-          </div>
-
-          <div className="mt-8 text-center">
-            <Link
-              href="/build"
-              className="rounded-full border border-[var(--rc-border)] px-5 py-2 text-sm font-medium text-[var(--rc-text-secondary)] hover:border-[var(--rc-text-muted)] hover:text-[var(--rc-text-primary)]"
-            >
-              Explore all councils →
-            </Link>
-          </div>
-        </div>
-      </div>
-
-      {/* Ready-made templates */}
-      <div className="mx-auto max-w-5xl px-4 sm:px-6 py-14 sm:py-20">
-        <div className="mb-8 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2">
-          <div>
-            <h2 className="text-2xl font-bold tracking-tight text-[var(--rc-text-primary)]">
-              Start with a proven council
-            </h2>
-            <p className="text-sm text-[var(--rc-text-secondary)]">
-              Pre-built templates for common high-stakes decisions.
-            </p>
-          </div>
-          <a href="/templates" className="text-sm text-[var(--rc-text-secondary)] hover:text-[var(--rc-text-primary)] font-medium shrink-0">
-            See all templates →
-          </a>
-        </div>
-        <div className="grid gap-3 sm:gap-4 sm:grid-cols-3">
-          <a
-            href="/templates/severance-negotiation"
-            className="group rounded-xl border border-[var(--rc-border)] bg-[var(--rc-card)] p-5 hover:border-[var(--rc-text-muted)] hover:shadow-md transition-all"
-          >
-            <div className="mb-2 flex items-center gap-2">
-              <span className="text-2xl">⚖️</span>
-              <span className="rounded-full bg-[var(--rc-surface)] px-2 py-0.5 text-[10px] font-medium text-[var(--rc-text-secondary)]">Career</span>
-            </div>
-            <h3 className="text-lg font-semibold tracking-tight text-[var(--rc-text-primary)] group-hover:text-[var(--rc-text-secondary)]">
-              Severance Negotiation Council
-            </h3>
-            <p className="mt-1 text-sm text-[var(--rc-text-secondary)]">
-              Review your package, find leverage, and surface what actually matters before you reply.
-            </p>
-            <div className="mt-3 text-sm font-medium text-[var(--rc-text-secondary)] group-hover:text-[var(--rc-text-primary)]">
-              Use this template →
-            </div>
-          </a>
-          <a
-            href="/templates/fundraising-war-room"
-            className="group rounded-xl border border-[var(--rc-border)] bg-[var(--rc-card)] p-5 hover:border-[var(--rc-text-muted)] hover:shadow-md transition-all"
-          >
-            <div className="mb-2 flex items-center gap-2">
-              <span className="text-2xl">🎯</span>
-              <span className="rounded-full bg-[var(--rc-surface)] px-2 py-0.5 text-[10px] font-medium text-[var(--rc-text-secondary)]">Startup</span>
-              <span className="rounded-full bg-[var(--rc-surface)] px-2 py-0.5 text-[10px] font-medium text-[var(--rc-text-primary)]">Popular</span>
-            </div>
-            <h3 className="text-lg font-semibold tracking-tight text-[var(--rc-text-primary)] group-hover:text-[var(--rc-text-secondary)]">
-              Startup Fundraising War Room
-            </h3>
-            <p className="mt-1 text-sm text-[var(--rc-text-secondary)]">
-              Pressure-test your raise from pitch clarity to dilution, runway, and investor psychology.
-            </p>
-            <div className="mt-3 text-sm font-medium text-[var(--rc-text-secondary)] group-hover:text-[var(--rc-text-primary)]">
-              Use this template →
-            </div>
-          </a>
-          <a
-            href="/templates/first-time-homebuyer"
-            className="group rounded-xl border border-[var(--rc-border)] bg-[var(--rc-card)] p-5 hover:border-[var(--rc-text-muted)] hover:shadow-md transition-all"
-          >
-            <div className="mb-2 flex items-center gap-2">
-              <span className="text-2xl">🏡</span>
-              <span className="rounded-full bg-[var(--rc-surface)] px-2 py-0.5 text-[10px] font-medium text-[var(--rc-text-secondary)]">Life</span>
-            </div>
-            <h3 className="text-lg font-semibold tracking-tight text-[var(--rc-text-primary)] group-hover:text-[var(--rc-text-secondary)]">
-              First-Time Homebuyer Advisory Board
-            </h3>
-            <p className="mt-1 text-sm text-[var(--rc-text-secondary)]">
-              See the deal through legal, financing, inspection, and long-term ownership lenses.
-            </p>
-            <div className="mt-3 text-sm font-medium text-[var(--rc-text-secondary)] group-hover:text-[var(--rc-text-primary)]">
-              Use this template →
-            </div>
-          </a>
-        </div>
-      </div>
-
       {/* How it works */}
       <div id="how-it-works" className="bg-[var(--rc-surface)] border-y border-[var(--rc-border)]">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 py-14 sm:py-20">
@@ -318,21 +199,6 @@ export default function Home() {
             <div className="mb-3 text-2xl">📋</div>
             <h3 className="mb-1 font-semibold text-[var(--rc-text-primary)]">Clear output</h3>
             <p className="text-sm text-[var(--rc-text-secondary)]">Recommendation, tradeoffs, and the immediate next move — not a wall of text.</p>
-          </div>
-        </div>
-      </div>
-
-      {/* Guide CTA */}
-      <div className="bg-[var(--rc-surface)] border-y border-[var(--rc-border)]">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 py-14 sm:py-20">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <div>
-              <h3 className="text-xl font-bold text-[var(--rc-text-primary)]">See what a council actually looks like</h3>
-              <p className="mt-1 text-sm text-[var(--rc-text-secondary)]">Real examples, best practices, and the mistakes that make councils useless.</p>
-            </div>
-            <a href="/guide" className="shrink-0 rounded-full bg-[#111111] dark:bg-white px-6 py-2.5 text-sm font-medium text-white dark:text-[#111111] hover:opacity-90">
-              Read the Guide →
-            </a>
           </div>
         </div>
       </div>
