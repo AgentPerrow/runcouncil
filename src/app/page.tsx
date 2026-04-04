@@ -279,7 +279,7 @@ export default function Home() {
                 </a>
                 <button
                   onClick={() => document.getElementById("councils")?.scrollIntoView({ behavior: "smooth" })}
-                  className="rounded-full bg-[#111111] px-6 py-2.5 text-[15px] font-medium text-white hover:bg-[#222]"
+                  className="hidden sm:block rounded-full bg-[#111111] px-6 py-2.5 text-[15px] font-medium text-white hover:bg-[#222]"
                 >
                   Build My Council
                 </button>
