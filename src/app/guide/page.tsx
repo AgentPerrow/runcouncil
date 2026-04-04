@@ -1,21 +1,12 @@
 "use client";
 
-import Link from "next/link";
 import DemoSection from "@/components/DemoSection";
+import SiteNav from "@/components/SiteNav";
 
 export default function GuidePage() {
   return (
     <main className="min-h-screen bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100">
-      <header className="border-b border-zinc-200 px-6 py-4 dark:border-zinc-800/50">
-        <div className="mx-auto flex max-w-3xl items-center justify-between">
-          <Link href="/" className="text-lg font-semibold tracking-tight text-zinc-900 hover:text-black dark:text-zinc-100 dark:hover:text-white">
-            RunCouncil
-          </Link>
-          <Link href="/" className="rounded-lg bg-zinc-900 px-4 py-2 text-sm font-semibold text-white hover:bg-zinc-800 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-200">
-            Build Your Council →
-          </Link>
-        </div>
-      </header>
+      <SiteNav activePage="guide" />
 
       <div className="mx-auto max-w-3xl px-6 py-12">
         <h1 className="mb-2 text-3xl font-bold tracking-tight sm:text-4xl">

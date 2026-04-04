@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import type { Metadata } from "next";
+import SiteNav from "@/components/SiteNav";
 
 interface FAQItem {
   question: string;
@@ -77,36 +78,7 @@ export default function FAQPage() {
 
   return (
     <main className="min-h-screen bg-zinc-50 dark:bg-zinc-950">
-      <header className="border-b border-zinc-200 dark:border-zinc-800/50 px-6 py-4">
-        <div className="mx-auto flex max-w-5xl items-center justify-between">
-          <Link
-            href="/"
-            className="text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-100"
-          >
-            RunCouncil
-          </Link>
-          <div className="flex items-center gap-4">
-            <Link
-              href="/templates"
-              className="text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100"
-            >
-              Templates
-            </Link>
-            <Link
-              href="/guide"
-              className="text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100"
-            >
-              Guide
-            </Link>
-            <Link
-              href="/faq"
-              className="text-sm font-medium text-zinc-900 dark:text-zinc-100"
-            >
-              FAQ
-            </Link>
-          </div>
-        </div>
-      </header>
+      <SiteNav activePage="faq" />
 
       <div className="mx-auto max-w-3xl px-4 sm:px-6 py-12 sm:py-16">
         <h1 className="mb-2 text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 sm:text-4xl">

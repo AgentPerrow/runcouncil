@@ -306,7 +306,7 @@ export default function Home() {
             <a href="#how-it-works" onClick={() => setMobileMenuOpen(false)} className="text-[15px] text-[#4A4A5A] hover:text-[#111] py-1">How it Works</a>
             <a href="/templates" className="text-[15px] text-[#4A4A5A] hover:text-[#111] py-1">Use Cases</a>
             <a href="/community" className="text-[15px] font-medium text-[#F97316] hover:text-[#EA580C] py-1">🏪 Community Marketplace</a>
-            <a href="/request" className="text-[15px] text-[#4A4A5A] hover:text-[#111] py-1">Request an Expert</a>
+            {/* <a href="/request" className="text-[15px] text-[#4A4A5A] hover:text-[#111] py-1">Request an Expert</a> */}
             <a href="/guide" className="text-[15px] text-[#4A4A5A] hover:text-[#111] py-1">Docs</a>
           </nav>
         )}

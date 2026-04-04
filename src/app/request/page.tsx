@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { PrismLogoFull } from "@/components/PrismLogo";
+import SiteNav from "@/components/SiteNav";
 
 interface ExpertRequest {
   id: string;
@@ -132,20 +133,7 @@ export default function RequestPage() {
 
   return (
     <div className="min-h-screen bg-[var(--background)]">
-      {/* Header */}
-      <header className="border-b border-[var(--rc-border)] px-6 py-4">
-        <div className="mx-auto flex max-w-4xl items-center justify-between">
-          <a href="/" className="flex items-center gap-3">
-            <PrismLogoFull height={28} />
-          </a>
-          <button
-            onClick={() => setShowForm(true)}
-            className="rounded-lg bg-gradient-to-r from-[var(--rc-gradient-start)] via-[var(--rc-gradient-mid)] to-[var(--rc-gradient-end)] px-4 py-2 text-sm font-medium text-white transition-opacity hover:opacity-90"
-          >
-            + Request an Expert
-          </button>
-        </div>
-      </header>
+      <SiteNav activePage="request" />
 
       <main className="mx-auto max-w-4xl px-6 py-12">
         {/* Hero */}

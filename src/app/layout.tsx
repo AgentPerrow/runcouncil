@@ -95,7 +95,7 @@ export default function RootLayout({
               <span>·</span>
               <a href="/community" className="text-zinc-500 dark:text-zinc-600 hover:text-zinc-700 dark:hover:text-zinc-400">Community</a>
               <span>·</span>
-              <a href="/request" className="text-zinc-500 dark:text-zinc-600 hover:text-zinc-700 dark:hover:text-zinc-400">Request an Expert</a>
+              {/* <a href="/request" className="text-zinc-500 dark:text-zinc-600 hover:text-zinc-700 dark:hover:text-zinc-400">Request an Expert</a> */}
               <span>·</span>
               <a href="https://x.com/perrow" target="_blank" rel="noopener noreferrer" className="text-zinc-500 dark:text-zinc-600 hover:text-zinc-700 dark:hover:text-zinc-400">𝕏</a>
             </div>

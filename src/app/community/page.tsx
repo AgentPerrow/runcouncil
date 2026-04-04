@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { PrismLogoFull } from "@/components/PrismLogo";
+import SiteNav from "@/components/SiteNav";
 
 interface CommunityMember {
   id: string;
@@ -147,38 +148,7 @@ export default function CommunityPage() {
 
   return (
     <main className="min-h-screen bg-[var(--background)]">
-      {/* Header */}
-      <header className="px-6 sm:px-12 py-5 border-b border-[var(--rc-border)]">
-        <div className="mx-auto flex max-w-7xl items-center justify-between">
-          <a href="/">
-            <PrismLogoFull height={36} />
-          </a>
-          <nav className="hidden sm:flex items-center gap-8">
-            <a href="/" className="text-[15px] text-[var(--rc-text-secondary)] hover:text-[var(--rc-text-primary)]">Home</a>
-            <a href="/community" className="text-[15px] font-medium text-amber-600">Community</a>
-            <a href="/templates" className="text-[15px] text-[var(--rc-text-secondary)] hover:text-[var(--rc-text-primary)]">Templates</a>
-            <a href="/request" className="text-[15px] text-[var(--rc-text-secondary)] hover:text-[var(--rc-text-primary)]">Request</a>
-          </nav>
-          <div className="flex items-center gap-3">
-            {session?.user ? (
-              <div className="flex items-center gap-2">
-                <span className="text-sm text-[var(--rc-text-secondary)]">{session.user.name}</span>
-                {session.user.image && <img src={session.user.image} alt="" className="h-7 w-7 rounded-full" />}
-                <button
-                  onClick={() => { window.location.href = "/api/auth/signout"; }}
-                  className="rounded-full border border-[var(--rc-border)] px-3 py-1 text-xs text-[var(--rc-text-muted)] hover:text-[var(--rc-text-primary)] hover:border-[var(--rc-text-muted)]"
-                >
-                  Sign out
-                </button>
-              </div>
-            ) : (
-              <button onClick={signIn} className="rounded-full bg-[#111] px-5 py-2 text-sm font-medium text-white hover:bg-[#222]">
-                Sign in
-              </button>
-            )}
-          </div>
-        </div>
-      </header>
+      <SiteNav activePage="community" />
 
       <div className="mx-auto max-w-5xl px-4 sm:px-6 py-10 sm:py-14">
         {/* Hero */}
