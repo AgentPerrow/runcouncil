@@ -89,7 +89,7 @@ export default function TemplatesPage() {
 
         <div className="mt-10 text-center">
           <Link
-            href="/"
+            href="/build"
             className="inline-block rounded-lg bg-amber-500 px-6 py-2.5 text-sm font-semibold text-white hover:bg-amber-400"
           >
             Or build from scratch →
