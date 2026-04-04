@@ -161,14 +161,23 @@ export default function CommunityPage() {
               Browse and vote on council members created by the community. Add them to your councils.
             </p>
           </div>
-          <div className="flex gap-2">
+          <div className="flex gap-2 items-center">
             {session?.user && (
-              <button
-                onClick={() => { setShowMySubmissions(!showMySubmissions); if (!showMySubmissions) loadMySubmissions(); }}
-                className="rounded-lg border border-[var(--rc-border)] px-4 py-2.5 text-sm font-medium text-[var(--rc-text-secondary)] hover:border-[var(--rc-text-muted)] hover:text-[var(--rc-text-primary)]"
-              >
-                My Submissions
-              </button>
+              <>
+                <span className="text-xs text-[var(--rc-text-muted)] hidden sm:inline">{session.user.email}</span>
+                <button
+                  onClick={() => { setShowMySubmissions(!showMySubmissions); if (!showMySubmissions) loadMySubmissions(); }}
+                  className="rounded-lg border border-[var(--rc-border)] px-4 py-2.5 text-sm font-medium text-[var(--rc-text-secondary)] hover:border-[var(--rc-text-muted)] hover:text-[var(--rc-text-primary)]"
+                >
+                  My Submissions
+                </button>
+                <button
+                  onClick={() => window.location.href = "/api/auth/signout"}
+                  className="rounded-lg border border-[var(--rc-border)] px-4 py-2.5 text-sm font-medium text-[var(--rc-text-secondary)] hover:border-red-400 hover:text-red-400"
+                >
+                  Sign Out
+                </button>
+              </>
             )}
             <button
               onClick={() => session?.user ? setShowSubmit(!showSubmit) : signIn()}
