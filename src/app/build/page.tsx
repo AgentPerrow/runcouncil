@@ -249,7 +249,8 @@ function BuildPageInner() {
 
           {step === "select" && (
             <nav className="hidden lg:flex items-center gap-10">
-              <a href="/guide" className="text-[15px] text-[#4A4A5A] hover:text-[#111]">How to</a>
+              <a href="/guide" className="text-[15px] text-[#4A4A5A] hover:text-[#111]">Guide</a>
+              <a href="/templates" className="text-[15px] text-[#4A4A5A] hover:text-[#111]">Templates</a>
               <a href="/community" className="text-[15px] text-[#4A4A5A] hover:text-[#111]">Community</a>
               <a href="/faq" className="text-[15px] text-[#4A4A5A] hover:text-[#111]">FAQ</a>
             </nav>
@@ -334,7 +335,7 @@ function BuildPageInner() {
                   <button
                     key={council.id}
                     onClick={() => selectCouncil(council)}
-                    className="group rounded-xl border border-[var(--rc-border)] bg-[var(--rc-card)] p-3 sm:p-4 text-left hover:border-[var(--rc-text-muted)] hover:shadow-md transition-all"
+                    className="group rounded-xl border border-[var(--rc-border)] bg-[var(--rc-card)] p-3 sm:p-4 text-left hover:border-amber-300 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
                   >
                     <div className="mb-1.5 sm:mb-2 text-2xl sm:text-3xl">{council.emoji}</div>
                     <h3 className="text-sm sm:text-lg font-semibold tracking-tight text-[var(--rc-text-primary)]">
@@ -350,6 +351,17 @@ function BuildPageInner() {
                   </button>
                 );
               })}
+            </div>
+
+            <div className="mt-4 grid gap-3 sm:gap-4 grid-cols-2 lg:grid-cols-4">
+              <button
+                onClick={() => selectCouncil(customCouncil)}
+                className="group col-span-2 lg:col-span-4 rounded-xl border-2 border-dashed border-[var(--rc-border)] bg-transparent p-4 text-center hover:border-amber-400 hover:bg-amber-50/50 transition-all duration-200"
+              >
+                <span className="text-2xl">✨</span>
+                <h3 className="mt-1 text-lg font-semibold text-[var(--rc-text-primary)]">Start from scratch</h3>
+                <p className="text-sm text-[var(--rc-text-secondary)]">Build a fully custom council with any combination of advisors</p>
+              </button>
             </div>
 
             {!showAllCouncils ? (
@@ -368,7 +380,7 @@ function BuildPageInner() {
                     <button
                       key={council.id}
                       onClick={() => selectCouncil(council)}
-                      className="group rounded-xl border border-[var(--rc-border)] bg-[var(--rc-card)] p-3 sm:p-4 text-left hover:border-[var(--rc-text-muted)] hover:shadow-md transition-all"
+                      className="group rounded-xl border border-[var(--rc-border)] bg-[var(--rc-card)] p-3 sm:p-4 text-left hover:border-amber-300 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
                     >
                       <div className="mb-1 sm:mb-2 text-2xl sm:text-3xl">{council.emoji}</div>
                       <h3 className="text-sm sm:text-lg font-semibold tracking-tight text-[var(--rc-text-primary)]">

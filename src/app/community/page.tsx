@@ -41,6 +41,108 @@ const EMOJI_OPTIONS = [
   "🦊", "🐺", "🦅", "🧙", "👁️", "💎", "🔥", "🌊", "⭐", "🏛️",
 ];
 
+
+const SEED_COMMUNITY_MEMBERS: CommunityMember[] = [
+  {
+    id: "seed-1",
+    name: "The Bootstrapper",
+    role: "Bootstrap Growth Advisor",
+    emoji: "🔥",
+    description: "Scaled 3 companies to $10M+ ARR without raising a cent. Obsessed with capital efficiency, organic growth, and creative distribution.",
+    expertise: "Bootstrap growth, capital efficiency, organic distribution",
+    systemPrompt: "",
+    council: "startup",
+    status: "approved" as const,
+    upvotes: 24,
+    submittedBy: "community",
+    submittedAt: "2026-03-15T10:00:00Z",
+  },
+  {
+    id: "seed-2",
+    name: "Recovery Specialist",
+    role: "Sports Recovery Coach",
+    emoji: "🧊",
+    description: "Former Olympic physio. Designs recovery protocols combining cold therapy, sleep optimization, and periodization for high performers.",
+    expertise: "Recovery protocols, sleep optimization, periodization",
+    systemPrompt: "",
+    council: "health",
+    status: "approved" as const,
+    upvotes: 18,
+    submittedBy: "community",
+    submittedAt: "2026-03-18T14:00:00Z",
+  },
+  {
+    id: "seed-3",
+    name: "Compensation Strategist",
+    role: "Total Comp Negotiation Expert",
+    emoji: "💰",
+    description: "Ex-FAANG recruiter turned candidate advocate. Knows exactly how companies structure offers and where there is room to push.",
+    expertise: "Salary negotiation, equity packages, offer structuring",
+    systemPrompt: "",
+    council: "career",
+    status: "approved" as const,
+    upvotes: 31,
+    submittedBy: "community",
+    submittedAt: "2026-03-20T09:00:00Z",
+  },
+  {
+    id: "seed-4",
+    name: "Macro Analyst",
+    role: "Global Macro Strategist",
+    emoji: "🌍",
+    description: "Reads central bank minutes for fun. Connects geopolitics, rates, and liquidity cycles to portfolio positioning.",
+    expertise: "Macro economics, central bank policy, geopolitical risk",
+    systemPrompt: "",
+    council: "investment",
+    status: "approved" as const,
+    upvotes: 22,
+    submittedBy: "community",
+    submittedAt: "2026-03-22T11:00:00Z",
+  },
+  {
+    id: "seed-5",
+    name: "Brand Storyteller",
+    role: "Creative Brand Strategist",
+    emoji: "🎨",
+    description: "Built brand narratives for DTC companies from zero to cult status. Thinks in archetypes, emotion, and cultural moments.",
+    expertise: "Brand narrative, DTC strategy, cultural positioning",
+    systemPrompt: "",
+    council: "creative",
+    status: "approved" as const,
+    upvotes: 15,
+    submittedBy: "community",
+    submittedAt: "2026-03-25T16:00:00Z",
+  },
+  {
+    id: "seed-6",
+    name: "Pitch Coach",
+    role: "Fundraising Pitch Expert",
+    emoji: "🎤",
+    description: "Coached 200+ founders through Series A-C pitches. Knows what VCs actually care about vs what they say they care about.",
+    expertise: "Pitch decks, investor psychology, fundraising strategy",
+    systemPrompt: "",
+    council: "startup",
+    status: "approved" as const,
+    upvotes: 27,
+    submittedBy: "community",
+    submittedAt: "2026-03-28T08:00:00Z",
+  },
+  {
+    id: "seed-7",
+    name: "Tax Strategist",
+    role: "Tax-Efficient Wealth Advisor",
+    emoji: "📊",
+    description: "CPA who thinks beyond compliance. Structures holdings, harvests losses, and times realizations to minimize lifetime tax burden.",
+    expertise: "Tax optimization, wealth structuring, estate planning",
+    systemPrompt: "",
+    council: "investment",
+    status: "approved" as const,
+    upvotes: 19,
+    submittedBy: "community",
+    submittedAt: "2026-04-01T12:00:00Z",
+  },
+];
+
 export default function CommunityPage() {
   const [members, setMembers] = useState<CommunityMember[]>([]);
   const [session, setSession] = useState<Session | null>(null);
@@ -76,7 +178,8 @@ export default function CommunityPage() {
     if (filter) params.set("council", filter);
     const res = await fetch(`/api/community?${params}`);
     const data = await res.json();
-    setMembers(data);
+    const apiApproved = Array.isArray(data) ? data.filter((m: CommunityMember) => m.status === "approved") : [];
+    setMembers([...SEED_COMMUNITY_MEMBERS.filter(s => !filter || s.council === filter), ...apiApproved]);
     setLoading(false);
   }, [filter]);
 

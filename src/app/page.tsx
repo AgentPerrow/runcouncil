@@ -53,7 +53,7 @@ export default function Home() {
             )}
             <Link
               href="/build"
-              className="hidden sm:block rounded-full bg-[#111111] px-6 py-2.5 text-[15px] font-medium text-white hover:bg-[#222]"
+              className="hidden sm:block rounded-full bg-amber-500 px-6 py-2.5 text-[15px] font-medium text-white hover:bg-amber-400"
             >
               Build My Council
             </Link>
@@ -103,7 +103,7 @@ export default function Home() {
               <div className="flex flex-wrap items-center gap-4">
                 <Link
                   href="/build"
-                  className="rounded-full bg-[#111111] px-8 py-3.5 text-[15px] font-medium text-white hover:bg-[#222] transition-colors"
+                  className="rounded-full bg-amber-500 px-8 py-3.5 text-[15px] font-medium text-white hover:bg-amber-400 transition-colors"
                 >
                   Build my council →
                 </Link>
@@ -111,7 +111,7 @@ export default function Home() {
                   href="/guide"
                   className="flex items-center gap-2 text-[15px] font-medium text-[#6B7280] hover:text-[#111] transition-colors"
                 >
-                  <svg width="10" height="12" viewBox="0 0 10 12" fill="currentColor" opacity="0.5"><polygon points="0,0 10,6 0,12" /></svg>
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.5"><path d="m6 9 6 6 6-6" /></svg>
                   See how it works
                 </a>
               </div>
@@ -210,7 +210,7 @@ export default function Home() {
                 <Link
                   key={council.id}
                   href={`/build?council=${council.id}`}
-                  className="group rounded-xl border border-[var(--rc-border)] bg-[var(--rc-card)] p-3 sm:p-4 text-left hover:border-[var(--rc-text-muted)] hover:shadow-md transition-all"
+                  className="group rounded-xl border border-[var(--rc-border)] bg-[var(--rc-card)] p-3 sm:p-4 text-left hover:border-amber-300 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
                 >
                   <div className="mb-1.5 sm:mb-2 text-2xl sm:text-3xl">{council.emoji}</div>
                   <h3 className="text-sm sm:text-lg font-semibold tracking-tight text-[var(--rc-text-primary)]">
@@ -245,17 +245,17 @@ export default function Home() {
           Why councils work better than a single answer
         </h2>
         <div className="grid gap-6 sm:grid-cols-3">
-          <div className="rounded-xl border border-[var(--rc-border)] bg-[var(--rc-card)] p-6">
+          <div className="rounded-xl border border-[var(--rc-border)] bg-[var(--rc-card)] p-6 hover:border-amber-300 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
             <div className="mb-3 text-2xl">🔍</div>
             <h3 className="mb-1 font-semibold text-[var(--rc-text-primary)]">Multiple lenses</h3>
             <p className="text-sm text-[var(--rc-text-secondary)]">Finance, legal, brand, ops, risk — each advisor sees what the others miss.</p>
           </div>
-          <div className="rounded-xl border border-[var(--rc-border)] bg-[var(--rc-card)] p-6">
+          <div className="rounded-xl border border-[var(--rc-border)] bg-[var(--rc-card)] p-6 hover:border-amber-300 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
             <div className="mb-3 text-2xl">⚡</div>
             <h3 className="mb-1 font-semibold text-[var(--rc-text-primary)]">Built-in disagreement</h3>
             <p className="text-sm text-[var(--rc-text-secondary)]">The system argues before you act. A Devil&apos;s Advocate catches what consensus thinking misses.</p>
           </div>
-          <div className="rounded-xl border border-[var(--rc-border)] bg-[var(--rc-card)] p-6">
+          <div className="rounded-xl border border-[var(--rc-border)] bg-[var(--rc-card)] p-6 hover:border-amber-300 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
             <div className="mb-3 text-2xl">📋</div>
             <h3 className="mb-1 font-semibold text-[var(--rc-text-primary)]">Clear output</h3>
             <p className="text-sm text-[var(--rc-text-secondary)]">Recommendation, tradeoffs, and the immediate next move — not a wall of text.</p>
@@ -275,7 +275,7 @@ export default function Home() {
         </h2>
         <Link
           href="/build"
-          className="inline-block rounded-full bg-[#111111] dark:bg-white px-8 py-3 text-sm font-medium text-white dark:text-[#111111] hover:opacity-90"
+          className="inline-block rounded-full bg-amber-500 px-8 py-3 text-sm font-medium text-white hover:bg-amber-400 transition-colors"
         >
           Build my council →
         </Link>

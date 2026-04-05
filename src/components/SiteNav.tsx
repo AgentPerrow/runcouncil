@@ -22,6 +22,7 @@ export default function SiteNav({ activePage }: SiteNavProps) {
     { href: "/guide", label: "Guide", id: "guide" as const },
     { href: "/templates", label: "Templates", id: "templates" as const },
     { href: "/community", label: "Community", id: "community" as const },
+    { href: "/build", label: "Build a council", id: "build" as const },
     { href: "/faq", label: "FAQ", id: "faq" as const },
   ];
 
@@ -71,8 +72,8 @@ export default function SiteNav({ activePage }: SiteNavProps) {
             </a>
           )}
           <a
-            href="/"
-            className="hidden md:block rounded-full bg-[#111111] px-5 py-2 text-[14px] font-medium text-white hover:bg-[#222] transition-colors"
+            href="/build"
+            className="hidden md:block rounded-full bg-amber-500 px-5 py-2 text-[14px] font-medium text-white hover:bg-amber-400 transition-colors"
           >
             Build My Council
           </a>
@@ -122,8 +123,8 @@ export default function SiteNav({ activePage }: SiteNavProps) {
             </a>
           )}
           <a
-            href="/"
-            className="mt-2 rounded-full bg-[#111111] px-5 py-2.5 text-center text-[14px] font-medium text-white hover:bg-[#222]"
+            href="/build"
+            className="mt-2 rounded-full bg-amber-500 px-5 py-2.5 text-center text-[14px] font-medium text-white hover:bg-amber-400"
           >
             Build My Council
           </a>
