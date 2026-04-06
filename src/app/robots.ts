@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://runcouncil.com/sitemap.xml",
+    sitemap: "https://www.runcouncil.com/sitemap.xml",
   };
 }

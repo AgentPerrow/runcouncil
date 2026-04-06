@@ -792,7 +792,7 @@ function BuildPageInner() {
                 {shareCopied ? "✓ Link Copied!" : "Share Council"}
               </button>
               <a
-                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(`I just built a ${selectedCouncil.name} advisory council on RunCouncil`)}&url=${encodeURIComponent("https://runcouncil.com")}`}
+                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(`I just built a ${selectedCouncil.name} advisory council on RunCouncil`)}&url=${encodeURIComponent("https://www.runcouncil.com")}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="rounded-lg border border-zinc-800 dark:border-zinc-200 bg-zinc-900 dark:bg-white px-4 sm:px-6 py-2.5 text-sm font-medium text-white dark:text-zinc-900 hover:bg-zinc-800 dark:hover:bg-zinc-100 flex items-center gap-1.5"

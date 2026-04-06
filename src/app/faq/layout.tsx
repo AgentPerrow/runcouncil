@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   description:
     "Common questions about RunCouncil.",
   alternates: {
-    canonical: "https://runcouncil.com/faq",
+    canonical: "https://www.runcouncil.com/faq",
   },
   openGraph: {
     title: "FAQ — RunCouncil",

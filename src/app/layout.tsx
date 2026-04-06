@@ -15,12 +15,12 @@ export const metadata: Metadata = {
   title: "RunCouncil — What would your personal council say?",
   description:
     "Build an AI advisory council. Pick expert personas, configure the conversation, paste into ChatGPT, Claude, or Gemini. Free.",
-  metadataBase: new URL("https://runcouncil.com"),
+  metadataBase: new URL("https://www.runcouncil.com"),
   openGraph: {
     title: "RunCouncil — What would your personal council say?",
     description:
       "Build an AI advisory council. Pick expert personas, configure the conversation, paste into ChatGPT, Claude, or Gemini. Free.",
-    url: "https://runcouncil.com",
+    url: "https://www.runcouncil.com",
     siteName: "RunCouncil",
     type: "website",
     images: [
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     ],
   },
   alternates: {
-    canonical: "https://runcouncil.com",
+    canonical: "https://www.runcouncil.com",
   },
   twitter: {
     card: "summary_large_image",
@@ -68,7 +68,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "WebApplication",
               "name": "RunCouncil",
-              "url": "https://runcouncil.com",
+              "url": "https://www.runcouncil.com",
               "description": "Build a custom AI advisory council for your startup, career, health, investments, or life decisions. Works with ChatGPT, Claude, and Gemini.",
               "applicationCategory": "ProductivityApplication",
               "operatingSystem": "Web",

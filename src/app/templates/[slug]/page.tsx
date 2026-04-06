@@ -44,12 +44,12 @@ export async function generateMetadata({
     title,
     description,
     alternates: {
-      canonical: `https://runcouncil.com/templates/${template.id}`,
+      canonical: `https://www.runcouncil.com/templates/${template.id}`,
     },
     openGraph: {
       title,
       description,
-      url: `https://runcouncil.com/templates/${template.id}`,
+      url: `https://www.runcouncil.com/templates/${template.id}`,
       siteName: "RunCouncil",
       type: "website",
       images: [{ url: "/og", width: 1200, height: 630 }],

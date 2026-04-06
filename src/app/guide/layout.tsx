@@ -4,11 +4,11 @@ export const metadata: Metadata = {
   title: "Guide — RunCouncil",
   description:
     "Why councils work, how to build one, and the mistakes to avoid.",
-  alternates: { canonical: "https://runcouncil.com/guide" },
+  alternates: { canonical: "https://www.runcouncil.com/guide" },
   openGraph: {
     title: "Guide — RunCouncil",
     description: "Why councils work, how to build one, and the mistakes to avoid.",
-    url: "https://runcouncil.com/guide",
+    url: "https://www.runcouncil.com/guide",
     type: "website",
   },
 };

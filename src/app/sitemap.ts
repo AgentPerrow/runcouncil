@@ -2,7 +2,7 @@ import { MetadataRoute } from "next";
 import { templates } from "@/data/templates";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://runcouncil.com";
+  const baseUrl = "https://www.runcouncil.com";
 
   const staticPages: MetadataRoute.Sitemap = [
     {
